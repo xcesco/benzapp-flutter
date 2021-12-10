@@ -1,5 +1,5 @@
-import 'package:benzapp_flutter/widgets/passcode_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,8 +11,16 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-        title: 'Flutter Benzapp', home: MyHomePage(title: 'Flutter Benzapp'));
+    return MaterialApp(
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: const [Locale('en'), Locale('it')],
+      // title: AppLocalizations.of(context)!.title,
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.deepPurple)
+            .copyWith(secondary: Colors.amber),
+      ),
+      home: MyHomePage(title: ''),
+    );
   }
 }
 
@@ -60,8 +68,13 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           // Here we take the value from the MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
-          title: Text(widget.title),
+          title: Text(AppLocalizations.of(context)!.title),
         ),
-        body: const PasscodeView());
+        body: Center(
+            child: CircleAvatar(
+          backgroundColor: Colors.white,
+          radius: 72,
+          child: Image.asset('assets/images/logo_app.png'),
+        )));
   }
 }
