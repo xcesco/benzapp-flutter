@@ -1,4 +1,13 @@
 {
   "title": "Flutter Benzapp",
-  "textMessage": "benvenuto!"
+  "@title": {
+    "description": "Nome dell'app"
+  },
+  "textMessage": "welcome!",
+  "login": "Login",
+  "accedi": "Accedi",
+  "username": "Username",
+  "password": "Password",
+  "username_required": "Username is required",
+  "password_required": "Password is required"
 }

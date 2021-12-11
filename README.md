@@ -14,3 +14,22 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+## Used packages
+Widgets catalog:
+ - https://docs.flutter.dev/development/ui/widgets
+
+Material icons:
+- https://fonts.google.com/icons?selected=Material+Icons&icon.query=refresh
+
+A Flutter plugin to share images between Flutter and Android.
+- https://pub.dev/packages/drawable
+- https://github.com/ueman/drawable
+
+Widgets:
+- https://api.flutter.dev/flutter/material/CircularProgressIndicator-class.html
+
+Persistence layer
+- https://docs.flutter.dev/cookbook/persistence/sqlite
+- https://levelup.gitconnected.com/room-database-equivalent-for-flutter-807c9729b58d
+- https://pub.dev/packages/floor#data-changes
