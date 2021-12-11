@@ -1,4 +1,4 @@
-# benzapp_flutter
+# Flutter Benzapp
 
 Benzapp's Flutter implementation
 
