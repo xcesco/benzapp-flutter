@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class KeyPad extends StatelessWidget {
-  static const int PIN_SIZE = 6;
-  double buttonSize = 60.0;
+  final int pinSize;
+  final double buttonSize;
   final TextEditingController pinController;
   final Function onChange;
   final Function onSubmit;
@@ -13,7 +13,9 @@ class KeyPad extends StatelessWidget {
       required this.onChange,
       required this.onSubmit,
       required this.pinController,
-      required this.isPinLogin})
+      required this.isPinLogin,
+      this.buttonSize = 60.0,
+      this.pinSize = 6})
       : super(key: key);
 
   @override
@@ -60,16 +62,18 @@ class KeyPad extends StatelessWidget {
                   pinController.text = pinController.text
                       .substring(0, pinController.text.length - 1);
                 }
-                if (pinController.text.length > PIN_SIZE) {
-                  pinController.text = pinController.text.substring(0, PIN_SIZE-1);
+                if (pinController.text.length > pinSize) {
+                  pinController.text =
+                      pinController.text.substring(0, pinSize - 1);
                 }
                 onChange(pinController.text);
               }),
               buttonWidget('0'),
               !isPinLogin
                   ? iconButtonWidget(Icons.check, () {
-                      if (pinController.text.length > PIN_SIZE) {
-                        pinController.text = pinController.text.substring(0, PIN_SIZE-1);
+                      if (pinController.text.length > pinSize) {
+                        pinController.text =
+                            pinController.text.substring(0, pinSize - 1);
                       }
                       onSubmit(pinController.text);
                     })
@@ -90,7 +94,7 @@ class KeyPad extends StatelessWidget {
       child: TextButton(
         style: ElevatedButton.styleFrom(shape: const CircleBorder()),
         onPressed: () {
-          if (pinController.text.length <= PIN_SIZE-1) {
+          if (pinController.text.length <= pinSize - 1) {
             pinController.text = pinController.text + buttonText;
             onChange(pinController.text);
           }
