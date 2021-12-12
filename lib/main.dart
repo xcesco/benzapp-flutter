@@ -1,4 +1,4 @@
-import 'package:benzapp_flutter/widgets/login_page.dart';
+import 'package:benzapp_flutter/pages/lock_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue)
             .copyWith(secondary: Colors.orange),
       ),
-      home: const LoginPage(),
+      home: LockPage(),
     );
   }
 }

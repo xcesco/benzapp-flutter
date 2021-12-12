@@ -28,6 +28,10 @@ A Flutter plugin to share images between Flutter and Android.
 
 Widgets:
 - https://api.flutter.dev/flutter/material/CircularProgressIndicator-class.html
+- https://stackoverflow.com/questions/52376287/positioning-a-widget-in-the-end-of-the-row-widget
+- https://www.elitechsystems.com/flutter-numberpad-widget-without-any-package-for-android-ios/
+- https://stackoverflow.com/questions/49991444/create-a-rounded-button-button-with-border-radius-in-flutter
+- https://stackoverflow.com/questions/51304568/scaffold-of-called-with-a-context-that-does-not-contain-a-scaffold
 
 Persistence layer
 - https://docs.flutter.dev/cookbook/persistence/sqlite
