@@ -37,3 +37,11 @@ Persistence layer
 - https://docs.flutter.dev/cookbook/persistence/sqlite
 - https://levelup.gitconnected.com/room-database-equivalent-for-flutter-807c9729b58d
 - https://pub.dev/packages/floor#data-changes
+
+Providers:
+- https://pub.dev/packages/provider
+- https://docs.flutter.dev/development/data-and-backend/state-mgmt/simple
+
+
+Navigation
+- https://docs.flutter.dev/cookbook/navigation/named-routes

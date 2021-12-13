@@ -2,15 +2,20 @@ import 'package:drawable/drawable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+import 'lock_screen.dart';
+
+class LoginScreen extends StatefulWidget {
+  static const String routeName = '/login';
+
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _LoginPageState();
+  State<StatefulWidget> createState() => _LoginScreenState();
 }
 
 /// AnimationControllers can be created with `vsync: this` because of TickerProviderStateMixin.
-class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
+class _LoginScreenState extends State<LoginScreen>
+    with TickerProviderStateMixin {
   late AnimationController controller;
 
   @override
@@ -129,7 +134,11 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                                     child: SizedBox(
                                         width: double.infinity,
                                         child: ElevatedButton(
-                                            onPressed: () => {},
+                                            onPressed: () => {
+                                                  Navigator.of(context)
+                                                      .pushNamed(
+                                                          LockScreen.routeName)
+                                                },
                                             child: Text(localization.accedi)))),
                                 Center(
                                     child: CircularProgressIndicator(
