@@ -8,7 +8,7 @@ class KeyPad extends StatelessWidget {
   final Function onSubmit;
   final bool isPinLogin;
 
-  KeyPad(
+  const KeyPad(
       {Key? key,
       required this.onChange,
       required this.onSubmit,
