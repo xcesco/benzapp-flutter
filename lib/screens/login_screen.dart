@@ -72,7 +72,7 @@ class _LoginScreenState extends State<LoginScreen>
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             const Text(
-                              'http://lsocalhost',
+                              'http://localhost',
                               style: TextStyle(color: Colors.white),
                             ),
                             Padding(

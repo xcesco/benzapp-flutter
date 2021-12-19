@@ -9,5 +9,9 @@
   "username": "Username",
   "password": "Password",
   "username_required": "Username is required",
-  "password_required": "Password is required"
+  "password_required": "Password is required",
+
+  "main_menu_home": "HOME",
+  "main_menu_map":"MAPPA",
+  "main_menu_stations": "DISTRIBUTORI"
 }
