@@ -15,6 +15,13 @@ For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
+## Generate generate_value
+```
+flutter packages pub get
+
+flutter packages pub run build_runner build
+```
+
 ## Used packages
 Widgets catalog:
  - https://docs.flutter.dev/development/ui/widgets
@@ -68,6 +75,14 @@ A Flutter plugin to share images between Flutter and Android.
 
 ## Drawer
 - https://docs.flutter.dev/cookbook/design/drawer
+
+## HTTP
+- https://pub.dev/packages/dio
+
+## Object to JSON and viceversa
+- https://stacksecrets.com/flutter/introduction-to-built_value-library-in-dart
+- https://stacksecrets.com/flutter/how-to-use-built_value-library
+- https://stacksecrets.com/flutter/how-to-use-built_value-library#Setup_Built_Value_In_Flutter_App
 
 ## Books
 https://docs.flutter.dev/resources/books

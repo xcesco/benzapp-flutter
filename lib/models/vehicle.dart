@@ -1,5 +1,6 @@
-import 'package:benzapp_flutter/models/entity.dart';
+
 import 'package:benzapp_flutter/models/vehicle_type.dart';
+import 'entity.dart';
 
 class Vehicle extends Entity {
   final String codice;

@@ -1,7 +1,7 @@
 import 'package:benzapp_flutter/providers/station_provider.dart';
+import 'package:benzapp_flutter/widgets/home_fragment.dart';
 import 'package:benzapp_flutter/widgets/stations_list_fragment.dart';
 import 'package:benzapp_flutter/widgets/stations_map_fragment.dart';
-import 'package:benzapp_flutter/widgets/home_fragment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
