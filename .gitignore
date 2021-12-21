@@ -49,3 +49,4 @@ app.*.map.json
 /SECRETS.properties
 /android/app/src/main/AndroidManifest.xml
 /ios/Runner/AppDelegate.swift
+/lib/firebase_options.dart

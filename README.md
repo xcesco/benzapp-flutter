@@ -84,5 +84,14 @@ A Flutter plugin to share images between Flutter and Android.
 - https://stacksecrets.com/flutter/how-to-use-built_value-library
 - https://stacksecrets.com/flutter/how-to-use-built_value-library#Setup_Built_Value_In_Flutter_App
 
+## Remote config
+- https://firebase.flutter.dev/docs/remote-config/overview/
+
+## Firebase
+Richiede installazione Firebase CLI
+https://firebase.google.com/docs/cli#install-cli-windows
+https://firebase.flutter.dev/docs/overview/#initializing-flutterfire
+https://www.woolha.com/tutorials/flutter-using-firebase-remote-config
+
 ## Books
 https://docs.flutter.dev/resources/books

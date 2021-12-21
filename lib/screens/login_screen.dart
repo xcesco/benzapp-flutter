@@ -1,6 +1,8 @@
+import 'package:benzapp_flutter/providers/account_model.dart';
 import 'package:drawable/drawable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 import 'lock_screen.dart';
 
@@ -39,6 +41,7 @@ class _LoginScreenState extends State<LoginScreen>
   @override
   Widget build(BuildContext context) {
     var localization = AppLocalizations.of(context)!;
+    var accountProvider = Provider.of<AccountModel>(context);
 
     return Scaffold(
         body: Container(
@@ -71,14 +74,16 @@ class _LoginScreenState extends State<LoginScreen>
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Text(
-                              'http://localhost',
-                              style: TextStyle(color: Colors.white),
+                            Text(
+                              accountProvider.backendBaseUrl,
+                              style: const TextStyle(color: Colors.white),
                             ),
                             Padding(
                                 padding: const EdgeInsets.only(left: 8),
                                 child: OutlinedButton.icon(
-                                    onPressed: () => {},
+                                    onPressed: () {
+                                      accountProvider.initRemoteConfig();
+                                    },
                                     icon: const Icon(Icons.sync,
                                         color: Colors.white),
                                     label: const Text(''))),
@@ -130,22 +135,25 @@ class _LoginScreenState extends State<LoginScreen>
                           child: Padding(
                               padding: const EdgeInsets.all(24.0),
                               child: Stack(children: [
-                                Center(
-                                    child: SizedBox(
-                                        width: double.infinity,
-                                        child: ElevatedButton(
-                                            onPressed: () => {
-                                                  Navigator.of(context)
-                                                      .pushNamed(
-                                                          LockScreen.routeName)
-                                                },
-                                            child: Text(localization.accedi)))),
-                                Center(
-                                    child: CircularProgressIndicator(
-                                  color: Colors.orange,
-                                  value: controller.value,
-                                  semanticsLabel: 'Linear progress indicator',
-                                )),
+                                (!accountProvider.isLoading)
+                                    ? Center(
+                                        child: SizedBox(
+                                            width: double.infinity,
+                                            child: ElevatedButton(
+                                                onPressed: () => {
+                                                      Navigator.of(context)
+                                                          .pushNamed(LockScreen
+                                                              .routeName)
+                                                    },
+                                                child:
+                                                    Text(localization.accedi))))
+                                    : Center(
+                                        child: CircularProgressIndicator(
+                                        color: Colors.orange,
+                                        value: controller.value,
+                                        semanticsLabel:
+                                            'Linear progress indicator',
+                                      )),
                               ])),
                         ))),
               ],
