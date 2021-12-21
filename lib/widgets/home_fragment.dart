@@ -41,8 +41,8 @@ class _HomeFragmentState extends State<HomeFragment> {
                   elevation: 8,
                   child: OutlinedButton.icon(
                       onPressed: () => {},
-                      icon:
-                      const Icon(Icons.local_gas_station, color: Colors.blue),
+                      icon: const Icon(Icons.local_gas_station,
+                          color: Colors.blue),
                       label: const Text('')),
                 ),
               ),

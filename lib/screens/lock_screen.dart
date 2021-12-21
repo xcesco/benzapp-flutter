@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:benzapp_flutter/widgets/number_pad.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LockScreen extends StatefulWidget {
   static const String routeName = '/lock';
