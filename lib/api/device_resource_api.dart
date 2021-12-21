@@ -4,12 +4,12 @@ import 'dart:core';
 import 'package:dio/dio.dart';
 import 'package:built_value/serializer.dart';
 
-import 'package:api/model/device.dart';
+import 'package:benzapp_flutter/model/device.dart';
 import 'package:built_collection/built_collection.dart';
 
 class DeviceResourceApi {
     final Dio _dio;
-    Serializers _serializers;
+    final Serializers _serializers;
 
     DeviceResourceApi(this._dio, this._serializers);
 

@@ -3,12 +3,12 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:built_value/serializer.dart';
 
-import 'package:api/model/tessera.dart';
+import 'package:benzapp_flutter/model/tessera.dart';
 import 'package:built_collection/built_collection.dart';
 
 class TesseraResourceApi {
     final Dio _dio;
-    Serializers _serializers;
+    final Serializers _serializers;
 
     TesseraResourceApi(this._dio, this._serializers);
 

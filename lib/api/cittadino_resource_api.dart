@@ -1,14 +1,14 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:benzapp_flutter/model/cittadino.dart';
 import 'package:dio/dio.dart';
 import 'package:built_value/serializer.dart';
 
-import 'package:api/model/cittadino.dart';
 import 'package:built_collection/built_collection.dart';
 
 class CittadinoResourceApi {
     final Dio _dio;
-    Serializers _serializers;
+    final Serializers _serializers;
 
     CittadinoResourceApi(this._dio, this._serializers);
 

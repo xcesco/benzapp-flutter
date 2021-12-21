@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:api/model/admin_user_dto.dart';
-import 'package:api/model/user.dart';
+import 'package:benzapp_flutter/model/admin_user_dto.dart';
+import 'package:benzapp_flutter/model/user.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';

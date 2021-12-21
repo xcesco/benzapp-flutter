@@ -1,14 +1,14 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:api/model/rifornimento.dart';
+import 'package:benzapp_flutter/model/rifornimento.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
 class RifornimentoResourceApi {
   final Dio _dio;
-  Serializers _serializers;
+  final Serializers _serializers;
 
   RifornimentoResourceApi(this._dio, this._serializers);
 

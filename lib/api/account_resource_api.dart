@@ -1,10 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:api/model/admin_user_dto.dart';
-import 'package:api/model/key_and_password_vm.dart';
-import 'package:api/model/managed_user_vm.dart';
-import 'package:api/model/password_change_dto.dart';
+import 'package:benzapp_flutter/model/admin_user_dto.dart';
+import 'package:benzapp_flutter/model/key_and_password_vm.dart';
+import 'package:benzapp_flutter/model/managed_user_vm.dart';
+import 'package:benzapp_flutter/model/password_change_dto.dart';
+import 'package:benzapp_flutter/model/admin_user_dto.dart';
 import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 

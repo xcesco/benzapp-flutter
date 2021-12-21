@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:built_value/serializer.dart';
 
-import 'package:api/model/user_dto.dart';
+import 'package:benzapp_flutter/model/user_dto.dart';
 import 'package:built_collection/built_collection.dart';
 
 class PublicUserResourceApi {

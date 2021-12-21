@@ -3,12 +3,12 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:built_value/serializer.dart';
 
-import 'package:api/model/jwt_token.dart';
-import 'package:api/model/login_vm.dart';
+import 'package:benzapp_flutter/model/jwt_token.dart';
+import 'package:benzapp_flutter/model/login_vm.dart';
 
 class UserJwtControllerApi {
     final Dio _dio;
-    Serializers _serializers;
+    final Serializers _serializers;
 
     UserJwtControllerApi(this._dio, this._serializers);
 

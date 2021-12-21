@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:built_value/serializer.dart';
 
-import 'package:api/model/delega.dart';
+import 'package:benzapp_flutter/model/delega.dart';
 import 'package:built_collection/built_collection.dart';
 
 class DelegaResourceApi {

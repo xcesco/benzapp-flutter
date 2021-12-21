@@ -1,5 +1,5 @@
 import 'package:built_collection/built_collection.dart';
-import 'package:api/model/cittadino.dart';
+import 'package:benzapp_flutter/model/cittadino.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
