@@ -47,3 +47,5 @@ app.*.map.json
 /.scannerwork/
 /android/secrets.properties
 /SECRETS.properties
+/android/app/src/main/AndroidManifest.xml
+/ios/Runner/AppDelegate.swift
