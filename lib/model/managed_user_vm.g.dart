@@ -333,63 +333,91 @@ class ManagedUserVMBuilder
   _$ManagedUserVM? _$v;
 
   bool? _activated;
+
   bool? get activated => _$this._activated;
+
   set activated(bool? activated) => _$this._activated = activated;
 
   SetBuilder<String>? _authorities;
+
   SetBuilder<String> get authorities =>
       _$this._authorities ??= new SetBuilder<String>();
+
   set authorities(SetBuilder<String>? authorities) =>
       _$this._authorities = authorities;
 
   String? _createdBy;
+
   String? get createdBy => _$this._createdBy;
+
   set createdBy(String? createdBy) => _$this._createdBy = createdBy;
 
   DateTime? _createdDate;
+
   DateTime? get createdDate => _$this._createdDate;
+
   set createdDate(DateTime? createdDate) => _$this._createdDate = createdDate;
 
   String? _email;
+
   String? get email => _$this._email;
+
   set email(String? email) => _$this._email = email;
 
   String? _firstName;
+
   String? get firstName => _$this._firstName;
+
   set firstName(String? firstName) => _$this._firstName = firstName;
 
   int? _id;
+
   int? get id => _$this._id;
+
   set id(int? id) => _$this._id = id;
 
   String? _imageUrl;
+
   String? get imageUrl => _$this._imageUrl;
+
   set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
 
   String? _langKey;
+
   String? get langKey => _$this._langKey;
+
   set langKey(String? langKey) => _$this._langKey = langKey;
 
   String? _lastModifiedBy;
+
   String? get lastModifiedBy => _$this._lastModifiedBy;
+
   set lastModifiedBy(String? lastModifiedBy) =>
       _$this._lastModifiedBy = lastModifiedBy;
 
   DateTime? _lastModifiedDate;
+
   DateTime? get lastModifiedDate => _$this._lastModifiedDate;
+
   set lastModifiedDate(DateTime? lastModifiedDate) =>
       _$this._lastModifiedDate = lastModifiedDate;
 
   String? _lastName;
+
   String? get lastName => _$this._lastName;
+
   set lastName(String? lastName) => _$this._lastName = lastName;
 
   String? _login;
+
   String? get login => _$this._login;
+
   set login(String? login) => _$this._login = login;
 
   String? _password;
+
   String? get password => _$this._password;
+
   set password(String? password) => _$this._password = password;
 
   ManagedUserVMBuilder() {

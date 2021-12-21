@@ -276,36 +276,52 @@ class RifornimentoBuilder
   _$Rifornimento? _$v;
 
   DateTime? _data;
+
   DateTime? get data => _$this._data;
+
   set data(DateTime? data) => _$this._data = data;
 
   GestoreBuilder? _gestore;
+
   GestoreBuilder get gestore => _$this._gestore ??= new GestoreBuilder();
+
   set gestore(GestoreBuilder? gestore) => _$this._gestore = gestore;
 
   int? _id;
+
   int? get id => _$this._id;
+
   set id(int? id) => _$this._id = id;
 
   double? _litriErogati;
+
   double? get litriErogati => _$this._litriErogati;
+
   set litriErogati(double? litriErogati) => _$this._litriErogati = litriErogati;
 
   double? _prezzoAlLitro;
+
   double? get prezzoAlLitro => _$this._prezzoAlLitro;
+
   set prezzoAlLitro(double? prezzoAlLitro) =>
       _$this._prezzoAlLitro = prezzoAlLitro;
 
   double? _sconto;
+
   double? get sconto => _$this._sconto;
+
   set sconto(double? sconto) => _$this._sconto = sconto;
 
   TesseraBuilder? _tessera;
+
   TesseraBuilder get tessera => _$this._tessera ??= new TesseraBuilder();
+
   set tessera(TesseraBuilder? tessera) => _$this._tessera = tessera;
 
   RifornimentoTipoCarburanteEnum? _tipoCarburante;
+
   RifornimentoTipoCarburanteEnum? get tipoCarburante => _$this._tipoCarburante;
+
   set tipoCarburante(RifornimentoTipoCarburanteEnum? tipoCarburante) =>
       _$this._tipoCarburante = tipoCarburante;
 

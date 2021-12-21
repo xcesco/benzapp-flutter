@@ -356,55 +356,79 @@ class GestoreBuilder implements Builder<Gestore, GestoreBuilder> {
   _$Gestore? _$v;
 
   double? _benzinaPrezzoAlLitro;
+
   double? get benzinaPrezzoAlLitro => _$this._benzinaPrezzoAlLitro;
+
   set benzinaPrezzoAlLitro(double? benzinaPrezzoAlLitro) =>
       _$this._benzinaPrezzoAlLitro = benzinaPrezzoAlLitro;
 
   String? _comune;
+
   String? get comune => _$this._comune;
+
   set comune(String? comune) => _$this._comune = comune;
 
   double? _gasolioPrezzoAlLitro;
+
   double? get gasolioPrezzoAlLitro => _$this._gasolioPrezzoAlLitro;
+
   set gasolioPrezzoAlLitro(double? gasolioPrezzoAlLitro) =>
       _$this._gasolioPrezzoAlLitro = gasolioPrezzoAlLitro;
 
   int? _id;
+
   int? get id => _$this._id;
+
   set id(int? id) => _$this._id = id;
 
   String? _indirizzo;
+
   String? get indirizzo => _$this._indirizzo;
+
   set indirizzo(String? indirizzo) => _$this._indirizzo = indirizzo;
 
   double? _latitudine;
+
   double? get latitudine => _$this._latitudine;
+
   set latitudine(double? latitudine) => _$this._latitudine = latitudine;
 
   double? _longitudine;
+
   double? get longitudine => _$this._longitudine;
+
   set longitudine(double? longitudine) => _$this._longitudine = longitudine;
 
   MarchioBuilder? _marchio;
+
   MarchioBuilder get marchio => _$this._marchio ??= new MarchioBuilder();
+
   set marchio(MarchioBuilder? marchio) => _$this._marchio = marchio;
 
   String? _owner;
+
   String? get owner => _$this._owner;
+
   set owner(String? owner) => _$this._owner = owner;
 
   String? _provincia;
+
   String? get provincia => _$this._provincia;
+
   set provincia(String? provincia) => _$this._provincia = provincia;
 
   SetBuilder<Rifornimento>? _rifornimentos;
+
   SetBuilder<Rifornimento> get rifornimentos =>
       _$this._rifornimentos ??= new SetBuilder<Rifornimento>();
+
   set rifornimentos(SetBuilder<Rifornimento>? rifornimentos) =>
       _$this._rifornimentos = rifornimentos;
 
   GestoreTipoEnum? _tipo;
+
   GestoreTipoEnum? get tipo => _$this._tipo;
+
   set tipo(GestoreTipoEnum? tipo) => _$this._tipo = tipo;
 
   GestoreBuilder() {

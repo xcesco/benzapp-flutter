@@ -89,7 +89,9 @@ class JWTTokenBuilder implements Builder<JWTToken, JWTTokenBuilder> {
   _$JWTToken? _$v;
 
   String? _idToken;
+
   String? get idToken => _$this._idToken;
+
   set idToken(String? idToken) => _$this._idToken = idToken;
 
   JWTTokenBuilder() {

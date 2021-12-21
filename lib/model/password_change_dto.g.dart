@@ -112,12 +112,16 @@ class PasswordChangeDTOBuilder
   _$PasswordChangeDTO? _$v;
 
   String? _currentPassword;
+
   String? get currentPassword => _$this._currentPassword;
+
   set currentPassword(String? currentPassword) =>
       _$this._currentPassword = currentPassword;
 
   String? _newPassword;
+
   String? get newPassword => _$this._newPassword;
+
   set newPassword(String? newPassword) => _$this._newPassword = newPassword;
 
   PasswordChangeDTOBuilder() {

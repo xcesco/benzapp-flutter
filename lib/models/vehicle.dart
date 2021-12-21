@@ -1,5 +1,5 @@
-
 import 'package:benzapp_flutter/models/vehicle_type.dart';
+
 import 'entity.dart';
 
 class Vehicle extends Entity {

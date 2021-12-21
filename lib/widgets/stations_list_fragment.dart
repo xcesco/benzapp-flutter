@@ -36,7 +36,8 @@ class StationsListFragment extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(12.0, 12.0, 12.0, 6.0),
                 child: Text(
                   station.comune,
-                  style: const TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                      fontSize: 14.0, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(

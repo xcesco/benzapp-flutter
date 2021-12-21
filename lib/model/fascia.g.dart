@@ -164,26 +164,36 @@ class FasciaBuilder implements Builder<Fascia, FasciaBuilder> {
   _$Fascia? _$v;
 
   SetBuilder<Cittadino>? _cittadinos;
+
   SetBuilder<Cittadino> get cittadinos =>
       _$this._cittadinos ??= new SetBuilder<Cittadino>();
+
   set cittadinos(SetBuilder<Cittadino>? cittadinos) =>
       _$this._cittadinos = cittadinos;
 
   String? _descrizione;
+
   String? get descrizione => _$this._descrizione;
+
   set descrizione(String? descrizione) => _$this._descrizione = descrizione;
 
   int? _id;
+
   int? get id => _$this._id;
+
   set id(int? id) => _$this._id = id;
 
   double? _scontoBenzina;
+
   double? get scontoBenzina => _$this._scontoBenzina;
+
   set scontoBenzina(double? scontoBenzina) =>
       _$this._scontoBenzina = scontoBenzina;
 
   double? _scontoGasolio;
+
   double? get scontoGasolio => _$this._scontoGasolio;
+
   set scontoGasolio(double? scontoGasolio) =>
       _$this._scontoGasolio = scontoGasolio;
 

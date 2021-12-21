@@ -112,11 +112,15 @@ class KeyAndPasswordVMBuilder
   _$KeyAndPasswordVM? _$v;
 
   String? _key;
+
   String? get key => _$this._key;
+
   set key(String? key) => _$this._key = key;
 
   String? _newPassword;
+
   String? get newPassword => _$this._newPassword;
+
   set newPassword(String? newPassword) => _$this._newPassword = newPassword;
 
   KeyAndPasswordVMBuilder() {

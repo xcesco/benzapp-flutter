@@ -233,39 +233,57 @@ class UserBuilder implements Builder<User, UserBuilder> {
   _$User? _$v;
 
   bool? _activated;
+
   bool? get activated => _$this._activated;
+
   set activated(bool? activated) => _$this._activated = activated;
 
   String? _email;
+
   String? get email => _$this._email;
+
   set email(String? email) => _$this._email = email;
 
   String? _firstName;
+
   String? get firstName => _$this._firstName;
+
   set firstName(String? firstName) => _$this._firstName = firstName;
 
   int? _id;
+
   int? get id => _$this._id;
+
   set id(int? id) => _$this._id = id;
 
   String? _imageUrl;
+
   String? get imageUrl => _$this._imageUrl;
+
   set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
 
   String? _langKey;
+
   String? get langKey => _$this._langKey;
+
   set langKey(String? langKey) => _$this._langKey = langKey;
 
   String? _lastName;
+
   String? get lastName => _$this._lastName;
+
   set lastName(String? lastName) => _$this._lastName = lastName;
 
   String? _login;
+
   String? get login => _$this._login;
+
   set login(String? login) => _$this._login = login;
 
   DateTime? _resetDate;
+
   DateTime? get resetDate => _$this._resetDate;
+
   set resetDate(DateTime? resetDate) => _$this._resetDate = resetDate;
 
   UserBuilder() {

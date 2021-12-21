@@ -3,20 +3,22 @@ import 'package:built_value/serializer.dart';
 
 part 'password_change_dto.g.dart';
 
-abstract class PasswordChangeDTO implements Built<PasswordChangeDTO, PasswordChangeDTOBuilder> {
+abstract class PasswordChangeDTO
+    implements Built<PasswordChangeDTO, PasswordChangeDTOBuilder> {
+  @BuiltValueField(wireName: r'currentPassword')
+  String? get currentPassword;
 
-    @BuiltValueField(wireName: r'currentPassword')
-    String? get currentPassword;
+  @BuiltValueField(wireName: r'newPassword')
+  String? get newPassword;
 
-    @BuiltValueField(wireName: r'newPassword')
-    String? get newPassword;
+  // Boilerplate code needed to wire-up generated code
+  PasswordChangeDTO._();
 
-    // Boilerplate code needed to wire-up generated code
-    PasswordChangeDTO._();
+  static void _initializeBuilder(PasswordChangeDTOBuilder b) => b;
 
-    static void _initializeBuilder(PasswordChangeDTOBuilder b) => b;
+  factory PasswordChangeDTO([updates(PasswordChangeDTOBuilder b)]) =
+      _$PasswordChangeDTO;
 
-    factory PasswordChangeDTO([updates(PasswordChangeDTOBuilder b)]) = _$PasswordChangeDTO;
-    static Serializer<PasswordChangeDTO> get serializer => _$passwordChangeDTOSerializer;
+  static Serializer<PasswordChangeDTO> get serializer =>
+      _$passwordChangeDTOSerializer;
 }
-

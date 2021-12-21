@@ -121,16 +121,22 @@ class DelegaBuilder implements Builder<Delega, DelegaBuilder> {
   _$Delega? _$v;
 
   CittadinoBuilder? _cittadino;
+
   CittadinoBuilder get cittadino =>
       _$this._cittadino ??= new CittadinoBuilder();
+
   set cittadino(CittadinoBuilder? cittadino) => _$this._cittadino = cittadino;
 
   int? _id;
+
   int? get id => _$this._id;
+
   set id(int? id) => _$this._id = id;
 
   TesseraBuilder? _tessera;
+
   TesseraBuilder get tessera => _$this._tessera ??= new TesseraBuilder();
+
   set tessera(TesseraBuilder? tessera) => _$this._tessera = tessera;
 
   DelegaBuilder() {

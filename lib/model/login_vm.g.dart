@@ -122,15 +122,21 @@ class LoginVMBuilder implements Builder<LoginVM, LoginVMBuilder> {
   _$LoginVM? _$v;
 
   String? _password;
+
   String? get password => _$this._password;
+
   set password(String? password) => _$this._password = password;
 
   bool? _rememberMe;
+
   bool? get rememberMe => _$this._rememberMe;
+
   set rememberMe(bool? rememberMe) => _$this._rememberMe = rememberMe;
 
   String? _username;
+
   String? get username => _$this._username;
+
   set username(String? username) => _$this._username = username;
 
   LoginVMBuilder() {

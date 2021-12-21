@@ -162,25 +162,35 @@ class MarchioBuilder implements Builder<Marchio, MarchioBuilder> {
   _$Marchio? _$v;
 
   SetBuilder<Gestore>? _gestores;
+
   SetBuilder<Gestore> get gestores =>
       _$this._gestores ??= new SetBuilder<Gestore>();
+
   set gestores(SetBuilder<Gestore>? gestores) => _$this._gestores = gestores;
 
   int? _id;
+
   int? get id => _$this._id;
+
   set id(int? id) => _$this._id = id;
 
   String? _immagine;
+
   String? get immagine => _$this._immagine;
+
   set immagine(String? immagine) => _$this._immagine = immagine;
 
   String? _immagineContentType;
+
   String? get immagineContentType => _$this._immagineContentType;
+
   set immagineContentType(String? immagineContentType) =>
       _$this._immagineContentType = immagineContentType;
 
   String? _nome;
+
   String? get nome => _$this._nome;
+
   set nome(String? nome) => _$this._nome = nome;
 
   MarchioBuilder() {

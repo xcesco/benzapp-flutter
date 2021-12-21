@@ -390,54 +390,76 @@ class TesseraBuilder implements Builder<Tessera, TesseraBuilder> {
   _$Tessera? _$v;
 
   TesseraCarburanteEnum? _carburante;
+
   TesseraCarburanteEnum? get carburante => _$this._carburante;
+
   set carburante(TesseraCarburanteEnum? carburante) =>
       _$this._carburante = carburante;
 
   CittadinoBuilder? _cittadino;
+
   CittadinoBuilder get cittadino =>
       _$this._cittadino ??= new CittadinoBuilder();
+
   set cittadino(CittadinoBuilder? cittadino) => _$this._cittadino = cittadino;
 
   String? _codice;
+
   String? get codice => _$this._codice;
+
   set codice(String? codice) => _$this._codice = codice;
 
   DateTime? _dataEmissione;
+
   DateTime? get dataEmissione => _$this._dataEmissione;
+
   set dataEmissione(DateTime? dataEmissione) =>
       _$this._dataEmissione = dataEmissione;
 
   SetBuilder<Delega>? _delegas;
+
   SetBuilder<Delega> get delegas =>
       _$this._delegas ??= new SetBuilder<Delega>();
+
   set delegas(SetBuilder<Delega>? delegas) => _$this._delegas = delegas;
 
   int? _id;
+
   int? get id => _$this._id;
+
   set id(int? id) => _$this._id = id;
 
   String? _immagine;
+
   String? get immagine => _$this._immagine;
+
   set immagine(String? immagine) => _$this._immagine = immagine;
 
   String? _immagineContentType;
+
   String? get immagineContentType => _$this._immagineContentType;
+
   set immagineContentType(String? immagineContentType) =>
       _$this._immagineContentType = immagineContentType;
 
   SetBuilder<Rifornimento>? _rifornimentos;
+
   SetBuilder<Rifornimento> get rifornimentos =>
       _$this._rifornimentos ??= new SetBuilder<Rifornimento>();
+
   set rifornimentos(SetBuilder<Rifornimento>? rifornimentos) =>
       _$this._rifornimentos = rifornimentos;
 
   String? _targa;
+
   String? get targa => _$this._targa;
+
   set targa(String? targa) => _$this._targa = targa;
 
   TesseraVeicoloEnum? _veicolo;
+
   TesseraVeicoloEnum? get veicolo => _$this._veicolo;
+
   set veicolo(TesseraVeicoloEnum? veicolo) => _$this._veicolo = veicolo;
 
   TesseraBuilder() {

@@ -223,38 +223,54 @@ class CittadinoBuilder implements Builder<Cittadino, CittadinoBuilder> {
   _$Cittadino? _$v;
 
   String? _codiceFiscale;
+
   String? get codiceFiscale => _$this._codiceFiscale;
+
   set codiceFiscale(String? codiceFiscale) =>
       _$this._codiceFiscale = codiceFiscale;
 
   String? _cognome;
+
   String? get cognome => _$this._cognome;
+
   set cognome(String? cognome) => _$this._cognome = cognome;
 
   SetBuilder<Delega>? _delegas;
+
   SetBuilder<Delega> get delegas =>
       _$this._delegas ??= new SetBuilder<Delega>();
+
   set delegas(SetBuilder<Delega>? delegas) => _$this._delegas = delegas;
 
   FasciaBuilder? _fascia;
+
   FasciaBuilder get fascia => _$this._fascia ??= new FasciaBuilder();
+
   set fascia(FasciaBuilder? fascia) => _$this._fascia = fascia;
 
   int? _id;
+
   int? get id => _$this._id;
+
   set id(int? id) => _$this._id = id;
 
   String? _nome;
+
   String? get nome => _$this._nome;
+
   set nome(String? nome) => _$this._nome = nome;
 
   String? _owner;
+
   String? get owner => _$this._owner;
+
   set owner(String? owner) => _$this._owner = owner;
 
   SetBuilder<Tessera>? _tesseras;
+
   SetBuilder<Tessera> get tesseras =>
       _$this._tesseras ??= new SetBuilder<Tessera>();
+
   set tesseras(SetBuilder<Tessera>? tesseras) => _$this._tesseras = tesseras;
 
   CittadinoBuilder() {

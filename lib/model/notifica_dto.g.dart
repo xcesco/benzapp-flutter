@@ -120,15 +120,21 @@ class NotificaDTOBuilder implements Builder<NotificaDTO, NotificaDTOBuilder> {
   _$NotificaDTO? _$v;
 
   DateTime? _data;
+
   DateTime? get data => _$this._data;
+
   set data(DateTime? data) => _$this._data = data;
 
   int? _id;
+
   int? get id => _$this._id;
+
   set id(int? id) => _$this._id = id;
 
   String? _targa;
+
   String? get targa => _$this._targa;
+
   set targa(String? targa) => _$this._targa = targa;
 
   NotificaDTOBuilder() {

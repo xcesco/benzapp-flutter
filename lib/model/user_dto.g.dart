@@ -103,11 +103,15 @@ class UserDTOBuilder implements Builder<UserDTO, UserDTOBuilder> {
   _$UserDTO? _$v;
 
   int? _id;
+
   int? get id => _$this._id;
+
   set id(int? id) => _$this._id = id;
 
   String? _login;
+
   String? get login => _$this._login;
+
   set login(String? login) => _$this._login = login;
 
   UserDTOBuilder() {

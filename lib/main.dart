@@ -1,4 +1,3 @@
-
 import 'package:benzapp_flutter/providers/vehicle_provider.dart';
 import 'package:benzapp_flutter/screens/lock_screen.dart';
 import 'package:benzapp_flutter/screens/login_screen.dart';

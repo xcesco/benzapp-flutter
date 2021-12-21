@@ -6,22 +6,21 @@ import 'package:built_value/serializer.dart';
 part 'delega.g.dart';
 
 abstract class Delega implements Built<Delega, DelegaBuilder> {
+  @BuiltValueField(wireName: r'cittadino')
+  Cittadino? get cittadino;
 
-    @BuiltValueField(wireName: r'cittadino')
-    Cittadino? get cittadino;
+  @BuiltValueField(wireName: r'id')
+  int? get id;
 
-    @BuiltValueField(wireName: r'id')
-    int? get id;
+  @BuiltValueField(wireName: r'tessera')
+  Tessera? get tessera;
 
-    @BuiltValueField(wireName: r'tessera')
-    Tessera? get tessera;
+  // Boilerplate code needed to wire-up generated code
+  Delega._();
 
-    // Boilerplate code needed to wire-up generated code
-    Delega._();
+  static void _initializeBuilder(DelegaBuilder b) => b;
 
-    static void _initializeBuilder(DelegaBuilder b) => b;
+  factory Delega([updates(DelegaBuilder b)]) = _$Delega;
 
-    factory Delega([updates(DelegaBuilder b)]) = _$Delega;
-    static Serializer<Delega> get serializer => _$delegaSerializer;
+  static Serializer<Delega> get serializer => _$delegaSerializer;
 }
-
