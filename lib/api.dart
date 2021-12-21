@@ -1,5 +1,6 @@
 library openapi.api;
 
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:benzapp_flutter/api/account_resource_api.dart';
 import 'package:benzapp_flutter/api/cittadino_resource_api.dart';
 import 'package:benzapp_flutter/api/delega_resource_api.dart';
@@ -22,6 +23,13 @@ import 'package:collection/collection.dart';
 import 'package:dio/dio.dart';
 
 final _defaultInterceptors = [
+  PrettyDioLogger(
+    requestHeader: true,
+    requestBody: true,
+    responseBody: true,
+    responseHeader: false,
+    compact: false,
+  ),
   OAuthInterceptor(),
   BasicAuthInterceptor(),
   ApiKeyAuthInterceptor()
@@ -60,21 +68,21 @@ class Openapi {
   void setOAuthToken(String name, String token) {
     (dio.interceptors.firstWhereOrNull((element) => element is OAuthInterceptor)
             as OAuthInterceptor)
-        ?.tokens[name] = token;
+        .tokens[name] = token;
   }
 
   void setBasicAuth(String name, String username, String password) {
     var interceptor = (dio.interceptors
             .firstWhereOrNull((element) => element is BasicAuthInterceptor)
         as BasicAuthInterceptor);
-    interceptor?.authInfo[name] = BasicAuthInfo(username, password);
+    interceptor.authInfo[name] = BasicAuthInfo(username, password);
   }
 
   void setApiKey(String name, String apiKey) {
     (dio.interceptors
                 .firstWhereOrNull((element) => element is ApiKeyAuthInterceptor)
             as ApiKeyAuthInterceptor)
-        ?.apiKeys[name] = apiKey;
+        .apiKeys[name] = apiKey;
   }
 
   /// Get AccountResourceApi instance, base route and serializer can be overridden by a given but be careful,

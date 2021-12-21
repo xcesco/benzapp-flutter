@@ -1,3 +1,5 @@
+import 'package:benzapp_flutter/api.dart';
+import 'package:benzapp_flutter/model/login_vm.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 
@@ -6,10 +8,11 @@ class AccountModel with ChangeNotifier {
   late RemoteConfig _remoteConfig;
   final _backendBaseUrlParameter = 'backend_base_url';
   final _maintenanceModeParameter = 'maintenance_mode';
+  late Openapi api;
 
   String backendBaseUrl = 'localhost:8080';
 
-  void initRemoteConfig() async {
+  Future<void> initRemoteConfig() async {
     _isLoading = true;
     notifyListeners();
     _remoteConfig = await RemoteConfig.instance;
@@ -32,6 +35,18 @@ class AccountModel with ChangeNotifier {
 
   bool get isLoading {
     return _isLoading;
+  }
+
+  Future<void> login(String username, String password) async {
+    api = Openapi(basePathOverride: backendBaseUrl);
+    var builder = LoginVMBuilder();
+    builder.username = username;
+    builder.password = password;
+
+    api
+        .getUserJwtControllerApi()
+        .authorizeUsingPOST(loginVM: builder.build())
+        .then((value) => print(value.data));
   }
 
   Future<void> _fetchRemoteConfig() async {

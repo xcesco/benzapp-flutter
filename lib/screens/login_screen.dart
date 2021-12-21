@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
-import 'lock_screen.dart';
-
 class LoginScreen extends StatefulWidget {
   static const String routeName = '/login';
 
@@ -141,9 +139,8 @@ class _LoginScreenState extends State<LoginScreen>
                                             width: double.infinity,
                                             child: ElevatedButton(
                                                 onPressed: () => {
-                                                      Navigator.of(context)
-                                                          .pushNamed(LockScreen
-                                                              .routeName)
+                                                      login(context,
+                                                          accountProvider)
                                                     },
                                                 child:
                                                     Text(localization.accedi))))
@@ -158,5 +155,11 @@ class _LoginScreenState extends State<LoginScreen>
                         ))),
               ],
             )));
+  }
+
+  login(BuildContext context, AccountModel accountProvider) {
+    accountProvider.login("cesco", "admin").then((value) => {
+          //Navigator.of(context).pushNamed(LockScreen.routeName)
+        });
   }
 }

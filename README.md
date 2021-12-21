@@ -78,6 +78,7 @@ A Flutter plugin to share images between Flutter and Android.
 
 ## HTTP
 - https://pub.dev/packages/dio
+- https://pub.dev/packages/pretty_dio_logger/install
 
 ## Object to JSON and viceversa
 - https://stacksecrets.com/flutter/introduction-to-built_value-library-in-dart
@@ -92,6 +93,9 @@ Richiede installazione Firebase CLI
 https://firebase.google.com/docs/cli#install-cli-windows
 https://firebase.flutter.dev/docs/overview/#initializing-flutterfire
 https://www.woolha.com/tutorials/flutter-using-firebase-remote-config
+
+### SharePreference
+- https://pub.dev/packages/shared_preferences
 
 ## Books
 https://docs.flutter.dev/resources/books
