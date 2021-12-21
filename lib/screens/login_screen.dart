@@ -18,6 +18,9 @@ class _LoginScreenState extends State<LoginScreen>
     with TickerProviderStateMixin {
   late AnimationController controller;
 
+  TextEditingController _userController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+
   @override
   void initState() {
     controller = AnimationController(
@@ -91,6 +94,7 @@ class _LoginScreenState extends State<LoginScreen>
                           padding: const EdgeInsets.only(
                               left: 24, right: 24, top: 8),
                           child: TextFormField(
+                            controller: _userController,
                             decoration: InputDecoration(
                               fillColor: Colors.white,
                               filled: true,
@@ -109,6 +113,7 @@ class _LoginScreenState extends State<LoginScreen>
                           padding: const EdgeInsets.only(
                               left: 24, right: 24, top: 8),
                           child: TextFormField(
+                            controller: _passwordController,
                             decoration: InputDecoration(
                               fillColor: Colors.white,
                               filled: true, // dont forget this line
@@ -158,7 +163,7 @@ class _LoginScreenState extends State<LoginScreen>
   }
 
   login(BuildContext context, AccountModel accountProvider) {
-    accountProvider.login("cesco", "admin").then((value) => {
+    accountProvider.login(_userController.value.text, _passwordController.value.text).then((value) => {
           //Navigator.of(context).pushNamed(LockScreen.routeName)
         });
   }
