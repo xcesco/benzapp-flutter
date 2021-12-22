@@ -13,5 +13,7 @@
 
   "main_menu_home": "HOME",
   "main_menu_map":"MAPPA",
-  "main_menu_stations": "DISTRIBUTORI"
+  "main_menu_stations": "DISTRIBUTORI",
+
+  "loginInvalidCredential": "Credenziali non valide!"
 }

@@ -1,14 +1,15 @@
-import 'package:benzapp_flutter/providers/account_model.dart';
-import 'package:benzapp_flutter/providers/vehicle_provider.dart';
-import 'package:benzapp_flutter/screens/lock_screen.dart';
-import 'package:benzapp_flutter/screens/login_screen.dart';
-import 'package:benzapp_flutter/screens/main_screen.dart';
+import 'package:benzapp_flutter/ui/screens/lock_screen.dart';
+import 'package:benzapp_flutter/ui/screens/login_screen.dart';
+import 'package:benzapp_flutter/ui/screens/main_screen.dart';
+import 'package:benzapp_flutter/viewmodels/account_view_model.dart';
+import 'package:benzapp_flutter/viewmodels/vehicle_view_model.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 import 'firebase_options.dart';
+import 'network/rest_client.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,13 +25,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    RestClient restClient = RestClient();
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (BuildContext context) => VehicleProvider(),
+          create: (BuildContext context) => VehicleViewModel(),
         ),
         ChangeNotifierProvider(
-          create: (BuildContext context) => AccountModel(),
+          create: (BuildContext context) => AccountViewModel(restClient),
         )
       ],
       child: MaterialApp(

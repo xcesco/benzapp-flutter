@@ -24,7 +24,7 @@ flutter packages pub run build_runner build
 
 ## Used packages
 Widgets catalog:
- - https://docs.flutter.dev/development/ui/widgets
+ - https://docs.flutter.dev/development/ui/ui
 
 Material icons:
 - https://fonts.google.com/icons?selected=Material+Icons&icon.query=refresh
