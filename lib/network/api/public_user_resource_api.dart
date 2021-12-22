@@ -1,14 +1,14 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:benzapp_flutter/network/model/user_dto.dart';
-import 'package:dio/dio.dart';
-import 'package:built_value/serializer.dart';
 
+import 'package:benzapp_flutter/network/model/user_dto.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:built_value/serializer.dart';
+import 'package:dio/dio.dart';
 
 class PublicUserResourceApi {
   final Dio _dio;
-  final Serializers _serializers;
+  Serializers _serializers;
 
   PublicUserResourceApi(this._dio, this._serializers);
 
@@ -51,7 +51,14 @@ class PublicUserResourceApi {
         method: 'get'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'apiKey',
+              'name': 'api_key',
+              'keyName': 'Authorization',
+              'where': 'header',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -114,7 +121,14 @@ class PublicUserResourceApi {
         method: 'get'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'apiKey',
+              'name': 'api_key',
+              'keyName': 'Authorization',
+              'where': 'header',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,

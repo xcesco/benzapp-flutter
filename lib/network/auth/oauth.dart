@@ -11,7 +11,7 @@ class OAuthInterceptor extends AuthInterceptor {
     for (var info in authInfo) {
       final token = tokens[info["name"]];
       if (token != null) {
-        options.headers["Authorization"] = "Bearer ${token}";
+        options.headers["authorization"] = "Bearer ${token}";
         break;
       }
     }

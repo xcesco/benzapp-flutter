@@ -1,3 +1,5 @@
+import 'package:benzapp_flutter/repositories/account_repository.dart';
+import 'package:benzapp_flutter/repositories/persistence/account_repository_impl.dart';
 import 'package:benzapp_flutter/ui/screens/lock_screen.dart';
 import 'package:benzapp_flutter/ui/screens/login_screen.dart';
 import 'package:benzapp_flutter/ui/screens/main_screen.dart';
@@ -9,7 +11,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 import 'firebase_options.dart';
-import 'network/rest_client.dart';
+import 'network/api_client.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,7 +27,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    RestClient restClient = RestClient();
+    ApiClient restClient = ApiClient();
+    AccountRepository accountRepository = AccountRepositoryImpl(restClient);
 
     return MultiProvider(
       providers: [
@@ -33,7 +36,7 @@ class MyApp extends StatelessWidget {
           create: (BuildContext context) => VehicleViewModel(),
         ),
         ChangeNotifierProvider(
-          create: (BuildContext context) => AccountViewModel(restClient),
+          create: (BuildContext context) => AccountViewModel(accountRepository),
         )
       ],
       child: MaterialApp(

@@ -1,4 +1,4 @@
-import 'package:benzapp_flutter/network/rest_client.dart';
+import 'package:benzapp_flutter/network/api_client.dart';
 import 'package:benzapp_flutter/viewmodels/account_view_model.dart';
 import 'package:drawable/drawable.dart';
 import 'package:flutter/material.dart';

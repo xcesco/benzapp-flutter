@@ -48,7 +48,14 @@ class AccountResourceApi {
         method: 'get'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'oauth',
+              'name': 'api_key',
+              'scheme': 'bearer',
+              'bearerFormat': 'JWT'
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -100,7 +107,9 @@ class AccountResourceApi {
         method: 'post'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {'type': 'oauth', 'scheme': 'bearer', 'bearerFormat': 'JWT'},
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -152,7 +161,14 @@ class AccountResourceApi {
         method: 'post'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'oauth',
+              'name': 'api_key',
+              'scheme': 'bearer',
+              'bearerFormat': 'JWT'
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -198,7 +214,14 @@ class AccountResourceApi {
         method: 'get'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'oauth',
+              'name': 'api_key',
+              'scheme': 'bearer',
+              'bearerFormat': 'JWT'
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -260,7 +283,14 @@ class AccountResourceApi {
         method: 'get'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'oauth',
+              'name': 'api_key',
+              'scheme': 'bearer',
+              'bearerFormat': 'JWT'
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -325,7 +355,14 @@ class AccountResourceApi {
         method: 'post'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'oauth',
+              'name': 'api_key',
+              'scheme': 'bearer',
+              'bearerFormat': 'JWT'
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -377,7 +414,14 @@ class AccountResourceApi {
         method: 'post'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'oauth',
+              'name': 'api_key',
+              'scheme': 'bearer',
+              'bearerFormat': 'JWT'
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -429,7 +473,14 @@ class AccountResourceApi {
         method: 'post'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'oauth',
+              'name': 'api_key',
+              'scheme': 'bearer',
+              'bearerFormat': 'JWT'
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,

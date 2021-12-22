@@ -8,7 +8,7 @@ import 'package:dio/dio.dart';
 
 class GestoreResourceApi {
   final Dio _dio;
-  final Serializers _serializers;
+  Serializers _serializers;
 
   GestoreResourceApi(this._dio, this._serializers);
 
@@ -261,7 +261,14 @@ class GestoreResourceApi {
         method: 'get'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'apiKey',
+              'name': 'api_key',
+              'keyName': 'Authorization',
+              'where': 'header',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -327,7 +334,14 @@ class GestoreResourceApi {
         method: 'post'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'apiKey',
+              'name': 'api_key',
+              'keyName': 'Authorization',
+              'where': 'header',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -390,7 +404,14 @@ class GestoreResourceApi {
         method: 'delete'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'apiKey',
+              'name': 'api_key',
+              'keyName': 'Authorization',
+              'where': 'header',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -658,7 +679,14 @@ class GestoreResourceApi {
         method: 'get'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'apiKey',
+              'name': 'api_key',
+              'keyName': 'Authorization',
+              'where': 'header',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -723,7 +751,14 @@ class GestoreResourceApi {
         method: 'get'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'apiKey',
+              'name': 'api_key',
+              'keyName': 'Authorization',
+              'where': 'header',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -793,7 +828,14 @@ class GestoreResourceApi {
         method: 'patch'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'apiKey',
+              'name': 'api_key',
+              'keyName': 'Authorization',
+              'where': 'header',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -862,7 +904,14 @@ class GestoreResourceApi {
         method: 'put'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'apiKey',
+              'name': 'api_key',
+              'keyName': 'Authorization',
+              'where': 'header',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,

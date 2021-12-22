@@ -48,8 +48,8 @@ class Openapi {
     if (dio == null) {
       BaseOptions options = BaseOptions(
         baseUrl: basePathOverride ?? basePath,
-        connectTimeout: 5000,
-        receiveTimeout: 3000,
+        connectTimeout: 60000,
+        receiveTimeout: 30000,
       );
       this.dio = Dio(options);
     } else {
@@ -79,10 +79,11 @@ class Openapi {
   }
 
   void setApiKey(String name, String apiKey) {
-    (dio.interceptors
-                .firstWhereOrNull((element) => element is ApiKeyAuthInterceptor)
-            as ApiKeyAuthInterceptor)
-        .apiKeys[name] = apiKey;
+    ApiKeyAuthInterceptor? interceptor = (dio.interceptors
+            .firstWhereOrNull((element) => element is ApiKeyAuthInterceptor)
+        as ApiKeyAuthInterceptor);
+
+    interceptor.apiKeys[name] = apiKey;
   }
 
   /// Get AccountResourceApi instance, base route and serializer can be overridden by a given but be careful,
