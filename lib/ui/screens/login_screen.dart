@@ -159,6 +159,7 @@ class _LoginScreenState extends State<LoginScreen>
   }
 
   login(BuildContext context, AccountViewModel accountViewModel) async {
+    FocusScope.of(context).unfocus();
     LoginStatus loginStatus = await accountViewModel.login(
         _userController.value.text, _passwordController.value.text);
 

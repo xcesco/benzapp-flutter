@@ -806,10 +806,8 @@ class TesseraResourceApi {
         extra: {
           'secure': [
             {
-              'type': 'apiKey',
-              'name': 'api_key',
-              'keyName': 'Authorization',
-              'where': 'header',
+              'type': 'http',
+              'name': 'benzapp',
             },
           ],
           if (extra != null) ...extra,
@@ -879,10 +877,8 @@ class TesseraResourceApi {
         extra: {
           'secure': [
             {
-              'type': 'apiKey',
-              'name': 'api_key',
-              'keyName': 'Authorization',
-              'where': 'header',
+              'type': 'http',
+              'name': 'benzapp',
             },
           ],
           if (extra != null) ...extra,
@@ -949,10 +945,8 @@ class TesseraResourceApi {
         extra: {
           'secure': [
             {
-              'type': 'apiKey',
-              'name': 'api_key',
-              'keyName': 'Authorization',
-              'where': 'header',
+              'type': 'http',
+              'name': 'benzapp',
             },
           ],
           if (extra != null) ...extra,
@@ -1767,10 +1761,8 @@ class TesseraResourceApi {
         extra: {
           'secure': [
             {
-              'type': 'apiKey',
-              'name': 'api_key',
-              'keyName': 'Authorization',
-              'where': 'header',
+              'type': 'http',
+              'name': 'benzapp',
             },
           ],
           if (extra != null) ...extra,
@@ -1839,10 +1831,8 @@ class TesseraResourceApi {
         extra: {
           'secure': [
             {
-              'type': 'apiKey',
-              'name': 'api_key',
-              'keyName': 'Authorization',
-              'where': 'header',
+              'type': 'http',
+              'name': 'benzapp',
             },
           ],
           if (extra != null) ...extra,
@@ -1916,10 +1906,8 @@ class TesseraResourceApi {
         extra: {
           'secure': [
             {
-              'type': 'apiKey',
-              'name': 'api_key',
-              'keyName': 'Authorization',
-              'where': 'header',
+              'type': 'http',
+              'name': 'benzapp',
             },
           ],
           if (extra != null) ...extra,
@@ -1992,10 +1980,8 @@ class TesseraResourceApi {
         extra: {
           'secure': [
             {
-              'type': 'apiKey',
-              'name': 'api_key',
-              'keyName': 'Authorization',
-              'where': 'header',
+              'type': 'http',
+              'name': 'benzapp',
             },
           ],
           if (extra != null) ...extra,

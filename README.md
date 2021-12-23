@@ -87,6 +87,9 @@ A Flutter plugin to share images between Flutter and Android.
 - https://stacksecrets.com/flutter/how-to-use-built_value-library
 - https://stacksecrets.com/flutter/how-to-use-built_value-library#Setup_Built_Value_In_Flutter_App
 
+## async await and lint
+- https://betterprogramming.pub/how-to-use-async-await-in-flutter-the-flutter-event-loop-97c696caf912
+
 ## Remote config
 - https://firebase.flutter.dev/docs/remote-config/overview/
 

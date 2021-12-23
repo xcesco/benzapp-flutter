@@ -22,6 +22,8 @@ import 'package:collection/collection.dart';
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
+import 'auth/http_auth.dart';
+
 final _defaultInterceptors = [
   PrettyDioLogger(
     requestHeader: true,
@@ -32,7 +34,8 @@ final _defaultInterceptors = [
   ),
   OAuthInterceptor(),
   BasicAuthInterceptor(),
-  ApiKeyAuthInterceptor()
+  ApiKeyAuthInterceptor(),
+  HttpAuthInterceptor()
 ];
 
 class Openapi {
@@ -63,6 +66,12 @@ class Openapi {
     }
 
     this.serializers = serializers ?? standardSerializers;
+  }
+
+  void setJWTToken(String name, String token) {
+    (dio.interceptors.firstWhereOrNull((element) => element is HttpAuthInterceptor)
+    as HttpAuthInterceptor)
+        .tokens[name] = token;
   }
 
   void setOAuthToken(String name, String token) {

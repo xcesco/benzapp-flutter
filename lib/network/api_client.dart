@@ -20,8 +20,8 @@ class ApiClient {
     return _openapi.getAccountResourceApi();
   }
 
-  void setApiKey(String name, String token) {
-    _openapi.setOAuthToken("api_key", token);
+  void setJWTToken(String token) {
+    _openapi.setJWTToken("benzapp", token);
   }
 }
 

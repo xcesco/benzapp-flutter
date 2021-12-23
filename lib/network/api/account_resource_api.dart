@@ -50,10 +50,8 @@ class AccountResourceApi {
         extra: {
           'secure': [
             {
-              'type': 'oauth',
-              'name': 'api_key',
-              'scheme': 'bearer',
-              'bearerFormat': 'JWT'
+              'type': 'http',
+              'name': 'benzapp',
             },
           ],
           if (extra != null) ...extra,
@@ -108,7 +106,10 @@ class AccountResourceApi {
         headers: headerParams,
         extra: {
           'secure': [
-            {'type': 'oauth', 'scheme': 'bearer', 'bearerFormat': 'JWT'},
+            {
+              'type': 'http',
+              'name': 'benzapp',
+            },
           ],
           if (extra != null) ...extra,
         },
@@ -163,10 +164,8 @@ class AccountResourceApi {
         extra: {
           'secure': [
             {
-              'type': 'oauth',
-              'name': 'api_key',
-              'scheme': 'bearer',
-              'bearerFormat': 'JWT'
+              'type': 'http',
+              'name': 'benzapp',
             },
           ],
           if (extra != null) ...extra,
@@ -216,10 +215,8 @@ class AccountResourceApi {
         extra: {
           'secure': [
             {
-              'type': 'oauth',
-              'name': 'api_key',
-              'scheme': 'bearer',
-              'bearerFormat': 'JWT'
+              'type': 'http',
+              'name': 'benzapp',
             },
           ],
           if (extra != null) ...extra,
@@ -285,10 +282,8 @@ class AccountResourceApi {
         extra: {
           'secure': [
             {
-              'type': 'oauth',
-              'name': 'api_key',
-              'scheme': 'bearer',
-              'bearerFormat': 'JWT'
+              'type': 'http',
+              'name': 'benzapp',
             },
           ],
           if (extra != null) ...extra,
@@ -357,10 +352,8 @@ class AccountResourceApi {
         extra: {
           'secure': [
             {
-              'type': 'oauth',
-              'name': 'api_key',
-              'scheme': 'bearer',
-              'bearerFormat': 'JWT'
+              'type': 'http',
+              'name': 'benzapp',
             },
           ],
           if (extra != null) ...extra,
@@ -416,10 +409,8 @@ class AccountResourceApi {
         extra: {
           'secure': [
             {
-              'type': 'oauth',
-              'name': 'api_key',
-              'scheme': 'bearer',
-              'bearerFormat': 'JWT'
+              'type': 'http',
+              'name': 'benzapp',
             },
           ],
           if (extra != null) ...extra,
@@ -475,10 +466,8 @@ class AccountResourceApi {
         extra: {
           'secure': [
             {
-              'type': 'oauth',
-              'name': 'api_key',
-              'scheme': 'bearer',
-              'bearerFormat': 'JWT'
+              'type': 'http',
+              'name': 'benzapp',
             },
           ],
           if (extra != null) ...extra,

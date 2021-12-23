@@ -1,7 +1,9 @@
+import 'package:benzapp_flutter/network/api/account_resource_api.dart';
 import 'package:benzapp_flutter/network/api_client.dart';
 import 'package:benzapp_flutter/network/model/admin_user_dto.dart';
 import 'package:benzapp_flutter/network/model/jwt_token.dart';
 import 'package:benzapp_flutter/network/model/login_vm.dart';
+import 'package:benzapp_flutter/repositories/persistence/app_preferences.dart';
 import 'package:benzapp_flutter/serializers.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
@@ -56,26 +58,25 @@ class AccountRepositoryImpl extends AccountRepository {
         remoteConfig.getString(backendBaseUrlParameter).toString();
     _apiClient.updateBaseUrl(backendBaseUrl);
 
-    var loginBuilder = LoginVMBuilder();
+    final LoginVMBuilder loginBuilder = LoginVMBuilder();
     loginBuilder.username = username;
     loginBuilder.password = password;
 
     try {
-      Response<JWTToken> response = await _apiClient
+      final Response<JWTToken> response = await _apiClient
           .getUserJwtControllerApi()
           .authorizeUsingPOST(loginVM: loginBuilder.build());
 
-      String token = updateClientJWTToken(response.data!);
+      final String token = updateClientJWTToken(response.data!);
 
       _apiClient.getUserJwtControllerApi();
-      var accountResourceApi = _apiClient.getAccountResourceApi();
-      var account = (await accountResourceApi.getAccountUsingGET()).data;
+      final AccountResourceApi accountResourceApi =
+          _apiClient.getAccountResourceApi();
+      final AdminUserDTO? account =
+          (await accountResourceApi.getAccountUsingGET()).data;
 
-      SharedPreferences sharedPreferences =
-          await SharedPreferences.getInstance();
-      sharedPreferences.setString("AdminUserDTO",
-          standardSerializers.toJson(AdminUserDTO.serializer, account));
-      sharedPreferences.setString("JWTToken", token);
+      AppPreferences.instance.setAccount(account!);
+      AppPreferences.instance.setJWToken(token);
 
       return Tuple2<AdminUserDTO?, LoginStatus>(account, LoginStatus.success);
     } on DioError catch (error, _) {
@@ -95,7 +96,7 @@ class AccountRepositoryImpl extends AccountRepository {
   @override
   String updateClientJWTToken(JWTToken jwtToken) {
     String token = jwtToken.idToken ?? '<NO-TOKEN>';
-    _apiClient.setApiKey("api_key", token);
+    _apiClient.setJWTToken(token);
     return token;
   }
 }
