@@ -43,8 +43,7 @@ class UserJwtControllerApi {
     final jsonloginVM = json.encode(serializedBody);
     bodyData = jsonloginVM;
 
-    return _dio
-        .request(
+    return _dio.request(
       _path,
       queryParameters: queryParams,
       data: bodyData,
@@ -56,18 +55,14 @@ class UserJwtControllerApi {
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
-        contentType:
-            contentTypes.isNotEmpty ? contentTypes[0] : 'application/json',
+        contentType: contentTypes.isNotEmpty ? contentTypes[0] : 'application/json',
       ),
       cancelToken: cancelToken,
       onSendProgress: onSendProgress,
       onReceiveProgress: onReceiveProgress,
-    )
-        .then((response) {
-      final serializer =
-          _serializers.serializerForType(JWTToken) as Serializer<JWTToken>;
-      final data = _serializers.deserializeWith<JWTToken>(serializer,
-          response.data is String ? jsonDecode(response.data) : response.data);
+    ).then((response) {
+      final serializer = _serializers.serializerForType(JWTToken) as Serializer<JWTToken>;
+      final data = _serializers.deserializeWith<JWTToken>(serializer, response.data is String ? jsonDecode(response.data) : response.data);
 
       return Response<JWTToken>(
         data: data,
@@ -80,4 +75,5 @@ class UserJwtControllerApi {
       );
     });
   }
+
 }

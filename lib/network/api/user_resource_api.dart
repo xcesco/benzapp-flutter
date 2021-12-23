@@ -9,7 +9,7 @@ import 'package:dio/dio.dart';
 
 class UserResourceApi {
   final Dio _dio;
-  final Serializers _serializers;
+  Serializers _serializers;
 
   UserResourceApi(this._dio, this._serializers);
 
@@ -53,7 +53,12 @@ class UserResourceApi {
         method: 'post'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'http',
+              'name': 'benzapp',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -116,7 +121,12 @@ class UserResourceApi {
         method: 'delete'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'http',
+              'name': 'benzapp',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -168,7 +178,12 @@ class UserResourceApi {
         method: 'get'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'http',
+              'name': 'benzapp',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -233,7 +248,12 @@ class UserResourceApi {
         method: 'get'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'http',
+              'name': 'benzapp',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -302,7 +322,12 @@ class UserResourceApi {
         method: 'put'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'http',
+              'name': 'benzapp',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,

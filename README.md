@@ -81,9 +81,14 @@ A Flutter plugin to share images between Flutter and Android.
 - https://pub.dev/packages/pretty_dio_logger/install
 
 ## Object to JSON and viceversa
+`flutter packages pub run build_runner build`
+
 - https://stacksecrets.com/flutter/introduction-to-built_value-library-in-dart
 - https://stacksecrets.com/flutter/how-to-use-built_value-library
 - https://stacksecrets.com/flutter/how-to-use-built_value-library#Setup_Built_Value_In_Flutter_App
+
+## async await and lint
+- https://betterprogramming.pub/how-to-use-async-await-in-flutter-the-flutter-event-loop-97c696caf912
 
 ## Remote config
 - https://firebase.flutter.dev/docs/remote-config/overview/
@@ -99,3 +104,6 @@ https://www.woolha.com/tutorials/flutter-using-firebase-remote-config
 
 ## Books
 https://docs.flutter.dev/resources/books
+
+## Offuscamento
+- https://docs.flutter.dev/deployment/obfuscate

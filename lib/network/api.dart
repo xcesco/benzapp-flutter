@@ -22,6 +22,8 @@ import 'package:collection/collection.dart';
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
+import 'auth/http_auth.dart';
+
 final _defaultInterceptors = [
   PrettyDioLogger(
     requestHeader: true,
@@ -32,7 +34,8 @@ final _defaultInterceptors = [
   ),
   OAuthInterceptor(),
   BasicAuthInterceptor(),
-  ApiKeyAuthInterceptor()
+  ApiKeyAuthInterceptor(),
+  HttpAuthInterceptor()
 ];
 
 class Openapi {
@@ -48,8 +51,8 @@ class Openapi {
     if (dio == null) {
       BaseOptions options = BaseOptions(
         baseUrl: basePathOverride ?? basePath,
-        connectTimeout: 5000,
-        receiveTimeout: 3000,
+        connectTimeout: 60000,
+        receiveTimeout: 30000,
       );
       this.dio = Dio(options);
     } else {
@@ -63,6 +66,12 @@ class Openapi {
     }
 
     this.serializers = serializers ?? standardSerializers;
+  }
+
+  void setJWTToken(String name, String token) {
+    (dio.interceptors.firstWhereOrNull((element) => element is HttpAuthInterceptor)
+    as HttpAuthInterceptor)
+        .tokens[name] = token;
   }
 
   void setOAuthToken(String name, String token) {
@@ -79,10 +88,11 @@ class Openapi {
   }
 
   void setApiKey(String name, String apiKey) {
-    (dio.interceptors
-                .firstWhereOrNull((element) => element is ApiKeyAuthInterceptor)
-            as ApiKeyAuthInterceptor)
-        .apiKeys[name] = apiKey;
+    ApiKeyAuthInterceptor? interceptor = (dio.interceptors
+            .firstWhereOrNull((element) => element is ApiKeyAuthInterceptor)
+        as ApiKeyAuthInterceptor);
+
+    interceptor.apiKeys[name] = apiKey;
   }
 
   /// Get AccountResourceApi instance, base route and serializer can be overridden by a given but be careful,

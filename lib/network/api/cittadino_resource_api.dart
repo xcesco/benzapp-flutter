@@ -8,7 +8,7 @@ import 'package:dio/dio.dart';
 
 class CittadinoResourceApi {
   final Dio _dio;
-  final Serializers _serializers;
+  Serializers _serializers;
 
   CittadinoResourceApi(this._dio, this._serializers);
 
@@ -177,7 +177,12 @@ class CittadinoResourceApi {
         method: 'get'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'http',
+              'name': 'benzapp',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -243,7 +248,12 @@ class CittadinoResourceApi {
         method: 'post'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'http',
+              'name': 'benzapp',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -306,7 +316,12 @@ class CittadinoResourceApi {
         method: 'delete'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'http',
+              'name': 'benzapp',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -490,7 +505,12 @@ class CittadinoResourceApi {
         method: 'get'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'http',
+              'name': 'benzapp',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -555,7 +575,12 @@ class CittadinoResourceApi {
         method: 'get'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'http',
+              'name': 'benzapp',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -625,7 +650,12 @@ class CittadinoResourceApi {
         method: 'patch'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'http',
+              'name': 'benzapp',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -694,7 +724,12 @@ class CittadinoResourceApi {
         method: 'put'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'http',
+              'name': 'benzapp',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,

@@ -8,7 +8,7 @@ import 'package:dio/dio.dart';
 
 class DelegaResourceApi {
   final Dio _dio;
-  final Serializers _serializers;
+  Serializers _serializers;
 
   DelegaResourceApi(this._dio, this._serializers);
 
@@ -102,7 +102,12 @@ class DelegaResourceApi {
         method: 'get'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'http',
+              'name': 'benzapp',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -168,7 +173,12 @@ class DelegaResourceApi {
         method: 'post'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'http',
+              'name': 'benzapp',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -231,7 +241,12 @@ class DelegaResourceApi {
         method: 'delete'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'http',
+              'name': 'benzapp',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -340,7 +355,12 @@ class DelegaResourceApi {
         method: 'get'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'http',
+              'name': 'benzapp',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -405,7 +425,12 @@ class DelegaResourceApi {
         method: 'get'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'http',
+              'name': 'benzapp',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -417,8 +442,7 @@ class DelegaResourceApi {
       onReceiveProgress: onReceiveProgress,
     )
         .then((response) {
-      final serializer =
-          _serializers.serializerForType(Delega) as Serializer<Delega>;
+      final serializer = _serializers.serializerForType(Delega) as Serializer<Delega>;
       final data = _serializers.deserializeWith<Delega>(serializer,
           response.data is String ? jsonDecode(response.data) : response.data);
 
@@ -475,7 +499,12 @@ class DelegaResourceApi {
         method: 'patch'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'http',
+              'name': 'benzapp',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -487,8 +516,7 @@ class DelegaResourceApi {
       onReceiveProgress: onReceiveProgress,
     )
         .then((response) {
-      final serializer =
-          _serializers.serializerForType(Delega) as Serializer<Delega>;
+      final serializer = _serializers.serializerForType(Delega) as Serializer<Delega>;
       final data = _serializers.deserializeWith<Delega>(serializer,
           response.data is String ? jsonDecode(response.data) : response.data);
 
@@ -544,7 +572,12 @@ class DelegaResourceApi {
         method: 'put'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'http',
+              'name': 'benzapp',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -556,8 +589,7 @@ class DelegaResourceApi {
       onReceiveProgress: onReceiveProgress,
     )
         .then((response) {
-      final serializer =
-          _serializers.serializerForType(Delega) as Serializer<Delega>;
+      final serializer = _serializers.serializerForType(Delega) as Serializer<Delega>;
       final data = _serializers.deserializeWith<Delega>(serializer,
           response.data is String ? jsonDecode(response.data) : response.data);
 

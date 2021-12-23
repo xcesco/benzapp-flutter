@@ -48,7 +48,12 @@ class AccountResourceApi {
         method: 'get'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'http',
+              'name': 'benzapp',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -100,7 +105,12 @@ class AccountResourceApi {
         method: 'post'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'http',
+              'name': 'benzapp',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -152,7 +162,12 @@ class AccountResourceApi {
         method: 'post'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'http',
+              'name': 'benzapp',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -198,7 +213,12 @@ class AccountResourceApi {
         method: 'get'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'http',
+              'name': 'benzapp',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -260,7 +280,12 @@ class AccountResourceApi {
         method: 'get'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'http',
+              'name': 'benzapp',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -325,7 +350,12 @@ class AccountResourceApi {
         method: 'post'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'http',
+              'name': 'benzapp',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -377,7 +407,12 @@ class AccountResourceApi {
         method: 'post'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'http',
+              'name': 'benzapp',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -429,7 +464,12 @@ class AccountResourceApi {
         method: 'post'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'http',
+              'name': 'benzapp',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,

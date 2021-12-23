@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:core';
 
 import 'package:benzapp_flutter/network/model/device.dart';
 import 'package:built_collection/built_collection.dart';
@@ -92,7 +91,12 @@ class DeviceResourceApi {
         method: 'get'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'http',
+              'name': 'benzapp',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -158,7 +162,12 @@ class DeviceResourceApi {
         method: 'post'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'http',
+              'name': 'benzapp',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -221,7 +230,12 @@ class DeviceResourceApi {
         method: 'delete'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'http',
+              'name': 'benzapp',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -319,7 +333,12 @@ class DeviceResourceApi {
         method: 'get'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'http',
+              'name': 'benzapp',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -384,7 +403,12 @@ class DeviceResourceApi {
         method: 'get'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'http',
+              'name': 'benzapp',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -454,7 +478,12 @@ class DeviceResourceApi {
         method: 'patch'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'http',
+              'name': 'benzapp',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -523,7 +552,12 @@ class DeviceResourceApi {
         method: 'put'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'http',
+              'name': 'benzapp',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,

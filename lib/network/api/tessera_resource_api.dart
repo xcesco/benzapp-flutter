@@ -1,14 +1,14 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:benzapp_flutter/network/model/tessera.dart';
-import 'package:dio/dio.dart';
-import 'package:built_value/serializer.dart';
 
+import 'package:benzapp_flutter/network/model/tessera.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:built_value/serializer.dart';
+import 'package:dio/dio.dart';
 
 class TesseraResourceApi {
   final Dio _dio;
-  final Serializers _serializers;
+  Serializers _serializers;
 
   TesseraResourceApi(this._dio, this._serializers);
 
@@ -804,7 +804,12 @@ class TesseraResourceApi {
         method: 'get'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'http',
+              'name': 'benzapp',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -870,7 +875,12 @@ class TesseraResourceApi {
         method: 'post'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'http',
+              'name': 'benzapp',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -933,7 +943,12 @@ class TesseraResourceApi {
         method: 'delete'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'http',
+              'name': 'benzapp',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -1744,7 +1759,12 @@ class TesseraResourceApi {
         method: 'get'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'http',
+              'name': 'benzapp',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -1809,7 +1829,12 @@ class TesseraResourceApi {
         method: 'get'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'http',
+              'name': 'benzapp',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -1879,7 +1904,12 @@ class TesseraResourceApi {
         method: 'patch'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'http',
+              'name': 'benzapp',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
@@ -1948,7 +1978,12 @@ class TesseraResourceApi {
         method: 'put'.toUpperCase(),
         headers: headerParams,
         extra: {
-          'secure': [],
+          'secure': [
+            {
+              'type': 'http',
+              'name': 'benzapp',
+            },
+          ],
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
