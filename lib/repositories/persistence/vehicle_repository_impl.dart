@@ -1,9 +1,12 @@
+import 'package:benzapp_flutter/network/api/delega_resource_api.dart';
 import 'package:benzapp_flutter/network/api/tessera_resource_api.dart';
 import 'package:benzapp_flutter/network/api_client.dart';
+import 'package:benzapp_flutter/network/model/delega.dart';
 import 'package:benzapp_flutter/network/model/tessera.dart';
 import 'package:benzapp_flutter/repositories/model/vehicle.dart';
 import 'package:benzapp_flutter/repositories/persistence/dao/vehicle_dao.dart';
 import 'package:benzapp_flutter/repositories/vehicle_repository.dart';
+import 'package:floor/floor.dart';
 
 import 'app_database.dart';
 
@@ -13,17 +16,36 @@ class VehicleRepositoryImpl extends VehicleRepository {
 
   VehicleRepositoryImpl(this._database, this._apiClient);
 
+  @transaction
   @override
   Future<void> update() async {
-    TesseraResourceApi tesseraResourceApi = _apiClient.getTesseraResourceApi();
-    final List<Tessera>? list =
-        (await tesseraResourceApi.getAllTesserasUsingGET()).data?.toList();
+    final TesseraResourceApi tessereResourceApi =
+        _apiClient.getTesseraResourceApi();
+    final DelegaResourceApi delegheResourceApi =
+        _apiClient.getDelegaResourceApi();
 
     final VehicleDao vehicleDao = _database.vehicleDao;
-
     vehicleDao.deleteAll();
-    for (Tessera item in list!) {
+
+    await loadTessere(tessereResourceApi, vehicleDao);
+    await loadDeleghe(delegheResourceApi, vehicleDao);
+  }
+
+  Future<void> loadTessere(
+      TesseraResourceApi tesseraResourceApi, VehicleDao vehicleDao) async {
+    final List<Tessera>? list =
+        (await tesseraResourceApi.getAllTesserasUsingGET()).data?.toList();
+    for (final Tessera item in list!) {
       vehicleDao.insert(Vehicle.ofTessera(item));
+    }
+  }
+
+  Future<void> loadDeleghe(
+      DelegaResourceApi tesseraResourceApi, VehicleDao vehicleDao) async {
+    final List<Delega>? list =
+        (await tesseraResourceApi.getAllDelegasUsingGET()).data?.toList();
+    for (final Delega item in list!) {
+      vehicleDao.insert(Vehicle.ofDelega(item));
     }
   }
 }

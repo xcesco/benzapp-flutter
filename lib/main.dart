@@ -7,6 +7,7 @@ import 'package:benzapp_flutter/repositories/persistence/vehicle_repository_impl
 import 'package:benzapp_flutter/ui/screens/lock_screen.dart';
 import 'package:benzapp_flutter/ui/screens/login_screen.dart';
 import 'package:benzapp_flutter/ui/screens/main_screen.dart';
+import 'package:benzapp_flutter/ui/widgets/app_progress_indicator.dart';
 import 'package:benzapp_flutter/viewmodels/login_view_model.dart';
 import 'package:benzapp_flutter/viewmodels/vehicle_view_model.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -133,7 +134,7 @@ class MyAppState extends State<MyApp> {
                     ),
                   )),
               SizedBox(height: 20),
-              CircularProgressIndicator()
+              AppCircularProgressIndicator()
             ],
           ),
         ));

@@ -1,4 +1,5 @@
 import 'package:benzapp_flutter/network/api_client.dart';
+import 'package:benzapp_flutter/ui/widgets/app_progress_indicator.dart';
 import 'package:benzapp_flutter/viewmodels/login_view_model.dart';
 import 'package:drawable/drawable.dart';
 import 'package:flutter/material.dart';
@@ -19,34 +20,13 @@ class LoginScreen extends StatefulWidget {
 /// AnimationControllers can be created with `vsync: this` because of TickerProviderStateMixin.
 class _LoginScreenState extends State<LoginScreen>
     with TickerProviderStateMixin {
-  late AnimationController controller;
-
   final TextEditingController _userController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
   @override
-  void initState() {
-    controller = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 5),
-    )..addListener(() {
-        setState(() {});
-      });
-    controller.repeat();
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final localization = AppLocalizations.of(context)!;
-    final LoginViewModel accountProvider =
-        Provider.of<LoginViewModel>(context);
+    final LoginViewModel accountProvider = Provider.of<LoginViewModel>(context);
 
     return Scaffold(
         body: Container(
@@ -114,13 +94,8 @@ class _LoginScreenState extends State<LoginScreen>
                                                     },
                                                 child:
                                                     Text(localization.accedi))))
-                                    : Center(
-                                        child: CircularProgressIndicator(
-                                        color: Colors.orange,
-                                        value: controller.value,
-                                        semanticsLabel:
-                                            'Linear progress indicator',
-                                      )),
+                                    : const Center(
+                                        child: AppCircularProgressIndicator()),
                               ])),
                         ))),
               ],
@@ -176,3 +151,5 @@ class _LoginScreenState extends State<LoginScreen>
     }
   }
 }
+
+

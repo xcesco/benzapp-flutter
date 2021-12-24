@@ -19,7 +19,7 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
-    final localization = AppLocalizations.of(context)!;
+    final AppLocalizations localization = AppLocalizations.of(context)!;
     return DefaultTabController(
         length: 3,
         child: Scaffold(
@@ -50,7 +50,7 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   Widget _buildMenu(BuildContext context) {
-    var localization = AppLocalizations.of(context)!;
+    AppLocalizations localization = AppLocalizations.of(context)!;
     return Container(
         color: Colors.white,
         child: TabBar(
@@ -81,12 +81,12 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   StationsViewModel _create(context) {
-    var model = StationsViewModel();
+    StationsViewModel model = StationsViewModel();
     model.loadData();
     return model;
   }
 
-  _buildDrawer(BuildContext context) {
+  Widget _buildDrawer(BuildContext context) {
     return Drawer(
       // Add a ListView to the drawer. This ensures the user can scroll
       // through the options in the drawer if there isn't enough vertical
