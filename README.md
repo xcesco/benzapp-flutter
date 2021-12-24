@@ -38,6 +38,9 @@ A Flutter plugin to share images between Flutter and Android.
 - https://pub.dev/packages/drawable
 - https://github.com/ueman/drawable
 
+## Dipendency Injection
+- https://pub.dev/packages/get_it
+
 ## Widgets
 - https://api.flutter.dev/flutter/material/CircularProgressIndicator-class.html
 - https://stackoverflow.com/questions/52376287/positioning-a-widget-in-the-end-of-the-row-widget
@@ -117,3 +120,11 @@ https://docs.flutter.dev/resources/books
 
 ## Offuscamento
 - https://docs.flutter.dev/deployment/obfuscate
+
+## Test
+- https://docs.flutter.dev/cookbook/testing/unit/introduction
+
+## Multithread
+- https://medium.com/flutter-community/flutter-threading-5c3a7b0c065f
+- https://www.tutorialspoint.com/dart_programming/dart_programming_concurrency.htm
+- https://pub.dev/packages/threading

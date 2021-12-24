@@ -43,27 +43,23 @@ class MyAppState extends State<MyApp> {
 
   Future<bool> _init() async {
     final Callback callback = Callback(onCreate: (database, int version) async {
-      //List<Station> stazioni=await load();
-      Set<Station> current = <Station>{};
-
-      var value = await DefaultAssetBundle.of(context)
+      final String value = await DefaultAssetBundle.of(context)
           .loadString("assets/json/stations.json");
 
-      for (dynamic item in jsonDecode(value) as List<dynamic>) {
-        current.add(Station.fromJson(item));
-        print(current);
+      for (final dynamic item in jsonDecode(value) as List<dynamic>) {
+        database.insert("stations", Station.fixJsonForDatabase(item));
       }
     });
 
-    AppDatabase database = await $FloorAppDatabase
+    final AppDatabase database = await $FloorAppDatabase
         .databaseBuilder('app_database.db')
         .addCallback(callback)
         .build();
 
     final ApiClient restClient = ApiClient();
-    AccountRepositoryImpl accountRepository =
+    final AccountRepositoryImpl accountRepository =
         AccountRepositoryImpl(database, restClient);
-    VehicleRepositoryImpl vehicleRepository =
+    final VehicleRepositoryImpl vehicleRepository =
         VehicleRepositoryImpl(database, restClient);
 
     _vehicleViewModel = VehicleViewModel();
