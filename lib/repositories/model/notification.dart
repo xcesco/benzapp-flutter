@@ -1,13 +1,12 @@
-import 'entity.dart';
+import 'package:floor/floor.dart';
 
-class Notification extends Entity {
-  final _messaggio;
+import 'base_entity.dart';
 
-  final _targa;
+@Entity(tableName: 'notifications')
+class Notification extends BaseEntity {
+  Notification(int id, this.messaggio, this.targa) : super(id);
 
-  Notification(this._targa, this._messaggio, {int id = 0}) : super(id = id);
+  final String messaggio;
 
-  get messaggio => _messaggio;
-
-  get targa => _targa;
+  final String targa;
 }

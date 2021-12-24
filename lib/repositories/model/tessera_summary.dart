@@ -1,13 +1,12 @@
+import 'package:floor/floor.dart';
+
+@entity
 class TesseraSummary {
-  final double _spesa;
-  final double _litriErogati;
-  final double _risparmio;
+  @PrimaryKey()
+  final int? id;
+  final double spesa;
+  final double litriErogati;
+  final double risparmio;
 
-  double get spesa => _spesa;
-
-  TesseraSummary(this._spesa, this._litriErogati, this._risparmio);
-
-  double get litriErogati => _litriErogati;
-
-  double get risparmio => _risparmio;
+  TesseraSummary(this.spesa, this.litriErogati, this.risparmio, {this.id});
 }

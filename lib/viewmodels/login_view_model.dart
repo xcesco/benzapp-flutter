@@ -1,21 +1,33 @@
 import 'package:benzapp_flutter/network/api_client.dart';
+import 'package:benzapp_flutter/network/model/admin_user_dto.dart';
 import 'package:benzapp_flutter/repositories/account_repository.dart';
 import 'package:benzapp_flutter/repositories/persistence/account_repository_impl.dart';
+import 'package:benzapp_flutter/repositories/vehicle_repository.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
+import 'package:tuple/tuple.dart';
 
-class AccountViewModel with ChangeNotifier {
+class LoginViewModel with ChangeNotifier {
   bool _isLoading = false;
   LoginStatus _loginStatus = LoginStatus.unknown;
   late RemoteConfig _remoteConfig;
 
-  final _maintenanceModeParameter = 'maintenance_mode';
+  final String _maintenanceModeParameter = 'maintenance_mode';
 
   final AccountRepository _accountRepository;
-
-  AccountViewModel(this._accountRepository);
+  final VehicleRepository _vehicleRepository;
 
   String backendBaseUrl = 'localhost:8080';
+
+  LoginViewModel(this._accountRepository, this._vehicleRepository);
+
+  bool get isLoading {
+    return _isLoading;
+  }
+
+  LoginStatus get loginStatus {
+    return _loginStatus;
+  }
 
   Future<void> initRemoteConfig() async {
     _isLoading = true;
@@ -38,18 +50,15 @@ class AccountViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  bool get isLoading {
-    return _isLoading;
-  }
-
-  LoginStatus get loginStatus {
-    return _loginStatus;
-  }
-
   Future<LoginStatus> login(String username, String password) async {
     _isLoading = true;
     notifyListeners();
-    var loginResult = await _accountRepository.login(username, password);
+
+    final Tuple2<AdminUserDTO?, LoginStatus> loginResult =
+        await _accountRepository.login(username, password);
+    if (loginResult.item2 == LoginStatus.success) {
+      _vehicleRepository.update();
+    }
 
     _loginStatus = loginResult.item2;
     _isLoading = false;

@@ -1,1 +1,1 @@
-enum TipoImpianto { autostradale, stradale, navale }
+enum TipoImpianto { AUTOSTRADALE, STRADALE, NAVALE }

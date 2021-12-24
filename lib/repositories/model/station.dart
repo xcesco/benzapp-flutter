@@ -1,36 +1,38 @@
-import 'package:benzapp_flutter/models/entity.dart';
 import 'package:benzapp_flutter/repositories/model/tipo_impianto.dart';
+import 'package:floor/floor.dart';
 
 import 'marchio.dart';
 
-class Station extends Entity {
-  String _provincia;
-  String _comune;
-  String _indirizzo;
+@Entity(tableName: 'stations')
+class Station {
+  Station(this.provincia, this.comune, this.indirizzo, this.longitudine,
+      this.latitudine, this.tipo, this.marchio, this.id);
 
-  double _longitudine;
+  @PrimaryKey(autoGenerate: true)
+  final int? id;
+  final String provincia;
+  final String comune;
+  final String indirizzo;
+  final double longitudine;
+  final double latitudine;
+  final TipoImpianto tipo;
+  final Marchio marchio;
 
-  String get provincia => _provincia;
-  double _latitudine;
+  Station.fromJson(Map<String, dynamic> json)
+      : provincia = json['provincia'],
+        comune = json['comune'],
+        indirizzo = json['indirizzo'],
+        longitudine = json['longitudine'],
+        latitudine = json['latitudine'],
+        marchio = json['marchio'],
+        tipo = json['tipo'],
+        id = json['id'];
 
-  Station(this._provincia, this._comune, this._indirizzo, this._longitudine,
-      this._latitudine, this._tipo, this._marchio,
-      {int id = 0})
-      : super(id = id);
-
-  TipoImpianto _tipo;
-
-  Marchio _marchio;
-
-  String get comune => _comune;
-
-  String get indirizzo => _indirizzo;
-
-  double get longitudine => _longitudine;
-
-  double get latitudine => _latitudine;
-
-  TipoImpianto get tipo => _tipo;
-
-  Marchio get marchio => _marchio;
+  Map<String, dynamic> toJson() => {
+        'provincia': provincia,
+        'comune': comune,
+        'indirizzo': indirizzo,
+        'longitudine': longitudine,
+        'latitudine': latitudine,
+      };
 }

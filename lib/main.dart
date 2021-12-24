@@ -1,11 +1,16 @@
-import 'package:benzapp_flutter/repositories/account_repository.dart';
+import 'dart:convert';
+
+import 'package:benzapp_flutter/repositories/model/station.dart';
 import 'package:benzapp_flutter/repositories/persistence/account_repository_impl.dart';
+import 'package:benzapp_flutter/repositories/persistence/app_database.dart';
+import 'package:benzapp_flutter/repositories/persistence/vehicle_repository_impl.dart';
 import 'package:benzapp_flutter/ui/screens/lock_screen.dart';
 import 'package:benzapp_flutter/ui/screens/login_screen.dart';
 import 'package:benzapp_flutter/ui/screens/main_screen.dart';
-import 'package:benzapp_flutter/viewmodels/account_view_model.dart';
+import 'package:benzapp_flutter/viewmodels/login_view_model.dart';
 import 'package:benzapp_flutter/viewmodels/vehicle_view_model.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:floor/floor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
@@ -18,25 +23,76 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
+  @override
+  State<StatefulWidget> createState() {
+    return MyAppState();
+  }
+}
+
+class MyAppState extends State<MyApp> {
+  late VehicleViewModel _vehicleViewModel;
+
+  late LoginViewModel _loginViewModel;
+
+  Future<bool> _init() async {
+    final Callback callback = Callback(onCreate: (database, int version) async {
+      //List<Station> stazioni=await load();
+      Set<Station> current = <Station>{};
+
+      var value = await DefaultAssetBundle.of(context)
+          .loadString("assets/json/stations.json");
+
+      for (dynamic item in jsonDecode(value) as List<dynamic>) {
+        current.add(Station.fromJson(item));
+        print(current);
+      }
+    });
+
+    AppDatabase database = await $FloorAppDatabase
+        .databaseBuilder('app_database.db')
+        .addCallback(callback)
+        .build();
+
+    final ApiClient restClient = ApiClient();
+    AccountRepositoryImpl accountRepository =
+        AccountRepositoryImpl(database, restClient);
+    VehicleRepositoryImpl vehicleRepository =
+        VehicleRepositoryImpl(database, restClient);
+
+    _vehicleViewModel = VehicleViewModel();
+    _loginViewModel = LoginViewModel(accountRepository, vehicleRepository);
+
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
-    ApiClient restClient = ApiClient();
-    AccountRepository accountRepository = AccountRepositoryImpl(restClient);
+    return FutureBuilder(
+        future: _init(),
+        builder: (BuildContext context, AsyncSnapshot<Object?> snapshot) {
+          if (snapshot.hasData) {
+            return _buildApp();
+          } else {
+            return _buildSplashScreen();
+          }
+        });
+  }
 
+  Widget _buildApp() {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (BuildContext context) => VehicleViewModel(),
+          create: (BuildContext context) => _vehicleViewModel,
         ),
         ChangeNotifierProvider(
-          create: (BuildContext context) => AccountViewModel(accountRepository),
+          create: (BuildContext context) => _loginViewModel,
         )
       ],
       child: MaterialApp(
@@ -49,11 +105,41 @@ class MyApp extends StatelessWidget {
         ),
         initialRoute: LoginScreen.routeName,
         routes: {
-          '/': (ctx) => const MainScreen(),
-          LockScreen.routeName: (ctx) => const LockScreen(),
-          LoginScreen.routeName: (ctx) => const LoginScreen(),
+          '/': (BuildContext ctx) => const MainScreen(),
+          LockScreen.routeName: (BuildContext ctx) => const LockScreen(),
+          LoginScreen.routeName: (BuildContext ctx) => const LoginScreen(),
         },
       ),
     );
+  }
+
+  Widget _buildSplashScreen() {
+    return MaterialApp(
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: const [Locale('it')],
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue)
+              .copyWith(secondary: Colors.orange),
+          fontFamily: 'tillitium_web',
+        ),
+        home: Scaffold(
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: const <Widget>[
+              Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    "Initialization",
+                    style: TextStyle(
+                      fontSize: 32,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )),
+              SizedBox(height: 20),
+              CircularProgressIndicator()
+            ],
+          ),
+        ));
   }
 }

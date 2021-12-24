@@ -1,102 +1,77 @@
-import 'package:benzapp_flutter/models/entity.dart';
 import 'package:benzapp_flutter/network/model/cittadino.dart';
 import 'package:benzapp_flutter/network/model/delega.dart';
-import 'package:benzapp_flutter/network/model/rifornimento.dart';
 import 'package:benzapp_flutter/network/model/tessera.dart';
+import 'package:benzapp_flutter/repositories/model/base_entity.dart';
+import 'package:floor/floor.dart';
 
-class Vehicle extends Entity {
-  final TesseraCarburanteEnum _carburante;
+@Entity(tableName: 'vehicles')
+class Vehicle extends BaseEntity {
+  final TesseraCarburanteEnum carburante;
 
-  final Cittadino _cittadino;
+  final Cittadino cittadino;
 
-  final String _codice;
+  final String codice;
 
-  final DateTime _dataEmissione;
+  final DateTime dataEmissione;
 
-  final List<Delega> _delegas;
+  // @TypeConverters([DelegaListConverter])
+  // final List<Delega> delegas;
 
-  final String _immagine;
+  final String immagine;
 
-  final String _immagineContentType;
+  final String immagineContentType;
 
-  final Set<Rifornimento> _rifornimentos;
+  // @TypeConverters([RifornimentoSetConverter])
+  // final Set<Rifornimento> rifornimentos;
 
-  final String _targa;
+  final String targa;
 
-  final TesseraVeicoloEnum _veicolo;
+  final TesseraVeicoloEnum veicolo;
 
-  final bool _delega;
+  final bool delega;
 
   Vehicle(
-      this._carburante,
-      this._cittadino,
-      this._codice,
-      this._dataEmissione,
-      this._delegas,
-      this._immagine,
-      this._immagineContentType,
-      this._rifornimentos,
-      this._targa,
-      this._veicolo,
-      this._delega,
-      {int id = 0})
+      this.carburante,
+      this.cittadino,
+      this.codice,
+      this.dataEmissione,
+      // this.delegas,
+      this.immagine,
+      this.immagineContentType,
+      // this.rifornimentos,
+      this.targa,
+      this.veicolo,
+      this.delega,
+      {int? id})
       : super(id = id);
 
-  TesseraCarburanteEnum get carburante => _carburante;
-
-  Cittadino get cittadino => _cittadino;
-
-  String get codice => _codice;
-
-  DateTime get dataEmissione => _dataEmissione;
-
-  bool get delega => _delega;
-
-  List<Delega> get delegas => _delegas;
-
-  String get immagine => _immagine;
-
-  String get immagineContentType => _immagineContentType;
-
-  Set<Rifornimento> get rifornimentos => _rifornimentos;
-
-  String get targa => _targa;
-
-  TesseraVeicoloEnum get veicolo => _veicolo;
-
-/*
-  public static Vehicle of(Delega delega) {
-    Tessera tessera = delega.getTessera();
-    Cittadino cittadino = delega.getCittadino();
-    return new Vehicle(
-        tessera.getCarburante(),
-        cittadino,
-        tessera.getCodice(),
-        tessera.getDataEmissione(),
-        tessera.getDelegas(),
-        tessera.getId(),
-        tessera.getImmagine(),
-        tessera.getImmagineContentType(),
-        tessera.getRifornimentos(),
-        tessera.getTarga(),
-        tessera.getVeicolo(),
+  static Vehicle ofDelega(Delega delega) {
+    return Vehicle(
+        delega.tessera?.carburante ?? TesseraCarburanteEnum.BENZINA,
+        Cittadino(),
+        delega.tessera?.codice ?? '',
+        DateTime.now(),
+        // delega.tessera?.delegas?.toList() ?? [],
+        delega.tessera?.immagine ?? '',
+        delega.tessera?.immagineContentType ?? '',
+        // delega.tessera?.rifornimentos?.asSet() ?? {},
+        delega.tessera?.targa ?? '',
+        delega.tessera?.veicolo ?? TesseraVeicoloEnum.AUTOVEICOLO,
         true);
   }
 
-  public static Vehicle of(Tessera tessera) {
-    return new Vehicle(
-        tessera.getCarburante(),
-        tessera.getCittadino(),
-        tessera.getCodice(),
-        tessera.getDataEmissione(),
-        tessera.getDelegas(),
-        tessera.getId(),
-        tessera.getImmagine(),
-        tessera.getImmagineContentType(),
-        tessera.getRifornimentos(),
-        tessera.getTarga(),
-        tessera.getVeicolo(),
+  static Vehicle ofTessera(Tessera tessera) {
+    return Vehicle(
+        tessera.carburante ?? TesseraCarburanteEnum.BENZINA,
+        Cittadino(),
+        tessera.codice ?? '',
+        DateTime.now(),
+        // tessera.delegas?.toList() ?? [],
+        tessera.immagine ?? '',
+        tessera.immagineContentType ?? '',
+        // tessera.rifornimentos?.asSet() ?? {},
+        tessera.targa ?? '',
+        tessera.veicolo ?? TesseraVeicoloEnum.AUTOVEICOLO,
         false);
-  }*/
-
+  }
 }

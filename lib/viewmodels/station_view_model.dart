@@ -1,8 +1,6 @@
-import 'dart:convert';
 
-import 'package:benzapp_flutter/models/station.dart';
+import 'package:benzapp_flutter/repositories/model/station.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/services.dart';
 
 class StationsViewModel extends ChangeNotifier {
   Set<Station> _stations = <Station>{};
@@ -15,10 +13,10 @@ class StationsViewModel extends ChangeNotifier {
     Set<Station> current = <Station>{};
     print("-------->loadData begin");
 
-    var value = await rootBundle.loadString('assets/json/stations.json');
-    for (dynamic item in jsonDecode(value) as List<dynamic>) {
-      current.add(Station.fromJson(item));
-    }
+    // var value = await rootBundle.loadString('assets/json/stations.json');
+    // for (dynamic item in jsonDecode(value) as List<dynamic>) {
+    //   current.add(Station.fromJson(item));
+    // }
     _stations = current;
     notifyListeners();
     print("-------->loadData finished");

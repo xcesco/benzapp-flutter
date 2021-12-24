@@ -11,19 +11,22 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tuple/tuple.dart';
 
 import '../account_repository.dart';
+import 'app_database.dart';
 
 class AccountRepositoryImpl extends AccountRepository {
   static const backendBaseUrlParameter = 'backend_base_url';
   final ApiClient _apiClient;
+  final AppDatabase _database;
 
-  AccountRepositoryImpl(this._apiClient);
+  AccountRepositoryImpl(this._database, this._apiClient);
 
   @override
   Future<AdminUserDTO?> getAccount() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
 
-    String? serializedValue = sharedPreferences.getString("AdminUserDTO");
-    final value = serializedValue != null
+    final String? serializedValue = sharedPreferences.getString("AdminUserDTO");
+    final AdminUserDTO? value = serializedValue != null
         ? standardSerializers.deserializeWith(
             AdminUserDTO.serializer, serializedValue)
         : null;
@@ -35,8 +38,8 @@ class AccountRepositoryImpl extends AccountRepository {
   Future<JWTToken?> getJWTToken() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
-    String? serializedValue = sharedPreferences.getString("JWTToken");
-    final value = serializedValue != null
+    final String? serializedValue = sharedPreferences.getString("JWTToken");
+    final JWTToken? value = serializedValue != null
         ? standardSerializers.deserializeWith(
             JWTToken.serializer, serializedValue)
         : null;
@@ -53,8 +56,8 @@ class AccountRepositoryImpl extends AccountRepository {
   @override
   Future<Tuple2<AdminUserDTO?, LoginStatus>> login(
       String username, String password) async {
-    var remoteConfig = await RemoteConfig.instance;
-    var backendBaseUrl =
+    final remoteConfig = await RemoteConfig.instance;
+    final backendBaseUrl =
         remoteConfig.getString(backendBaseUrlParameter).toString();
     _apiClient.updateBaseUrl(backendBaseUrl);
 

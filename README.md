@@ -19,7 +19,12 @@ samples, guidance on mobile development, and a full API reference.
 ```
 flutter packages pub get
 
+
 flutter packages pub run build_runner build
+flutter packages pub run build_runner build --delete-conflicting-outputs
+
+flutter packages pub run build_runner watch
+
 ```
 
 ## Used packages
@@ -86,9 +91,14 @@ A Flutter plugin to share images between Flutter and Android.
 - https://stacksecrets.com/flutter/introduction-to-built_value-library-in-dart
 - https://stacksecrets.com/flutter/how-to-use-built_value-library
 - https://stacksecrets.com/flutter/how-to-use-built_value-library#Setup_Built_Value_In_Flutter_App
+  https://newbedev.com/dart-built-value-deserialize-list-of-objects
 
 ## async await and lint
 - https://betterprogramming.pub/how-to-use-async-await-in-flutter-the-flutter-event-loop-97c696caf912
+
+## ORM e Room equivalent
+- https://pub.dev/packages/floor#data-changes
+- https://levelup.gitconnected.com/room-database-equivalent-for-flutter-807c9729b58d
 
 ## Remote config
 - https://firebase.flutter.dev/docs/remote-config/overview/

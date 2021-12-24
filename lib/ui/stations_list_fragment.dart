@@ -1,4 +1,4 @@
-import 'package:benzapp_flutter/models/station.dart';
+import 'package:benzapp_flutter/repositories/model/station.dart';
 import 'package:benzapp_flutter/viewmodels/station_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

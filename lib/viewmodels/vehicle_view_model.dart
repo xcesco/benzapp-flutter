@@ -1,4 +1,4 @@
-import 'package:benzapp_flutter/models/vehicle.dart';
+import 'package:benzapp_flutter/repositories/model/vehicle.dart';
 import 'package:flutter/material.dart';
 
 class VehicleViewModel with ChangeNotifier {

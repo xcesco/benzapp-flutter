@@ -1,5 +1,5 @@
 import 'package:benzapp_flutter/network/api_client.dart';
-import 'package:benzapp_flutter/viewmodels/account_view_model.dart';
+import 'package:benzapp_flutter/viewmodels/login_view_model.dart';
 import 'package:drawable/drawable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -44,8 +44,9 @@ class _LoginScreenState extends State<LoginScreen>
 
   @override
   Widget build(BuildContext context) {
-    var localization = AppLocalizations.of(context)!;
-    var accountProvider = Provider.of<AccountViewModel>(context);
+    final localization = AppLocalizations.of(context)!;
+    final LoginViewModel accountProvider =
+        Provider.of<LoginViewModel>(context);
 
     return Scaffold(
         body: Container(
@@ -158,16 +159,16 @@ class _LoginScreenState extends State<LoginScreen>
     );
   }
 
-  login(BuildContext context, AccountViewModel accountViewModel) async {
+  login(BuildContext context, LoginViewModel accountViewModel) async {
     FocusScope.of(context).unfocus();
-    LoginStatus loginStatus = await accountViewModel.login(
+    final LoginStatus loginStatus = await accountViewModel.login(
         _userController.value.text, _passwordController.value.text);
 
     if (loginStatus == LoginStatus.success) {
       Navigator.of(context).pushNamed(LockScreen.routeName);
     } else {
-      var localization = AppLocalizations.of(context)!;
-      var snackBar = SnackBar(
+      final AppLocalizations localization = AppLocalizations.of(context)!;
+      final SnackBar snackBar = SnackBar(
         content: Text(localization.loginInvalidCredential),
       );
 

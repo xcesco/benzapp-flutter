@@ -19,7 +19,7 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
-    var localization = AppLocalizations.of(context)!;
+    final localization = AppLocalizations.of(context)!;
     return DefaultTabController(
         length: 3,
         child: Scaffold(

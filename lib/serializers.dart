@@ -52,6 +52,8 @@ Serializers serializers = (_$serializers.toBuilder()
           () => ListBuilder<Cittadino>())
       ..addBuilderFactory(const FullType(BuiltList, [FullType(Delega)]),
           () => ListBuilder<Delega>())
+      ..addBuilderFactory(
+          const FullType(List, [FullType(Delega)]), () => ListBuilder<Delega>())
       ..addBuilderFactory(const FullType(BuiltList, [FullType(Device)]),
           () => ListBuilder<Device>())
       ..addBuilderFactory(const FullType(BuiltList, [FullType(Fascia)]),
@@ -87,3 +89,12 @@ Serializers serializers = (_$serializers.toBuilder()
 
 Serializers standardSerializers =
     (serializers.toBuilder()..addPlugin(StandardJsonPlugin())).build();
+
+/// Codice per la serializzazione/deserializzazione di list e set
+T? deserialize<T>(dynamic value, Serializer<T> serializer) =>
+    standardSerializers.deserializeWith<T>(serializer, value);
+
+BuiltList<T> deserializeListOf<T>(dynamic value, Serializer<T> serializer) =>
+    BuiltList.from(value
+        .map((value) => deserialize<T>(value, serializer))
+        .toList(growable: false));
