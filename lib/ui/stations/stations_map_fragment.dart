@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:benzapp_flutter/app_debug.dart';
 import 'package:benzapp_flutter/repositories/model/station.dart';
-import 'package:benzapp_flutter/ui/widgets/stations_map_widget.dart';
+import 'package:benzapp_flutter/ui/stations/stations_map_widget.dart';
 import 'package:benzapp_flutter/viewmodels/station_view_model.dart';
 import 'package:flutter/material.dart' hide Image;
 import 'package:provider/provider.dart';

@@ -18,14 +18,10 @@ class RefuelingRepositoryImpl extends RefuelingRepository {
   @override
   Future<void> update() async {
     final RefuelingDao daoRifornimenti = _database.refuelingDao;
-    final RifornimentoResourceApi rifornimenotResourceApi =
-        _apiClient.getRifornimentoResourceApi();
+    final RifornimentoResourceApi rifornimenotResourceApi = _apiClient.getRifornimentoResourceApi();
 
     await daoRifornimenti.deleteAll();
-    final List<Rifornimento>? list =
-        (await rifornimenotResourceApi.getAllRifornimentosUsingGET())
-            .data
-            ?.toList();
+    final List<Rifornimento>? list = (await rifornimenotResourceApi.getAllRifornimentosUsingGET()).data?.toList();
 
     if (list != null) {
       for (final Rifornimento item in list) {
@@ -35,13 +31,11 @@ class RefuelingRepositoryImpl extends RefuelingRepository {
   }
 
   @override
-  Future<Refueling?> getDataById(int id) =>
-      _database.refuelingDao.findAllByIdLive(id);
+  Future<Refueling?> getDataById(int id) async => _database.refuelingDao.findAllByIdLive(id);
 
   @override
-  Stream<List<Refueling>> getData() => _database.refuelingDao.findAllLive();
+  Future<List<Refueling>> getData() async => _database.refuelingDao.findAll();
 
   @override
-  Future<List<Refueling>> getDataByTarga(String targa) =>
-      _database.refuelingDao.findAllLiveByTarga(targa);
+  Future<List<Refueling>> getDataByTarga(String targa) => _database.refuelingDao.findAllLiveByTarga(targa);
 }

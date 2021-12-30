@@ -1,11 +1,11 @@
 import 'package:benzapp_flutter/app_debug.dart';
+import 'package:benzapp_flutter/ui/stations/stations_map_fragment.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../home/home_fragment.dart';
-import '../home/stations_list_fragment.dart';
-import '../home/stations_map_fragment.dart';
+import '../stations/stations_list_fragment.dart';
 
 class MainScreen extends StatefulWidget {
   static String routeName = '/';

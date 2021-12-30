@@ -5,7 +5,7 @@ import 'package:floor/floor.dart';
 @dao
 abstract class RefuelingDao {
   @Query("SELECT * FROM refuelings ORDER BY data desc")
-  Stream<List<Refueling>> findAllLive();
+  Future<List<Refueling>> findAll();
 
   @Query("SELECT * FROM refuelings WHERE targa = :targa ORDER BY data desc")
   Stream<Refueling?> findOneByTargaLiveData(String targa);
