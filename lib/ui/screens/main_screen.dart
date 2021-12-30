@@ -1,13 +1,15 @@
-import 'package:benzapp_flutter/viewmodels/station_view_model.dart';
+import 'package:benzapp_flutter/app_debug.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:provider/provider.dart';
 
-import '../home_fragment.dart';
-import '../stations_list_fragment.dart';
-import '../stations_map_fragment.dart';
+import '../home/home_fragment.dart';
+import '../home/stations_list_fragment.dart';
+import '../home/stations_map_fragment.dart';
 
 class MainScreen extends StatefulWidget {
+  static String routeName = '/';
+
   const MainScreen({Key? key}) : super(key: key);
 
   @override
@@ -33,24 +35,44 @@ class _MainScreenState extends State<MainScreen> {
         ));
   }
 
-  //https://stackoverflow.com/questions/53299232/elevation-not-working-on-flutter-material
-  Widget _buildBody(BuildContext context) {
-    return ChangeNotifierProvider<StationsViewModel>(
-        create: _create,
-        child: const Material(
-            color: Colors.blue,
-            child: TabBarView(
-              physics: NeverScrollableScrollPhysics(),
-              children: <Widget>[
-                HomeFragment(),
-                StationsMapFragment(),
-                StationsListFragment()
+  @override
+  void initState() {
+    FirebaseMessaging.onMessage.listen((RemoteMessage event) {
+      print("message received");
+      print(event.notification!.body);
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text("Notification"),
+              content: Text(event.notification!.body!),
+              actions: [
+                TextButton(
+                  child: Text("Ok"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                )
               ],
-            )));
+            );
+          });
+    });
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      AppDebug.log('Message clicked!');
+    });
+  } //https://stackoverflow.com/questions/53299232/elevation-not-working-on-flutter-material
+
+  Widget _buildBody(BuildContext context) {
+    return const Material(
+        color: Colors.blue,
+        child: TabBarView(
+          physics: NeverScrollableScrollPhysics(),
+          children: <Widget>[HomeFragment(), StationsMapFragment(), StationsListFragment()],
+        ));
   }
 
   Widget _buildMenu(BuildContext context) {
-    AppLocalizations localization = AppLocalizations.of(context)!;
+    final AppLocalizations localization = AppLocalizations.of(context)!;
     return Container(
         color: Colors.white,
         child: TabBar(
@@ -78,12 +100,6 @@ class _MainScreenState extends State<MainScreen> {
             ),
           ],
         ));
-  }
-
-  StationsViewModel _create(context) {
-    StationsViewModel model = StationsViewModel();
-    model.loadData();
-    return model;
   }
 
   Widget _buildDrawer(BuildContext context) {

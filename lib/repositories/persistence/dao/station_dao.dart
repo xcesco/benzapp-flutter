@@ -6,6 +6,9 @@ abstract class StationDao {
   @Query("SELECT * FROM stations ORDER BY comune asc, indirizzo asc")
   Stream<List<Station>> findAllLive();
 
+  @Query("SELECT * FROM stations ORDER BY comune asc, indirizzo asc")
+  Future<List<Station>> findAll();
+
   @Insert()
   Future<void> insert(Station value);
 }

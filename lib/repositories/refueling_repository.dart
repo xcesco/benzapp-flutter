@@ -1,7 +1,9 @@
+import 'package:benzapp_flutter/repositories/persistence/abstract_repository.dart';
+
 import 'model/refueling.dart';
 
-abstract class RefuelingRepository {
+abstract class RefuelingRepository extends AbstractRepository {
   Future<List<Refueling>> getDataByTarga(String targa);
 
-  Future<Refueling> getDataById(int id);
+  Future<Refueling?> getDataById(int id);
 }

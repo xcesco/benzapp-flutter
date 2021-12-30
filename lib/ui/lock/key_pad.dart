@@ -87,7 +87,7 @@ class KeyPad extends StatelessWidget {
     );
   }
 
-  buttonWidget(String buttonText) {
+  Widget buttonWidget(String buttonText) {
     return SizedBox(
       height: buttonSize,
       width: buttonSize,
@@ -112,7 +112,7 @@ class KeyPad extends StatelessWidget {
     );
   }
 
-  iconButtonWidget(IconData icon, Function function) {
+  Widget iconButtonWidget(IconData icon, Function function) {
     return SizedBox(
       height: buttonSize,
       width: buttonSize,

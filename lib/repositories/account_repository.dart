@@ -6,14 +6,19 @@ import 'package:tuple/tuple.dart';
 abstract class AccountRepository {
   Future<AdminUserDTO?> getAccount();
 
-  Future<JWTToken?> getJWTToken();
+  String get backendBaseUrl;
 
-  bool hasValidAccount();
+  Future<String?> getJWTToken();
 
-  Future<Tuple2<AdminUserDTO?, LoginStatus>> login(
-      String username, String password);
+  Future<bool> hasValidAccount();
+
+  Future<Tuple2<AdminUserDTO?, LoginStatus>> login(String username, String password);
 
   bool logout();
 
+  Future<String> refreshRemoteConfig();
+
   String updateClientJWTToken(JWTToken jwtToken);
+
+  void updateBaseUrl(String baseUrl);
 }

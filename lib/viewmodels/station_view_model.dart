@@ -1,24 +1,19 @@
-
+import 'package:benzapp_flutter/app_debug.dart';
 import 'package:benzapp_flutter/repositories/model/station.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:benzapp_flutter/repositories/stations_repository.dart';
 
-class StationsViewModel extends ChangeNotifier {
-  Set<Station> _stations = <Station>{};
+import 'base_view_model.dart';
 
-  Set<Station> get stations {
-    return {..._stations};
-  }
+class StationsViewModel extends BaseViewModel {
+  StationsRepository _stationRepository;
 
-  void loadData() async {
-    Set<Station> current = <Station>{};
-    print("-------->loadData begin");
+  StationsViewModel(this._stationRepository);
 
-    // var value = await rootBundle.loadString('assets/json/stations.json');
-    // for (dynamic item in jsonDecode(value) as List<dynamic>) {
-    //   current.add(Station.fromJson(item));
-    // }
-    _stations = current;
-    notifyListeners();
-    print("-------->loadData finished");
+  Future<List<Station>> loadData() async {
+    AppDebug.log("-------->loadData begin");
+
+    final List<Station> stations = await _stationRepository.loadStations();
+
+    return stations;
   }
 }

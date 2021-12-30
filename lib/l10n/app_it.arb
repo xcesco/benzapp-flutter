@@ -10,10 +10,14 @@
   "password": "Password",
   "username_required": "Username is required",
   "password_required": "Password is required",
-
   "main_menu_home": "HOME",
-  "main_menu_map":"MAPPA",
+  "main_menu_map": "MAPPA",
   "main_menu_stations": "DISTRIBUTORI",
+
+  "lock_screen_no_pin": "Ho perso il pin",
+  "lock_screen_inserisci_pin": "Inserisci il PIN a 6 cifre",
+  "lock_screen_definisci_pin":"Definisci un PIN a 6 cifre",
+  "lock_screen_inserisci_nuovamente_pin":"Inserisci nuovamente il PIN",
 
   "loginInvalidCredential": "Credenziali non valide!"
 }

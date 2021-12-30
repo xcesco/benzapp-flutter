@@ -77,8 +77,8 @@ class DeviceResourceApi {
     queryParams[r'owner.notEquals'] = ownerPeriodNotEquals;
     queryParams[r'owner.notIn'] = ownerPeriodNotIn;
     queryParams[r'owner.specified'] = ownerPeriodSpecified;
-    queryParams.removeWhere((key, value) => value == null);
-    headerParams.removeWhere((key, value) => value == null);
+    queryParams.removeWhere((String key, value) => value == null);
+    headerParams.removeWhere((String key, value) => value == null);
 
     final List<String> contentTypes = [];
 
@@ -107,8 +107,8 @@ class DeviceResourceApi {
       onSendProgress: onSendProgress,
       onReceiveProgress: onReceiveProgress,
     )
-        .then((response) {
-      final data = response.data as int;
+        .then((Response response) {
+      final int data = response.data as int;
 
       return Response<int>(
         data: data,
@@ -142,15 +142,15 @@ class DeviceResourceApi {
     };
     dynamic bodyData;
 
-    queryParams.removeWhere((key, value) => value == null);
-    headerParams.removeWhere((key, value) => value == null);
+    queryParams.removeWhere((String key, value) => value == null);
+    headerParams.removeWhere((String key, value) => value == null);
 
     final List<String> contentTypes = [
       'application/json',
     ];
 
-    final serializedBody = _serializers.serialize(device);
-    final jsondevice = json.encode(serializedBody);
+    final Object? serializedBody = _serializers.serialize(device);
+    final String jsondevice = json.encode(serializedBody);
     bodyData = jsondevice;
 
     return _dio
@@ -178,10 +178,10 @@ class DeviceResourceApi {
       onSendProgress: onSendProgress,
       onReceiveProgress: onReceiveProgress,
     )
-        .then((response) {
-      final serializer =
+        .then((Response response) {
+      final Serializer<Device> serializer =
           _serializers.serializerForType(Device) as Serializer<Device>;
-      final data = _serializers.deserializeWith<Device>(serializer,
+      final Device? data = _serializers.deserializeWith<Device>(serializer,
           response.data is String ? jsonDecode(response.data) : response.data);
 
       return Response<Device>(
@@ -217,8 +217,8 @@ class DeviceResourceApi {
     };
     dynamic bodyData;
 
-    queryParams.removeWhere((key, value) => value == null);
-    headerParams.removeWhere((key, value) => value == null);
+    queryParams.removeWhere((String key, value) => value == null);
+    headerParams.removeWhere((String key, value) => value == null);
 
     final List<String> contentTypes = [];
 
@@ -319,8 +319,8 @@ class DeviceResourceApi {
     queryParams[r'page'] = page;
     queryParams[r'size'] = size;
     queryParams[r'sort'] = sort;
-    queryParams.removeWhere((key, value) => value == null);
-    headerParams.removeWhere((key, value) => value == null);
+    queryParams.removeWhere((String key, value) => value == null);
+    headerParams.removeWhere((String key, value) => value == null);
 
     final List<String> contentTypes = [];
 
@@ -349,9 +349,9 @@ class DeviceResourceApi {
       onSendProgress: onSendProgress,
       onReceiveProgress: onReceiveProgress,
     )
-        .then((response) {
-      const collectionType = BuiltList;
-      const type = FullType(collectionType, [FullType(Device)]);
+        .then((Response response) {
+      const Type collectionType = BuiltList;
+      const FullType type = FullType(collectionType, [FullType(Device)]);
       final BuiltList<Device> data = _serializers.deserialize(
           response.data is String ? jsonDecode(response.data) : response.data,
           specifiedType: type) as BuiltList<Device>;
@@ -389,8 +389,8 @@ class DeviceResourceApi {
     };
     dynamic bodyData;
 
-    queryParams.removeWhere((key, value) => value == null);
-    headerParams.removeWhere((key, value) => value == null);
+    queryParams.removeWhere((String key, value) => value == null);
+    headerParams.removeWhere((String key, value) => value == null);
 
     final List<String> contentTypes = [];
 
@@ -419,10 +419,10 @@ class DeviceResourceApi {
       onSendProgress: onSendProgress,
       onReceiveProgress: onReceiveProgress,
     )
-        .then((response) {
-      final serializer =
+        .then((Response response) {
+      final Serializer<Device> serializer =
           _serializers.serializerForType(Device) as Serializer<Device>;
-      final data = _serializers.deserializeWith<Device>(serializer,
+      final Device? data = _serializers.deserializeWith<Device>(serializer,
           response.data is String ? jsonDecode(response.data) : response.data);
 
       return Response<Device>(
@@ -457,16 +457,16 @@ class DeviceResourceApi {
     };
     dynamic bodyData;
 
-    queryParams.removeWhere((key, value) => value == null);
-    headerParams.removeWhere((key, value) => value == null);
+    queryParams.removeWhere((String key, value) => value == null);
+    headerParams.removeWhere((String key, value) => value == null);
 
     final List<String> contentTypes = [
       'application/json',
       'application/merge-patch+json',
     ];
 
-    final serializedBody = _serializers.serialize(device);
-    final jsondevice = json.encode(serializedBody);
+    final Object? serializedBody = _serializers.serialize(device);
+    final String jsondevice = json.encode(serializedBody);
     bodyData = jsondevice;
 
     return _dio
@@ -494,10 +494,10 @@ class DeviceResourceApi {
       onSendProgress: onSendProgress,
       onReceiveProgress: onReceiveProgress,
     )
-        .then((response) {
-      final serializer =
+        .then((Response response) {
+      final Serializer<Device> serializer =
           _serializers.serializerForType(Device) as Serializer<Device>;
-      final data = _serializers.deserializeWith<Device>(serializer,
+      final Device? data = _serializers.deserializeWith<Device>(serializer,
           response.data is String ? jsonDecode(response.data) : response.data);
 
       return Response<Device>(
@@ -532,15 +532,15 @@ class DeviceResourceApi {
     };
     dynamic bodyData;
 
-    queryParams.removeWhere((key, value) => value == null);
-    headerParams.removeWhere((key, value) => value == null);
+    queryParams.removeWhere((String key, value) => value == null);
+    headerParams.removeWhere((String key, value) => value == null);
 
     final List<String> contentTypes = [
       'application/json',
     ];
 
-    final serializedBody = _serializers.serialize(device);
-    final jsondevice = json.encode(serializedBody);
+    final Object? serializedBody = _serializers.serialize(device);
+    final String jsondevice = json.encode(serializedBody);
     bodyData = jsondevice;
 
     return _dio
@@ -568,10 +568,10 @@ class DeviceResourceApi {
       onSendProgress: onSendProgress,
       onReceiveProgress: onReceiveProgress,
     )
-        .then((response) {
-      final serializer =
+        .then((Response response) {
+      final Serializer<Device> serializer =
           _serializers.serializerForType(Device) as Serializer<Device>;
-      final data = _serializers.deserializeWith<Device>(serializer,
+      final Device? data = _serializers.deserializeWith<Device>(serializer,
           response.data is String ? jsonDecode(response.data) : response.data);
 
       return Response<Device>(

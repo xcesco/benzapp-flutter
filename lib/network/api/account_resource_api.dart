@@ -35,8 +35,8 @@ class AccountResourceApi {
     dynamic bodyData;
 
     queryParams[r'key'] = key;
-    queryParams.removeWhere((key, value) => value == null);
-    headerParams.removeWhere((key, value) => value == null);
+    queryParams.removeWhere((String key, value) => value == null);
+    headerParams.removeWhere((String key, value) => value == null);
 
     final List<String> contentTypes = [];
 
@@ -57,8 +57,7 @@ class AccountResourceApi {
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
-        contentType:
-            contentTypes.isNotEmpty ? contentTypes[0] : 'application/json',
+        contentType: contentTypes.isNotEmpty ? contentTypes[0] : 'application/json',
       ),
       cancelToken: cancelToken,
       onSendProgress: onSendProgress,
@@ -86,15 +85,15 @@ class AccountResourceApi {
     };
     dynamic bodyData;
 
-    queryParams.removeWhere((key, value) => value == null);
-    headerParams.removeWhere((key, value) => value == null);
+    queryParams.removeWhere((String key, value) => value == null);
+    headerParams.removeWhere((String key, value) => value == null);
 
     final List<String> contentTypes = [
       'application/json',
     ];
 
-    final serializedBody = _serializers.serialize(passwordChangeDTO);
-    final jsonpasswordChangeDTO = json.encode(serializedBody);
+    final Object? serializedBody = _serializers.serialize(passwordChangeDTO);
+    final String jsonpasswordChangeDTO = json.encode(serializedBody);
     bodyData = jsonpasswordChangeDTO;
 
     return _dio.request(
@@ -114,8 +113,7 @@ class AccountResourceApi {
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
-        contentType:
-            contentTypes.isNotEmpty ? contentTypes[0] : 'application/json',
+        contentType: contentTypes.isNotEmpty ? contentTypes[0] : 'application/json',
       ),
       cancelToken: cancelToken,
       onSendProgress: onSendProgress,
@@ -143,15 +141,15 @@ class AccountResourceApi {
     };
     dynamic bodyData;
 
-    queryParams.removeWhere((key, value) => value == null);
-    headerParams.removeWhere((key, value) => value == null);
+    queryParams.removeWhere((String key, value) => value == null);
+    headerParams.removeWhere((String key, value) => value == null);
 
     final List<String> contentTypes = [
       'application/json',
     ];
 
-    final serializedBody = _serializers.serialize(keyAndPasswordVM);
-    final jsonkeyAndPasswordVM = json.encode(serializedBody);
+    final Object? serializedBody = _serializers.serialize(keyAndPasswordVM);
+    final String jsonkeyAndPasswordVM = json.encode(serializedBody);
     bodyData = jsonkeyAndPasswordVM;
 
     return _dio.request(
@@ -171,8 +169,7 @@ class AccountResourceApi {
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
-        contentType:
-            contentTypes.isNotEmpty ? contentTypes[0] : 'application/json',
+        contentType: contentTypes.isNotEmpty ? contentTypes[0] : 'application/json',
       ),
       cancelToken: cancelToken,
       onSendProgress: onSendProgress,
@@ -199,8 +196,8 @@ class AccountResourceApi {
     };
     dynamic bodyData;
 
-    queryParams.removeWhere((key, value) => value == null);
-    headerParams.removeWhere((key, value) => value == null);
+    queryParams.removeWhere((String key, value) => value == null);
+    headerParams.removeWhere((String key, value) => value == null);
 
     final List<String> contentTypes = [];
 
@@ -222,18 +219,17 @@ class AccountResourceApi {
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
-        contentType:
-            contentTypes.isNotEmpty ? contentTypes[0] : 'application/json',
+        contentType: contentTypes.isNotEmpty ? contentTypes[0] : 'application/json',
       ),
       cancelToken: cancelToken,
       onSendProgress: onSendProgress,
       onReceiveProgress: onReceiveProgress,
     )
-        .then((response) {
-      final serializer = _serializers.serializerForType(AdminUserDTO)
-          as Serializer<AdminUserDTO>;
-      final data = _serializers.deserializeWith<AdminUserDTO>(serializer,
-          response.data is String ? jsonDecode(response.data) : response.data);
+        .then((Response response) {
+      final Serializer<AdminUserDTO> serializer =
+          _serializers.serializerForType(AdminUserDTO) as Serializer<AdminUserDTO>;
+      final AdminUserDTO? data = _serializers.deserializeWith<AdminUserDTO>(
+          serializer, response.data is String ? jsonDecode(response.data) : response.data);
 
       return Response<AdminUserDTO>(
         data: data,
@@ -266,8 +262,8 @@ class AccountResourceApi {
     };
     dynamic bodyData;
 
-    queryParams.removeWhere((key, value) => value == null);
-    headerParams.removeWhere((key, value) => value == null);
+    queryParams.removeWhere((String key, dynamic value) => value == null);
+    headerParams.removeWhere((String key, dynamic value) => value == null);
 
     final List<String> contentTypes = [];
 
@@ -289,15 +285,14 @@ class AccountResourceApi {
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
-        contentType:
-            contentTypes.isNotEmpty ? contentTypes[0] : 'application/json',
+        contentType: contentTypes.isNotEmpty ? contentTypes[0] : 'application/json',
       ),
       cancelToken: cancelToken,
       onSendProgress: onSendProgress,
       onReceiveProgress: onReceiveProgress,
     )
-        .then((response) {
-      final data = response.data as String;
+        .then((Response response) {
+      final String data = response.data as String;
 
       return Response<String>(
         data: data,
@@ -331,15 +326,15 @@ class AccountResourceApi {
     };
     dynamic bodyData;
 
-    queryParams.removeWhere((key, value) => value == null);
-    headerParams.removeWhere((key, value) => value == null);
+    queryParams.removeWhere((String key, dynamic value) => value == null);
+    headerParams.removeWhere((String key, dynamic value) => value == null);
 
     final List<String> contentTypes = [
       'application/json',
     ];
 
-    final serializedBody = _serializers.serialize(managedUserVM);
-    final jsonmanagedUserVM = json.encode(serializedBody);
+    final Object? serializedBody = _serializers.serialize(managedUserVM);
+    final String jsonmanagedUserVM = json.encode(serializedBody);
     bodyData = jsonmanagedUserVM;
 
     return _dio.request(
@@ -359,8 +354,7 @@ class AccountResourceApi {
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
-        contentType:
-            contentTypes.isNotEmpty ? contentTypes[0] : 'application/json',
+        contentType: contentTypes.isNotEmpty ? contentTypes[0] : 'application/json',
       ),
       cancelToken: cancelToken,
       onSendProgress: onSendProgress,
@@ -388,15 +382,15 @@ class AccountResourceApi {
     };
     dynamic bodyData;
 
-    queryParams.removeWhere((key, value) => value == null);
-    headerParams.removeWhere((key, value) => value == null);
+    queryParams.removeWhere((String key, dynamic value) => value == null);
+    headerParams.removeWhere((String key, dynamic value) => value == null);
 
     final List<String> contentTypes = [
       'application/json',
     ];
 
-    final serializedBody = _serializers.serialize(body);
-    final jsonbody = json.encode(serializedBody);
+    final Object? serializedBody = _serializers.serialize(body);
+    final String jsonbody = json.encode(serializedBody);
     bodyData = jsonbody;
 
     return _dio.request(
@@ -416,8 +410,7 @@ class AccountResourceApi {
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
-        contentType:
-            contentTypes.isNotEmpty ? contentTypes[0] : 'application/json',
+        contentType: contentTypes.isNotEmpty ? contentTypes[0] : 'application/json',
       ),
       cancelToken: cancelToken,
       onSendProgress: onSendProgress,
@@ -445,15 +438,15 @@ class AccountResourceApi {
     };
     dynamic bodyData;
 
-    queryParams.removeWhere((key, value) => value == null);
-    headerParams.removeWhere((key, value) => value == null);
+    queryParams.removeWhere((String key, value) => value == null);
+    headerParams.removeWhere((String key, value) => value == null);
 
     final List<String> contentTypes = [
       'application/json',
     ];
 
-    final serializedBody = _serializers.serialize(adminUserDTO);
-    final jsonadminUserDTO = json.encode(serializedBody);
+    final Object? serializedBody = _serializers.serialize(adminUserDTO);
+    final String jsonadminUserDTO = json.encode(serializedBody);
     bodyData = jsonadminUserDTO;
 
     return _dio.request(
@@ -473,8 +466,7 @@ class AccountResourceApi {
           if (extra != null) ...extra,
         },
         validateStatus: validateStatus,
-        contentType:
-            contentTypes.isNotEmpty ? contentTypes[0] : 'application/json',
+        contentType: contentTypes.isNotEmpty ? contentTypes[0] : 'application/json',
       ),
       cancelToken: cancelToken,
       onSendProgress: onSendProgress,

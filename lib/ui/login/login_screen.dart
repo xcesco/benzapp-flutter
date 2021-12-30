@@ -1,12 +1,12 @@
 import 'package:benzapp_flutter/network/api_client.dart';
 import 'package:benzapp_flutter/ui/widgets/app_progress_indicator.dart';
-import 'package:benzapp_flutter/viewmodels/login_view_model.dart';
 import 'package:drawable/drawable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
-import 'lock_screen.dart';
+import '../lock/lock_screen.dart';
+import 'login_view_model.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String routeName = '/login';
@@ -26,7 +26,8 @@ class _LoginScreenState extends State<LoginScreen>
   @override
   Widget build(BuildContext context) {
     final localization = AppLocalizations.of(context)!;
-    final LoginViewModel accountProvider = Provider.of<LoginViewModel>(context);
+    final LoginViewModel accountViewModel =
+        Provider.of<LoginViewModel>(context);
 
     return Scaffold(
         body: Container(
@@ -54,12 +55,13 @@ class _LoginScreenState extends State<LoginScreen>
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            _buildText(accountProvider.backendBaseUrl),
+                            _buildText(accountViewModel.backendBaseUrl),
                             Padding(
                                 padding: const EdgeInsets.only(left: 8),
                                 child: OutlinedButton.icon(
                                     onPressed: () {
-                                      accountProvider.initRemoteConfig();
+                                      accountViewModel.refreshRemoteConfig(
+                                          updateUI: true);
                                     },
                                     icon: const Icon(Icons.sync,
                                         color: Colors.white),
@@ -83,14 +85,14 @@ class _LoginScreenState extends State<LoginScreen>
                           child: Padding(
                               padding: const EdgeInsets.all(24.0),
                               child: Stack(children: [
-                                (!accountProvider.isLoading)
+                                (!accountViewModel.isLoading)
                                     ? Center(
                                         child: SizedBox(
                                             width: double.infinity,
                                             child: ElevatedButton(
                                                 onPressed: () => {
-                                                      login(context,
-                                                          accountProvider)
+                                                      _login(context,
+                                                          accountViewModel)
                                                     },
                                                 child:
                                                     Text(localization.accedi))))
@@ -126,21 +128,22 @@ class _LoginScreenState extends State<LoginScreen>
     );
   }
 
-  Text _buildText(String text, {double fontSize = 14}) {
-    return Text(
-      text,
-      style: TextStyle(fontSize: fontSize, color: Colors.white),
-      textAlign: TextAlign.center,
-    );
+  Widget _buildText(String text, {double fontSize = 14}) {
+    return Flexible(
+        child: Text(text,
+            style: TextStyle(fontSize: fontSize, color: Colors.white),
+            textAlign: TextAlign.center,
+            overflow: TextOverflow.ellipsis));
   }
 
-  login(BuildContext context, LoginViewModel accountViewModel) async {
+  Future<void> _login(
+      BuildContext context, LoginViewModel accountViewModel) async {
     FocusScope.of(context).unfocus();
     final LoginStatus loginStatus = await accountViewModel.login(
         _userController.value.text, _passwordController.value.text);
 
     if (loginStatus == LoginStatus.success) {
-      Navigator.of(context).pushNamed(LockScreen.routeName);
+      Navigator.of(context).pushReplacementNamed(LockScreen.routeName);
     } else {
       final AppLocalizations localization = AppLocalizations.of(context)!;
       final SnackBar snackBar = SnackBar(
@@ -151,5 +154,3 @@ class _LoginScreenState extends State<LoginScreen>
     }
   }
 }
-
-
