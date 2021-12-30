@@ -132,3 +132,15 @@ https://docs.flutter.dev/resources/books
 - https://medium.com/flutter-community/flutter-threading-5c3a7b0c065f
 - https://www.tutorialspoint.com/dart_programming/dart_programming_concurrency.htm
 - https://pub.dev/packages/threading
+
+## Test
+- https://docs.flutter.dev/cookbook/testing/unit/introduction
+
+## Multithread
+- https://medium.com/flutter-community/flutter-threading-5c3a7b0c065f
+- https://www.tutorialspoint.com/dart_programming/dart_programming_concurrency.htm
+- https://pub.dev/packages/threading
+
+## Secure storage
+KeyStore was introduced in Android 4.3 (API level 18). The plugin wouldn't work for earlier versions
+- https://pub.dev/packages/flutter_secure_storage

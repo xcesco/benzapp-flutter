@@ -53,3 +53,4 @@ app.*.map.json
 
 # All generated dart file
 /lib/**/*.g.dart
+/gen/it/insiel/innovazione/benzapp/benzapp_flutter/BuildConfig.java
