@@ -144,3 +144,6 @@ https://docs.flutter.dev/resources/books
 ## Secure storage
 KeyStore was introduced in Android 4.3 (API level 18). The plugin wouldn't work for earlier versions
 - https://pub.dev/packages/flutter_secure_storage
+
+## Avatar images
+- https://stackoverflow.com/questions/53513456/flutter-network-image-does-not-fit-in-circular-avatar

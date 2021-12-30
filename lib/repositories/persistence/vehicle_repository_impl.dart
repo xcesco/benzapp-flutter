@@ -19,33 +19,32 @@ class VehicleRepositoryImpl extends VehicleRepository {
   @transaction
   @override
   Future<void> update() async {
-    final TesseraResourceApi tessereResourceApi =
-        _apiClient.getTesseraResourceApi();
-    final DelegaResourceApi delegheResourceApi =
-        _apiClient.getDelegaResourceApi();
+    final TesseraResourceApi tessereResourceApi = _apiClient.getTesseraResourceApi();
+    final DelegaResourceApi delegheResourceApi = _apiClient.getDelegaResourceApi();
 
     final VehicleDao vehicleDao = _database.vehicleDao;
     vehicleDao.deleteAll();
 
-    await loadTessere(tessereResourceApi, vehicleDao);
-    await loadDeleghe(delegheResourceApi, vehicleDao);
+    await _loadTessere(tessereResourceApi, vehicleDao);
+    await _loadDeleghe(delegheResourceApi, vehicleDao);
   }
 
-  Future<void> loadTessere(
-      TesseraResourceApi tesseraResourceApi, VehicleDao vehicleDao) async {
-    final List<Tessera>? list =
-        (await tesseraResourceApi.getAllTesserasUsingGET()).data?.toList();
+  Future<void> _loadTessere(TesseraResourceApi tesseraResourceApi, VehicleDao vehicleDao) async {
+    final List<Tessera>? list = (await tesseraResourceApi.getAllTesserasUsingGET()).data?.toList();
     for (final Tessera item in list!) {
       vehicleDao.insert(Vehicle.ofTessera(item));
     }
   }
 
-  Future<void> loadDeleghe(
-      DelegaResourceApi tesseraResourceApi, VehicleDao vehicleDao) async {
-    final List<Delega>? list =
-        (await tesseraResourceApi.getAllDelegasUsingGET()).data?.toList();
+  Future<void> _loadDeleghe(DelegaResourceApi tesseraResourceApi, VehicleDao vehicleDao) async {
+    final List<Delega>? list = (await tesseraResourceApi.getAllDelegasUsingGET()).data?.toList();
     for (final Delega item in list!) {
       vehicleDao.insert(Vehicle.ofDelega(item));
     }
+  }
+
+  @override
+  Future<List<Vehicle>> getData() {
+    return _database.vehicleDao.findAll();
   }
 }

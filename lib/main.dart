@@ -3,20 +3,23 @@ import 'dart:convert';
 import 'package:benzapp_flutter/app_debug.dart';
 import 'package:benzapp_flutter/network/model/admin_user_dto.dart';
 import 'package:benzapp_flutter/repositories/model/station.dart';
+import 'package:benzapp_flutter/repositories/notification_repository.dart';
 import 'package:benzapp_flutter/repositories/persistence/account_repository_impl.dart';
 import 'package:benzapp_flutter/repositories/persistence/app_database.dart';
 import 'package:benzapp_flutter/repositories/persistence/application_info_repository_impl.dart';
+import 'package:benzapp_flutter/repositories/persistence/notification_repository_impl.dart';
 import 'package:benzapp_flutter/repositories/persistence/refueling_repository_impl.dart';
 import 'package:benzapp_flutter/repositories/persistence/secure_repository.dart';
 import 'package:benzapp_flutter/repositories/persistence/stations_repository_impl.dart';
 import 'package:benzapp_flutter/repositories/persistence/vehicle_repository_impl.dart';
 import 'package:benzapp_flutter/repositories/refueling_repository.dart';
 import 'package:benzapp_flutter/repositories/stations_repository.dart';
+import 'package:benzapp_flutter/ui/home/home_view_model.dart';
 import 'package:benzapp_flutter/ui/lock/lock_screen.dart';
 import 'package:benzapp_flutter/ui/lock/lock_view_model.dart';
 import 'package:benzapp_flutter/ui/login/login_screen.dart';
 import 'package:benzapp_flutter/ui/login/login_view_model.dart';
-import 'package:benzapp_flutter/ui/screens/main_screen.dart';
+import 'package:benzapp_flutter/ui/main/main_screen.dart';
 import 'package:benzapp_flutter/ui/widgets/please_wait_widget.dart';
 import 'package:benzapp_flutter/viewmodels/station_view_model.dart';
 import 'package:benzapp_flutter/viewmodels/vehicle_view_model.dart';
@@ -69,6 +72,8 @@ class MyAppState extends State<MyApp> {
 
   late LockViewModel _lockViewModel;
 
+  late HomeViewModel _homeViewModel;
+
   late String _initialRouteName;
 
   Future<bool> _applicationInit() async {
@@ -90,6 +95,7 @@ class MyAppState extends State<MyApp> {
       final VehicleRepositoryImpl vehicleRepository = VehicleRepositoryImpl(database, restClient);
       final RefuelingRepository refuelingRepository = RefuelingRepositoryImpl(database, restClient);
       final StationsRepository stationsRepository = StationsRepositoryImpl(database);
+      final NotificationRepository notificationRepository = NotificationRepositoryImpl(database);
 
       final SecureRepository secureRepository = SecureRepository();
       final ApplicationInfoRepositoryImpl applicationInfoRepository = ApplicationInfoRepositoryImpl();
@@ -101,6 +107,7 @@ class MyAppState extends State<MyApp> {
       _loginViewModel = LoginViewModel(accountRepository, vehicleRepository, refuelingRepository);
       _lockViewModel = LockViewModel(applicationInfoRepository, secureRepository, restClient);
       _stationsViewModel = StationsViewModel(stationsRepository);
+      _homeViewModel = HomeViewModel(vehicleRepository, refuelingRepository, notificationRepository);
 
       final AdminUserDTO? account = await accountRepository.getAccount();
       final String? jwtToken = await accountRepository.getJWTToken();
@@ -156,6 +163,9 @@ class MyAppState extends State<MyApp> {
         ),
         ChangeNotifierProvider<StationsViewModel>(
           create: (BuildContext context) => _stationsViewModel,
+        ),
+        ChangeNotifierProvider<HomeViewModel>(
+          create: (BuildContext context) => _homeViewModel,
         )
       ],
       child: MaterialApp(

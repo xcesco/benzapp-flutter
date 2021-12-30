@@ -5,14 +5,14 @@ import 'package:benzapp_flutter/repositories/stations_repository.dart';
 import 'base_view_model.dart';
 
 class StationsViewModel extends BaseViewModel {
-  StationsRepository _stationRepository;
+  final StationsRepository _stationRepository;
 
   StationsViewModel(this._stationRepository);
 
   Future<List<Station>> loadData() async {
     AppDebug.log("-------->loadData begin");
 
-    final List<Station> stations = await _stationRepository.loadStations();
+    final List<Station> stations = await _stationRepository.getData();
 
     return stations;
   }
