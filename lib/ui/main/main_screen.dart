@@ -29,6 +29,28 @@ class _MainScreenState extends State<MainScreen> {
           appBar: AppBar(
             elevation: 0,
             title: Text(localization.title),
+            actions: <Widget>[
+              PopupMenuButton(
+                onSelected: (String selectedValue) {
+                  setState(() {
+                    AppDebug.log(selectedValue);
+                  });
+                },
+                icon: Icon(
+                  Icons.more_vert,
+                ),
+                itemBuilder: (_) => [
+                  PopupMenuItem(
+                    child: Text('Only Favorites'),
+                    value: 'a',
+                  ),
+                  PopupMenuItem(
+                    child: Text('Show All'),
+                    value: 'b',
+                  ),
+                ],
+              ),
+            ],
           ),
           bottomNavigationBar: _buildMenu(context),
           body: Material(elevation: 5, child: _buildBody(context)),

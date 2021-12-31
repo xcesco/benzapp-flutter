@@ -20,6 +20,8 @@ import 'package:benzapp_flutter/ui/lock/lock_view_model.dart';
 import 'package:benzapp_flutter/ui/login/login_screen.dart';
 import 'package:benzapp_flutter/ui/login/login_view_model.dart';
 import 'package:benzapp_flutter/ui/main/main_screen.dart';
+import 'package:benzapp_flutter/ui/refuelings/refueling_screen.dart';
+import 'package:benzapp_flutter/ui/vehicles/vehicles_screen.dart';
 import 'package:benzapp_flutter/ui/widgets/please_wait_widget.dart';
 import 'package:benzapp_flutter/viewmodels/station_view_model.dart';
 import 'package:benzapp_flutter/viewmodels/vehicle_view_model.dart';
@@ -33,17 +35,6 @@ import 'package:sqflite/sqflite.dart' as sqflite;
 
 import 'firebase_options.dart';
 import 'network/api_client.dart';
-
-/// Define a top-level named handler which background/terminated messages will
-/// call.
-///
-/// To verify things are working, check out the native platform logs.
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  // If you're going to use other Firebase services in the background, such as Firestore,
-  // make sure you call `initializeApp` before using other Firebase services.
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  print('Handling a background message ${message.messageId}');
-}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -177,6 +168,8 @@ class MyAppState extends State<MyApp> {
           MainScreen.routeName: (BuildContext ctx) => const MainScreen(),
           LockScreen.routeName: (BuildContext ctx) => const LockScreen(),
           LoginScreen.routeName: (BuildContext ctx) => const LoginScreen(),
+          RefuelingScreen.routeName: (BuildContext ctx) => const RefuelingScreen(),
+          VehicleScreen.routeName: (BuildContext ctx) => const VehicleScreen(),
         },
       ),
     );
