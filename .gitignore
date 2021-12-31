@@ -57,3 +57,5 @@ app.*.map.json
 /pubspec.lock
 /android/app/src/main/res/values/api_keys.xml
 /ios/Podfile.lock
+/android/app/src/main/res/values/secrets.xml
+/ios/Runner/Secrets.swift

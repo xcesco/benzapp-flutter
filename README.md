@@ -2,6 +2,37 @@
 
 Benzapp's Flutter implementation
 
+## Configurazione dei progetti
+Per poter eseguire l'applicazione a partire dal codice sorgente disponibile in questo repo è necessario
+configurare le chiavi relative ai servizi Google e Firebase utilizzati. Nei file di esempio, verrà utilizzato
+il placeholder `${google-api-key}` per indicare dove inserire tale chiave.
+
+## Configurazione sotto-progetto Android
+Bisogna creare il file `android/app/src/main/res/values/secrets.xml` nel quale inserire la chiave
+per i servizi Google maps per il progetto Android.
+
+```xml
+<resources>
+    <string name="google_api_key">${google-api-key}</string>
+</resources>
+```
+
+![](./docs/android-config.png)
+
+## Configurazione sotto-progetto IOS
+Bisogna creare il file `ios/Runner/Secrets.swift` nel quale inserire la chiave
+per i servizi Google maps per il progetto iOS. 
+
+![](./docs/ios-config.png)
+
+```swift
+import Foundation
+
+struct Secrets {
+    static let googleApiKey="${google-api-key}>";
+}
+```
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
