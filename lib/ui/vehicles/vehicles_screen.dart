@@ -21,7 +21,7 @@ class VehicleScreenState extends State<VehicleScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Your Cart'),
+          title: Text('Elenco tessere'),
         ),
         body: Container(
             color: Colors.white,

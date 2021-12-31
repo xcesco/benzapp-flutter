@@ -16,7 +16,7 @@ class RefuelingItem extends StatelessWidget {
     return ListTile(
       // onTap: _onItemSelected,
       contentPadding: const EdgeInsets.only(left: 8, right: 8, top: 4, bottom: 4),
-      leading: _buildType(_item),
+      leading: _buildType(context, _item),
       title: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Text(
           _item.targa,
@@ -74,17 +74,17 @@ class RefuelingItem extends StatelessWidget {
     return Image.memory(base64Decode(base64String), width: size, height: size, fit: boxFit);
   }
 
-  Widget _buildType(Refueling item) {
+  Widget _buildType(BuildContext context, Refueling item) {
     return CircleAvatar(
       backgroundColor: Colors.grey,
       radius: 32.0,
       child: CircleAvatar(
         child: Text(
-          _item.tipoCarburante.name,
-          style: TextStyle(color: Colors.white),
+          item.tipoCarburante.name,
+          style: DefaultTextStyle.of(context).style.apply(fontSizeFactor: 0.8, color: Colors.white),
         ),
         radius: 31.0,
-        backgroundColor: item.tipoCarburante == 'BENZINA' ? Colors.green : Colors.black54,
+        backgroundColor: item.tipoCarburante.name == 'BENZINA' ? Colors.green : Colors.black54,
       ),
     );
   }
