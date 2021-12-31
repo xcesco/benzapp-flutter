@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:benzapp_flutter/network/api_client.dart';
 import 'package:benzapp_flutter/ui/widgets/app_progress_indicator.dart';
 import 'package:drawable/drawable.dart';
@@ -31,11 +33,7 @@ class _LoginScreenState extends State<LoginScreen>
 
     return Scaffold(
         body: Container(
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-              image: DrawableImage("ic_home_background"),
-              fit: BoxFit.cover,
-            )),
+            decoration: _buildBoxDecoration(),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -46,10 +44,10 @@ class _LoginScreenState extends State<LoginScreen>
                       child: Column(children: [
                         const Padding(
                             padding: EdgeInsets.only(top: 82),
-                            child: Image(
-                              image: DrawableImage(
-                                  'ic_lock_outline_primary_24dp',
-                                  scale: .8),
+                            child: Icon(
+                              Icons.lock_outline,
+                              color: Colors.white,
+                              size: 48,
                             )),
                         _buildText(localization.login, fontSize: 48),
                         Row(
@@ -80,6 +78,7 @@ class _LoginScreenState extends State<LoginScreen>
                 Expanded(
                     flex: 1,
                     child: Container(
+                        color: Colors.white,
                         constraints: const BoxConstraints.expand(),
                         child: Center(
                           child: Padding(
@@ -102,6 +101,20 @@ class _LoginScreenState extends State<LoginScreen>
                         ))),
               ],
             )));
+  }
+
+  BoxDecoration _buildBoxDecoration() {
+    if (Platform.isAndroid) {
+      return const BoxDecoration(
+          image: DecorationImage(
+        image: DrawableImage("ic_home_background"),
+        fit: BoxFit.cover,
+      ));
+    } else {
+      return const BoxDecoration(
+        color: Colors.lightBlue,
+      );
+    }
   }
 
   Padding _buildInputText(

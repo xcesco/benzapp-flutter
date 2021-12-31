@@ -36,15 +36,15 @@ class _MainScreenState extends State<MainScreen> {
                     AppDebug.log(selectedValue);
                   });
                 },
-                icon: Icon(
+                icon: const Icon(
                   Icons.more_vert,
                 ),
                 itemBuilder: (_) => [
-                  PopupMenuItem(
+                  const PopupMenuItem(
                     child: Text('Only Favorites'),
                     value: 'a',
                   ),
-                  PopupMenuItem(
+                  const PopupMenuItem(
                     child: Text('Show All'),
                     value: 'b',
                   ),
