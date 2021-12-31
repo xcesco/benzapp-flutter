@@ -3,8 +3,10 @@ import 'dart:math';
 import 'package:benzapp_flutter/repositories/model/refueling.dart';
 import 'package:benzapp_flutter/repositories/model/vehicle.dart';
 import 'package:benzapp_flutter/ui/home/home_view_model.dart';
-import 'package:benzapp_flutter/ui/home/refueling_item_widget.dart';
-import 'package:benzapp_flutter/ui/home/vehicle_item_widget.dart';
+import 'package:benzapp_flutter/ui/refuelings/refueling_item_widget.dart';
+import 'package:benzapp_flutter/ui/refuelings/refueling_screen.dart';
+import 'package:benzapp_flutter/ui/vehicles/vehicle_item_widget.dart';
+import 'package:benzapp_flutter/ui/vehicles/vehicles_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -83,7 +85,7 @@ class _HomeFragmentState extends State<HomeFragment> {
 
   Widget _buildRefuelingTitle(int size) {
     return ListTile(
-        leading: Icon(Icons.local_gas_station, color: Colors.indigo, size: 48),
+        leading: const Icon(Icons.local_gas_station, color: Colors.indigo, size: 48),
         title: const Text(
           'Rifornimenti',
           style: TextStyle(color: Colors.indigo, fontWeight: FontWeight.bold),
@@ -91,6 +93,7 @@ class _HomeFragmentState extends State<HomeFragment> {
         trailing: OutlinedButton(
           onPressed: () {
             debugPrint('Received click');
+            Navigator.of(context).pushNamed(RefuelingScreen.routeName);
           },
           child: Text('VEDI TUTTI (${size})', style: TextStyle(fontWeight: FontWeight.w400),),
         ));
@@ -106,6 +109,7 @@ class _HomeFragmentState extends State<HomeFragment> {
         trailing: OutlinedButton(
           onPressed: () {
             debugPrint('Received click');
+            Navigator.of(context).pushNamed(VehicleScreen.routeName);
           },
           child: Text('VEDI TUTTE (${size})', style: TextStyle(fontWeight: FontWeight.w400),),
         ));
