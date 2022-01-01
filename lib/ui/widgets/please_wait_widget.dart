@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'app_progress_indicator.dart';
 
 class PleaseWait extends StatelessWidget {
@@ -9,22 +10,24 @@ class PleaseWait extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations localization = AppLocalizations.of(context)!;
+
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: const <Widget>[
+        children: <Widget>[
           Align(
               alignment: Alignment.center,
               child: Text(
-                "Please wait",
-                style: TextStyle(
+                localization.pleaseWait,
+                style: const TextStyle(
                   fontSize: 32,
                   fontWeight: FontWeight.bold,
                 ),
               )),
-          SizedBox(height: 20),
-          AppCircularProgressIndicator()
+          const SizedBox(height: 20),
+          const AppCircularProgressIndicator()
         ],
       ),
     );

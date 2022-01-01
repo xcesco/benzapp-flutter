@@ -1,4 +1,4 @@
-import 'package:benzapp_flutter/repositories/persistence/abstract_repository.dart';
+import 'package:benzapp_flutter/repositories/abstract_repository.dart';
 
 import 'model/refueling.dart';
 

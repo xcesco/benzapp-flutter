@@ -20,11 +20,13 @@ import 'package:benzapp_flutter/ui/lock/lock_view_model.dart';
 import 'package:benzapp_flutter/ui/login/login_screen.dart';
 import 'package:benzapp_flutter/ui/login/login_view_model.dart';
 import 'package:benzapp_flutter/ui/main/main_screen.dart';
+import 'package:benzapp_flutter/ui/qrcode/qrcode_screen.dart';
 import 'package:benzapp_flutter/ui/refuelings/refueling_screen.dart';
+import 'package:benzapp_flutter/ui/refuelings/refueling_view_model.dart';
+import 'package:benzapp_flutter/ui/stations/station_view_model.dart';
+import 'package:benzapp_flutter/ui/vehicles/vehicle_view_model.dart';
 import 'package:benzapp_flutter/ui/vehicles/vehicles_screen.dart';
 import 'package:benzapp_flutter/ui/widgets/please_wait_widget.dart';
-import 'package:benzapp_flutter/viewmodels/station_view_model.dart';
-import 'package:benzapp_flutter/viewmodels/vehicle_view_model.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:floor/floor.dart';
@@ -59,6 +61,8 @@ class MyAppState extends State<MyApp> {
 
   late VehicleViewModel _vehicleViewModel;
 
+  late RefuelingViewModel _refuelingViewModel;
+
   late LoginViewModel _loginViewModel;
 
   late LockViewModel _lockViewModel;
@@ -69,36 +73,50 @@ class MyAppState extends State<MyApp> {
 
   Future<bool> _applicationInit() async {
     try {
-      final Callback callback = Callback(onCreate: (sqflite.Database database, int version) async {
-        final String value = await DefaultAssetBundle.of(context).loadString("assets/json/stations.json");
+      final Callback callback =
+          Callback(onCreate: (sqflite.Database database, int version) async {
+        final String value = await DefaultAssetBundle.of(context)
+            .loadString("assets/json/stations.json");
 
         for (final dynamic item in jsonDecode(value) as List<dynamic>) {
           database.insert("stations", Station.fixJsonForDatabase(item));
         }
       });
 
-      final AppDatabase database =
-          await $FloorAppDatabase.databaseBuilder('app_database.db').addCallback(callback).build();
+      final AppDatabase database = await $FloorAppDatabase
+          .databaseBuilder('app_database.db')
+          .addCallback(callback)
+          .build();
 
       final ApiClient restClient = ApiClient();
 
-      final AccountRepositoryImpl accountRepository = AccountRepositoryImpl(database, restClient);
-      final VehicleRepositoryImpl vehicleRepository = VehicleRepositoryImpl(database, restClient);
-      final RefuelingRepository refuelingRepository = RefuelingRepositoryImpl(database, restClient);
-      final StationsRepository stationsRepository = StationsRepositoryImpl(database);
-      final NotificationRepository notificationRepository = NotificationRepositoryImpl(database);
+      final AccountRepositoryImpl accountRepository =
+          AccountRepositoryImpl(database, restClient);
+      final VehicleRepositoryImpl vehicleRepository =
+          VehicleRepositoryImpl(database, restClient);
+      final RefuelingRepository refuelingRepository =
+          RefuelingRepositoryImpl(database, restClient);
+      final StationsRepository stationsRepository =
+          StationsRepositoryImpl(database);
+      final NotificationRepository notificationRepository =
+          NotificationRepositoryImpl(database);
 
       final SecureRepository secureRepository = SecureRepository();
-      final ApplicationInfoRepositoryImpl applicationInfoRepository = ApplicationInfoRepositoryImpl();
+      final ApplicationInfoRepositoryImpl applicationInfoRepository =
+          ApplicationInfoRepositoryImpl();
 
       await accountRepository.refreshRemoteConfig();
       await applicationInfoRepository.init();
 
-      _vehicleViewModel = VehicleViewModel();
-      _loginViewModel = LoginViewModel(accountRepository, vehicleRepository, refuelingRepository);
-      _lockViewModel = LockViewModel(applicationInfoRepository, secureRepository, restClient);
+      _vehicleViewModel = VehicleViewModel(vehicleRepository);
+      _refuelingViewModel = RefuelingViewModel(refuelingRepository);
+      _loginViewModel = LoginViewModel(
+          accountRepository, vehicleRepository, refuelingRepository);
+      _lockViewModel = LockViewModel(
+          applicationInfoRepository, secureRepository, restClient);
       _stationsViewModel = StationsViewModel(stationsRepository);
-      _homeViewModel = HomeViewModel(vehicleRepository, refuelingRepository, notificationRepository);
+      _homeViewModel = HomeViewModel(
+          vehicleRepository, refuelingRepository, notificationRepository);
 
       final AdminUserDTO? account = await accountRepository.getAccount();
       final String? jwtToken = await accountRepository.getJWTToken();
@@ -143,21 +161,24 @@ class MyAppState extends State<MyApp> {
   Widget _buildApp() {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<VehicleViewModel>(
-          create: (BuildContext context) => _vehicleViewModel,
-        ),
         ChangeNotifierProvider<LoginViewModel>(
           create: (BuildContext context) => _loginViewModel,
         ),
         ChangeNotifierProvider<LockViewModel>(
           create: (BuildContext context) => _lockViewModel,
         ),
+        ChangeNotifierProvider<HomeViewModel>(
+          create: (BuildContext context) => _homeViewModel,
+        ),
+        ChangeNotifierProvider<VehicleViewModel>(
+          create: (BuildContext context) => _vehicleViewModel,
+        ),
+        ChangeNotifierProvider<RefuelingViewModel>(
+          create: (BuildContext context) => _refuelingViewModel,
+        ),
         ChangeNotifierProvider<StationsViewModel>(
           create: (BuildContext context) => _stationsViewModel,
         ),
-        ChangeNotifierProvider<HomeViewModel>(
-          create: (BuildContext context) => _homeViewModel,
-        )
       ],
       child: MaterialApp(
         localizationsDelegates: AppLocalizations.localizationsDelegates,
@@ -168,8 +189,10 @@ class MyAppState extends State<MyApp> {
           MainScreen.routeName: (BuildContext ctx) => const MainScreen(),
           LockScreen.routeName: (BuildContext ctx) => const LockScreen(),
           LoginScreen.routeName: (BuildContext ctx) => const LoginScreen(),
-          RefuelingScreen.routeName: (BuildContext ctx) => const RefuelingScreen(),
+          RefuelingScreen.routeName: (BuildContext ctx) =>
+              const RefuelingScreen(),
           VehicleScreen.routeName: (BuildContext ctx) => const VehicleScreen(),
+          QRCodeScreen.routeName: (BuildContext ctx) => const QRCodeScreen(),
         },
       ),
     );
@@ -177,7 +200,8 @@ class MyAppState extends State<MyApp> {
 
   ThemeData _buildThemeData() {
     return ThemeData(
-      colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue).copyWith(secondary: Colors.orange),
+      colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue)
+          .copyWith(secondary: Colors.orange),
       fontFamily: 'tillitium_web',
     );
   }
@@ -189,4 +213,11 @@ class MyAppState extends State<MyApp> {
         theme: _buildThemeData(),
         home: PleaseWait());
   }
+}
+
+class ScreenArguments {
+  late String? title;
+  late int? id;
+
+  ScreenArguments({this.title, this.id});
 }

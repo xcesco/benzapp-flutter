@@ -27,7 +27,7 @@ class _LoginScreenState extends State<LoginScreen>
 
   @override
   Widget build(BuildContext context) {
-    final localization = AppLocalizations.of(context)!;
+    final AppLocalizations localization = AppLocalizations.of(context)!;
     final LoginViewModel accountViewModel =
         Provider.of<LoginViewModel>(context);
 

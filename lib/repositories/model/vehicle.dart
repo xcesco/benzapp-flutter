@@ -48,7 +48,7 @@ class Vehicle extends BaseEntity {
   static Vehicle ofDelega(Delega delega) {
     return Vehicle(
         delega.tessera?.carburante ?? TesseraCarburanteEnum.BENZINA,
-        Cittadino(),
+        delega.cittadino!,
         delega.tessera?.codice ?? '',
         DateTime.now(),
         // delega.tessera?.delegas?.toList() ?? [],
@@ -63,7 +63,7 @@ class Vehicle extends BaseEntity {
   static Vehicle ofTessera(Tessera tessera) {
     return Vehicle(
         tessera.carburante ?? TesseraCarburanteEnum.BENZINA,
-        Cittadino(),
+        tessera.cittadino!,
         tessera.codice ?? '',
         DateTime.now(),
         // tessera.delegas?.toList() ?? [],

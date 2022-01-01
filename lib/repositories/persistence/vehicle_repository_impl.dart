@@ -19,8 +19,10 @@ class VehicleRepositoryImpl extends VehicleRepository {
   @transaction
   @override
   Future<void> update() async {
-    final TesseraResourceApi tessereResourceApi = _apiClient.getTesseraResourceApi();
-    final DelegaResourceApi delegheResourceApi = _apiClient.getDelegaResourceApi();
+    final TesseraResourceApi tessereResourceApi =
+        _apiClient.getTesseraResourceApi();
+    final DelegaResourceApi delegheResourceApi =
+        _apiClient.getDelegaResourceApi();
 
     final VehicleDao vehicleDao = _database.vehicleDao;
     vehicleDao.deleteAll();
@@ -29,22 +31,28 @@ class VehicleRepositoryImpl extends VehicleRepository {
     await _loadDeleghe(delegheResourceApi, vehicleDao);
   }
 
-  Future<void> _loadTessere(TesseraResourceApi tesseraResourceApi, VehicleDao vehicleDao) async {
-    final List<Tessera>? list = (await tesseraResourceApi.getAllTesserasUsingGET()).data?.toList();
+  Future<void> _loadTessere(
+      TesseraResourceApi tesseraResourceApi, VehicleDao vehicleDao) async {
+    final List<Tessera>? list =
+        (await tesseraResourceApi.getAllTesserasUsingGET()).data?.toList();
     for (final Tessera item in list!) {
       vehicleDao.insert(Vehicle.ofTessera(item));
     }
   }
 
-  Future<void> _loadDeleghe(DelegaResourceApi tesseraResourceApi, VehicleDao vehicleDao) async {
-    final List<Delega>? list = (await tesseraResourceApi.getAllDelegasUsingGET()).data?.toList();
+  Future<void> _loadDeleghe(
+      DelegaResourceApi tesseraResourceApi, VehicleDao vehicleDao) async {
+    final List<Delega>? list =
+        (await tesseraResourceApi.getAllDelegasUsingGET()).data?.toList();
     for (final Delega item in list!) {
       vehicleDao.insert(Vehicle.ofDelega(item));
     }
   }
 
   @override
-  Future<List<Vehicle>> getData() {
-    return _database.vehicleDao.findAll();
-  }
+  Future<List<Vehicle>> getData() => _database.vehicleDao.findAll();
+
+  @override
+  Future<Vehicle?> findByTarga(String targa) =>
+      _database.vehicleDao.findOneByTarga(targa);
 }

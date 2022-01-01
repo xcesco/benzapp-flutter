@@ -26,16 +26,21 @@ class VehicleScreenState extends State<VehicleScreen> {
         body: Container(
             color: Colors.white,
             child: Consumer<HomeViewModel>(
-                builder: (BuildContext context, HomeViewModel viewModel, Widget? child) =>
+                builder: (BuildContext context, HomeViewModel viewModel,
+                        Widget? child) =>
                     FutureBuilder<List<Vehicle>>(
                       future: viewModel.getTessere(),
                       initialData: const <Vehicle>[],
-                      builder: (BuildContext buildContext, AsyncSnapshot<List<Vehicle>> snapshot) =>
+                      builder: (BuildContext buildContext,
+                              AsyncSnapshot<List<Vehicle>> snapshot) =>
                           ListView.separated(
-                        separatorBuilder: (BuildContext context, int index) => const Divider(
+                        separatorBuilder: (BuildContext context, int index) =>
+                            const Divider(
                           color: Colors.grey,
                         ),
-                        itemBuilder: (BuildContext context, int position) => VehicleItem(snapshot.data![position]),
+                        itemBuilder: (BuildContext context, int position) =>
+                            VehicleItem(snapshot.data![position],
+                                (Vehicle item) {}, (Vehicle item) {}),
                         itemCount: snapshot.data!.length,
                       ),
                     ))));

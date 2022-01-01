@@ -93,6 +93,7 @@ A Flutter plugin to share images between Flutter and Android.
 
 ## Navigation
 - https://docs.flutter.dev/cookbook/navigation/named-routes
+- https://docs.flutter.dev/cookbook/navigation/navigate-with-arguments
 
 
 ## Build problems
@@ -178,3 +179,15 @@ KeyStore was introduced in Android 4.3 (API level 18). The plugin wouldn't work 
 
 ## Avatar images
 - https://stackoverflow.com/questions/53513456/flutter-network-image-does-not-fit-in-circular-avatar
+
+## QRCode
+- https://pub.dev/packages/qr_flutter/
+
+## Textstyle
+- https://medium.com/flutter-community/flutter-apply-style-as-a-theme-in-a-text-widget-90268328bd23
+
+## PlusPlugins
+- https://plus.fluttercommunity.dev/docs/overview
+
+## File
+- https://programmingwithswift.com/how-to-save-a-file-locally-with-flutter/
