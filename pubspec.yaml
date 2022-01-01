@@ -51,6 +51,9 @@ dependencies:
   tuple: ^2.0.0
   floor: ^1.2.0
   flutter_secure_storage: ^5.0.2
+  qr_flutter: ^4.0.0
+  share_plus: ^3.0.4
+  path_provider: ^2.0.8
 
 dev_dependencies:
   flutter_test:

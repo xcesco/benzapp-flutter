@@ -1,4 +1,5 @@
 import 'package:benzapp_flutter/app_debug.dart';
+import 'package:benzapp_flutter/ui/login/login_screen.dart';
 import 'package:benzapp_flutter/ui/stations/stations_map_fragment.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -20,8 +21,11 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   @override
-  Widget build(BuildContext context) {
-    final AppLocalizations localization = AppLocalizations.of(context)!;
+  Widget build(BuildContext context) =>
+      _buildDefaultTabController(context, AppLocalizations.of(context)!);
+
+  DefaultTabController _buildDefaultTabController(
+      BuildContext context, AppLocalizations localization) {
     return DefaultTabController(
         length: 3,
         child: Scaffold(
@@ -32,6 +36,12 @@ class _MainScreenState extends State<MainScreen> {
             actions: <Widget>[
               PopupMenuButton(
                 onSelected: (String selectedValue) {
+                  switch (selectedValue) {
+                    case "logout":
+                      Navigator.pushReplacementNamed(
+                          context, LoginScreen.routeName);
+                      break;
+                  }
                   setState(() {
                     AppDebug.log(selectedValue);
                   });
@@ -40,9 +50,9 @@ class _MainScreenState extends State<MainScreen> {
                   Icons.more_vert,
                 ),
                 itemBuilder: (_) => [
-                  const PopupMenuItem(
-                    child: Text('Only Favorites'),
-                    value: 'a',
+                  PopupMenuItem(
+                    child: Text(localization.mainMenuLogout),
+                    value: 'logout',
                   ),
                   const PopupMenuItem(
                     child: Text('Show All'),
@@ -89,7 +99,11 @@ class _MainScreenState extends State<MainScreen> {
         color: Colors.blue,
         child: TabBarView(
           physics: NeverScrollableScrollPhysics(),
-          children: <Widget>[HomeFragment(), StationsMapFragment(), StationsListFragment()],
+          children: <Widget>[
+            HomeFragment(),
+            StationsMapFragment(),
+            StationsListFragment()
+          ],
         ));
   }
 

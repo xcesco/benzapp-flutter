@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:benzapp_flutter/repositories/model/station.dart';
 import 'package:benzapp_flutter/ui/stations/station_item_widget.dart';
-import 'package:benzapp_flutter/viewmodels/station_view_model.dart';
+import 'package:benzapp_flutter/ui/stations/station_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,15 +14,20 @@ class StationsListFragment extends StatelessWidget {
     return Container(
         color: Colors.white,
         child: Consumer<StationsViewModel>(
-            builder: (BuildContext context, StationsViewModel stationModel, Widget? child) =>
+            builder: (BuildContext context, StationsViewModel stationModel,
+                    Widget? child) =>
                 FutureBuilder<List<Station>>(
                   future: stationModel.loadData(),
                   initialData: const <Station>[],
-                  builder: (BuildContext buildContext, AsyncSnapshot<List<Station>> snapshot) => ListView.separated(
-                    separatorBuilder: (BuildContext context, int index) => const Divider(
+                  builder: (BuildContext buildContext,
+                          AsyncSnapshot<List<Station>> snapshot) =>
+                      ListView.separated(
+                    separatorBuilder: (BuildContext context, int index) =>
+                        const Divider(
                       color: Colors.grey,
                     ),
-                    itemBuilder: (BuildContext context, int position) => StationItem(snapshot.data![position]),
+                    itemBuilder: (BuildContext context, int position) =>
+                        StationItem(snapshot.data![position]),
                     itemCount: snapshot.data!.length,
                   ),
                 )));

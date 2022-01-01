@@ -20,7 +20,6 @@ class LockScreen extends StatefulWidget {
 class LockScreenState extends State<LockScreen> {
   late String displayCode;
   late LockViewModel lockViewModel;
-  late AppLocalizations _localization;
 
   @override
   Widget build(BuildContext context) {
