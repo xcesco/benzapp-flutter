@@ -9,7 +9,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:benzapp_flutter/repositories/model/station.dart';
-import 'package:benzapp_flutter/ui/qrcode/qrcode.dart';
+import 'package:benzapp_flutter/ui/qrcode/qrcode_data.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -34,7 +34,7 @@ void main() {
     String json =
         '{"tesseraNumero": "10000", "codiceFiscale":"BRNFNC80A01I533L", "targa":"TSAAAAAA", "veicolo":"AUTOVEICOLO", "carburante":"BENZINA"}';
 
-    QRCode qrCode = QRCode.fromJson(jsonDecode(json));
+    QRCodeData qrCode = QRCodeData.fromJson(jsonDecode(json));
 
     print(jsonEncode(qrCode.toJson()));
   });

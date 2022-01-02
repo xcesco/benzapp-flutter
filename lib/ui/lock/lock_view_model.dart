@@ -1,7 +1,7 @@
-import 'package:benzapp_flutter/network/api/device_resource_api.dart';
-import 'package:benzapp_flutter/network/api_client.dart';
-import 'package:benzapp_flutter/network/model/admin_user_dto.dart';
-import 'package:benzapp_flutter/network/model/device.dart';
+import 'package:benzapp_flutter/repositories/network/api/device_resource_api.dart';
+import 'package:benzapp_flutter/repositories/network/api_client.dart';
+import 'package:benzapp_flutter/repositories/network/model/admin_user_dto.dart';
+import 'package:benzapp_flutter/repositories/network/model/device.dart';
 import 'package:benzapp_flutter/repositories/application_info_repository.dart';
 import 'package:benzapp_flutter/repositories/persistence/app_preferences.dart';
 import 'package:benzapp_flutter/repositories/persistence/secure_repository.dart';

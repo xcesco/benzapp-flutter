@@ -1,13 +1,13 @@
-import 'package:benzapp_flutter/network/model/tessera.dart';
-import 'package:benzapp_flutter/repositories/model/tessera_summary.dart';
+import 'package:benzapp_flutter/repositories/model/vehicle.dart';
+import 'package:benzapp_flutter/repositories/model/vehicle_summary.dart';
 
 class VehicleStatus {
-  final Tessera _tessera;
-  final TesseraSummary _summary;
+  final Vehicle _vehicle;
+  final VehicleSummary _summary;
 
-  Tessera get tessera => _tessera;
+  Vehicle get tessera => _vehicle;
 
-  VehicleStatus(this._tessera, this._summary);
+  VehicleStatus(this._vehicle, this._summary);
 
-  TesseraSummary get summary => _summary;
+  VehicleSummary get summary => _summary;
 }

@@ -1,16 +1,17 @@
-import 'package:benzapp_flutter/network/api/account_resource_api.dart';
-import 'package:benzapp_flutter/network/api_client.dart';
-import 'package:benzapp_flutter/network/model/admin_user_dto.dart';
-import 'package:benzapp_flutter/network/model/jwt_token.dart';
-import 'package:benzapp_flutter/network/model/login_vm.dart';
+import 'package:benzapp_flutter/repositories/network/api/account_resource_api.dart';
+import 'package:benzapp_flutter/repositories/network/api_client.dart';
+import 'package:benzapp_flutter/repositories/network/model/admin_user_dto.dart';
+import 'package:benzapp_flutter/repositories/network/model/jwt_token.dart';
+import 'package:benzapp_flutter/repositories/network/model/login_vm.dart';
 import 'package:benzapp_flutter/repositories/persistence/app_preferences.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
+import 'package:floor/floor.dart';
 import 'package:tuple/tuple.dart';
 
 import '../../app_debug.dart';
 import '../account_repository.dart';
-import 'app_database.dart';
+import '../persistence/app_database.dart';
 
 class AccountRepositoryImpl extends AccountRepository {
   static const _backendBaseUrlParameter = 'backend_base_url';
@@ -64,10 +65,12 @@ class AccountRepositoryImpl extends AccountRepository {
       await remoteConfig.fetch();
       await remoteConfig.activate();
 
-      AppDebug.log('Last fetch status: ' + remoteConfig.lastFetchStatus.toString());
+      AppDebug.log(
+          'Last fetch status: ' + remoteConfig.lastFetchStatus.toString());
       AppDebug.log('Last fetch time: ' + remoteConfig.lastFetchTime.toString());
 
-      _backendBaseUrl = remoteConfig.getString(_backendBaseUrlParameter).toString();
+      _backendBaseUrl =
+          remoteConfig.getString(_backendBaseUrlParameter).toString();
       updateBaseUrl(_backendBaseUrl);
 
       AppDebug.log('backendBaseUrl: $backendBaseUrl');
@@ -79,20 +82,24 @@ class AccountRepositoryImpl extends AccountRepository {
   }
 
   @override
-  Future<Tuple2<AdminUserDTO?, LoginStatus>> login(String username, String password) async {
+  Future<Tuple2<AdminUserDTO?, LoginStatus>> login(
+      String username, String password) async {
     final LoginVMBuilder loginBuilder = LoginVMBuilder();
     loginBuilder.username = username;
     loginBuilder.password = password;
 
     try {
-      final Response<JWTToken> response =
-          await _apiClient.getUserJwtControllerApi().authorizeUsingPOST(loginVM: loginBuilder.build());
+      final Response<JWTToken> response = await _apiClient
+          .getUserJwtControllerApi()
+          .authorizeUsingPOST(loginVM: loginBuilder.build());
 
       final String token = updateClientJWTToken(response.data!);
 
       _apiClient.getUserJwtControllerApi();
-      final AccountResourceApi accountResourceApi = _apiClient.getAccountResourceApi();
-      final AdminUserDTO? account = (await accountResourceApi.getAccountUsingGET()).data;
+      final AccountResourceApi accountResourceApi =
+          _apiClient.getAccountResourceApi();
+      final AdminUserDTO? account =
+          (await accountResourceApi.getAccountUsingGET()).data;
 
       AppPreferences.instance.setAccount(account!);
       AppPreferences.instance.setJWToken(token);
@@ -100,15 +107,19 @@ class AccountRepositoryImpl extends AccountRepository {
       return Tuple2<AdminUserDTO?, LoginStatus>(account, LoginStatus.success);
     } on DioError catch (error, _) {
       return (error.response?.statusCode == 401)
-          ? const Tuple2<AdminUserDTO?, LoginStatus>(null, LoginStatus.invalidCredential)
+          ? const Tuple2<AdminUserDTO?, LoginStatus>(
+              null, LoginStatus.invalidCredential)
           : const Tuple2<AdminUserDTO?, LoginStatus>(null, LoginStatus.error);
     }
   }
 
+  @transaction
   @override
-  bool logout() {
-    // TODO: implement logout
-    throw UnimplementedError();
+  Future<void> logout() async {
+    await AppPreferences.instance.removeAccount();
+    await _database.refuelingDao.deleteAll();
+    await _database.vehicleDao.deleteAll();
+    await _database.notificationDao.deleteAll();
   }
 
   @override

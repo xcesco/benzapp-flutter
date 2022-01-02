@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:benzapp_flutter/network/model/jwt_token.dart';
-import 'package:benzapp_flutter/network/model/login_vm.dart';
+import 'package:benzapp_flutter/repositories/network/model/jwt_token.dart';
+import 'package:benzapp_flutter/repositories/network/model/login_vm.dart';
 import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 

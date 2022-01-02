@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:benzapp_flutter/network/api_client.dart';
+import 'package:benzapp_flutter/repositories/network/api_client.dart';
 import 'package:benzapp_flutter/ui/widgets/app_progress_indicator.dart';
 import 'package:drawable/drawable.dart';
 import 'package:flutter/material.dart';

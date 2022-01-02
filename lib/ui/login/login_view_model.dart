@@ -1,5 +1,5 @@
-import 'package:benzapp_flutter/network/api_client.dart';
-import 'package:benzapp_flutter/network/model/admin_user_dto.dart';
+import 'package:benzapp_flutter/repositories/network/api_client.dart';
+import 'package:benzapp_flutter/repositories/network/model/admin_user_dto.dart';
 import 'package:benzapp_flutter/repositories/account_repository.dart';
 import 'package:benzapp_flutter/repositories/persistence/app_preferences.dart';
 import 'package:benzapp_flutter/repositories/refueling_repository.dart';

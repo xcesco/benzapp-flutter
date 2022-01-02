@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:benzapp_flutter/repositories/model/notification.dart';
 import 'package:benzapp_flutter/repositories/model/refueling.dart';
 import 'package:benzapp_flutter/repositories/model/station.dart';
-import 'package:benzapp_flutter/repositories/model/tessera_summary.dart';
 import 'package:benzapp_flutter/repositories/model/vehicle.dart';
+import 'package:benzapp_flutter/repositories/model/vehicle_summary.dart';
 import 'package:benzapp_flutter/repositories/persistence/converters/cittadino_converter.dart';
 import 'package:benzapp_flutter/repositories/persistence/converters/gestore_converter.dart';
 import 'package:benzapp_flutter/repositories/persistence/converters/marchio_converter.dart';
@@ -37,7 +37,8 @@ part 'app_database.g.dart'; // the generated code will be there
 ])
 @Database(
     version: 1,
-    entities: [Notification, Vehicle, Station, Refueling, TesseraSummary])
+    entities: [Notification, Vehicle, Station, Refueling],
+    views: [VehicleSummary])
 abstract class AppDatabase extends FloorDatabase {
   NotificationDao get notificationDao;
 

@@ -1,4 +1,4 @@
-import 'package:benzapp_flutter/network/model/rifornimento.dart';
+import 'package:benzapp_flutter/repositories/network/model/rifornimento.dart';
 import 'package:floor/floor.dart';
 
 class RifornimentoTipoCarburanteEnumConverter

@@ -13,4 +13,10 @@ class RefuelingViewModel extends BaseViewModel {
   RefuelingViewModel(this._repository);
 
   Future<List<Refueling>> loadData() async => await _repository.getData();
+
+  Future<List<Refueling>> loadDataByTarga(String targa) async =>
+      await _repository.getDataByTarga(targa);
+
+  Future<Refueling?> loadDataById(int id) async =>
+      await _repository.getDataById(id);
 }

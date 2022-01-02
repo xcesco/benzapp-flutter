@@ -1,4 +1,4 @@
-import 'package:benzapp_flutter/network/model/tessera.dart';
+import 'package:benzapp_flutter/repositories/network/model/tessera.dart';
 import 'package:floor/floor.dart';
 
 class TesseraVeicoloEnumConverter

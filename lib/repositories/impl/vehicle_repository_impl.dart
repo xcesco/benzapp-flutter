@@ -1,14 +1,15 @@
-import 'package:benzapp_flutter/network/api/delega_resource_api.dart';
-import 'package:benzapp_flutter/network/api/tessera_resource_api.dart';
-import 'package:benzapp_flutter/network/api_client.dart';
-import 'package:benzapp_flutter/network/model/delega.dart';
-import 'package:benzapp_flutter/network/model/tessera.dart';
+import 'package:benzapp_flutter/repositories/network/api/delega_resource_api.dart';
+import 'package:benzapp_flutter/repositories/network/api/tessera_resource_api.dart';
+import 'package:benzapp_flutter/repositories/network/api_client.dart';
+import 'package:benzapp_flutter/repositories/network/model/delega.dart';
+import 'package:benzapp_flutter/repositories/network/model/tessera.dart';
 import 'package:benzapp_flutter/repositories/model/vehicle.dart';
+import 'package:benzapp_flutter/repositories/model/vehicle_summary.dart';
 import 'package:benzapp_flutter/repositories/persistence/dao/vehicle_dao.dart';
 import 'package:benzapp_flutter/repositories/vehicle_repository.dart';
 import 'package:floor/floor.dart';
 
-import 'app_database.dart';
+import '../persistence/app_database.dart';
 
 class VehicleRepositoryImpl extends VehicleRepository {
   final ApiClient _apiClient;
@@ -55,4 +56,8 @@ class VehicleRepositoryImpl extends VehicleRepository {
   @override
   Future<Vehicle?> findByTarga(String targa) =>
       _database.vehicleDao.findOneByTarga(targa);
+
+  @override
+  Future<VehicleSummary?> findSummaryByTarga(String targa) =>
+      _database.vehicleDao.sumLitriErogatiByTarga(targa);
 }

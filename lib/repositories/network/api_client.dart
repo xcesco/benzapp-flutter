@@ -1,6 +1,6 @@
-import 'package:benzapp_flutter/network/api/account_resource_api.dart';
-import 'package:benzapp_flutter/network/api/device_resource_api.dart';
-import 'package:benzapp_flutter/network/api/rifornimento_resource_api.dart';
+import 'package:benzapp_flutter/repositories/network/api/account_resource_api.dart';
+import 'package:benzapp_flutter/repositories/network/api/device_resource_api.dart';
+import 'package:benzapp_flutter/repositories/network/api/rifornimento_resource_api.dart';
 
 import 'api.dart';
 import 'api/delega_resource_api.dart';
