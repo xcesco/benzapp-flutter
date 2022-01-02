@@ -1,21 +1,21 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:benzapp_flutter/network/model/rifornimento.dart';
+import 'package:benzapp_flutter/repositories/network/model/notifica_dto.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
-class RifornimentoResourceApi {
+class NotificaResourceApi {
     final Dio _dio;
     Serializers _serializers;
 
-    RifornimentoResourceApi(this._dio, this._serializers);
+    NotificaResourceApi(this._dio, this._serializers);
 
-    /// countRifornimentos
+    /// countNotificas
     ///
     /// 
-    Future<Response<int>> countRifornimentosUsingGET({ 
+    Future<Response<int>> countNotificasUsingGET({ 
         DateTime? dataPeriodEquals,
         DateTime? dataPeriodGreaterThan,
         DateTime? dataPeriodGreaterThanOrEqual,
@@ -157,15 +157,6 @@ class RifornimentoResourceApi {
         int? dataPeriodNotInLeftSquareBracket0RightSquareBracketPeriodZonePeriodRulesPeriodTransitionsLeftSquareBracket0RightSquareBracketPeriodOffsetBeforePeriodTotalSeconds,
         bool? dataPeriodNotInLeftSquareBracket0RightSquareBracketPeriodZonePeriodRulesPeriodTransitionsLeftSquareBracket0RightSquareBracketPeriodOverlap,
         bool? dataPeriodSpecified,
-        int? gestoreIdPeriodEquals,
-        int? gestoreIdPeriodGreaterThan,
-        int? gestoreIdPeriodGreaterThanOrEqual,
-        BuiltList<int>? gestoreIdPeriodIn,
-        int? gestoreIdPeriodLessThan,
-        int? gestoreIdPeriodLessThanOrEqual,
-        int? gestoreIdPeriodNotEquals,
-        BuiltList<int>? gestoreIdPeriodNotIn,
-        bool? gestoreIdPeriodSpecified,
         int? idPeriodEquals,
         int? idPeriodGreaterThan,
         int? idPeriodGreaterThanOrEqual,
@@ -175,47 +166,13 @@ class RifornimentoResourceApi {
         int? idPeriodNotEquals,
         BuiltList<int>? idPeriodNotIn,
         bool? idPeriodSpecified,
-        double? litriErogatiPeriodEquals,
-        double? litriErogatiPeriodGreaterThan,
-        double? litriErogatiPeriodGreaterThanOrEqual,
-        BuiltList<num>? litriErogatiPeriodIn,
-        double? litriErogatiPeriodLessThan,
-        double? litriErogatiPeriodLessThanOrEqual,
-        double? litriErogatiPeriodNotEquals,
-        BuiltList<num>? litriErogatiPeriodNotIn,
-        bool? litriErogatiPeriodSpecified,
-        double? prezzoAlLitroPeriodEquals,
-        double? prezzoAlLitroPeriodGreaterThan,
-        double? prezzoAlLitroPeriodGreaterThanOrEqual,
-        BuiltList<num>? prezzoAlLitroPeriodIn,
-        double? prezzoAlLitroPeriodLessThan,
-        double? prezzoAlLitroPeriodLessThanOrEqual,
-        double? prezzoAlLitroPeriodNotEquals,
-        BuiltList<num>? prezzoAlLitroPeriodNotIn,
-        bool? prezzoAlLitroPeriodSpecified,
-        double? scontoPeriodEquals,
-        double? scontoPeriodGreaterThan,
-        double? scontoPeriodGreaterThanOrEqual,
-        BuiltList<num>? scontoPeriodIn,
-        double? scontoPeriodLessThan,
-        double? scontoPeriodLessThanOrEqual,
-        double? scontoPeriodNotEquals,
-        BuiltList<num>? scontoPeriodNotIn,
-        bool? scontoPeriodSpecified,
-        int? tesseraIdPeriodEquals,
-        int? tesseraIdPeriodGreaterThan,
-        int? tesseraIdPeriodGreaterThanOrEqual,
-        BuiltList<int>? tesseraIdPeriodIn,
-        int? tesseraIdPeriodLessThan,
-        int? tesseraIdPeriodLessThanOrEqual,
-        int? tesseraIdPeriodNotEquals,
-        BuiltList<int>? tesseraIdPeriodNotIn,
-        bool? tesseraIdPeriodSpecified,
-        String? tipoCarburantePeriodEquals,
-        BuiltList<String>? tipoCarburantePeriodIn,
-        String? tipoCarburantePeriodNotEquals,
-        BuiltList<String>? tipoCarburantePeriodNotIn,
-        bool? tipoCarburantePeriodSpecified,
+        String? targaPeriodContains,
+        String? targaPeriodDoesNotContain,
+        String? targaPeriodEquals,
+        BuiltList<String>? targaPeriodIn,
+        String? targaPeriodNotEquals,
+        BuiltList<String>? targaPeriodNotIn,
+        bool? targaPeriodSpecified,
         CancelToken? cancelToken,
         Map<String, dynamic>? headers,
         Map<String, dynamic>? extra,
@@ -223,7 +180,7 @@ class RifornimentoResourceApi {
         ProgressCallback? onSendProgress,
         ProgressCallback? onReceiveProgress,
     }) async {
-        const String _path = '/api/rifornimentos/count';
+        const String _path = '/api/notificas/count';
 
         final Map<String, dynamic> queryParams = {};
         final Map<String, dynamic> headerParams = {
@@ -372,15 +329,6 @@ class RifornimentoResourceApi {
         queryParams[r'data.notIn[0].zone.rules.transitions[0].offsetBefore.totalSeconds'] = dataPeriodNotInLeftSquareBracket0RightSquareBracketPeriodZonePeriodRulesPeriodTransitionsLeftSquareBracket0RightSquareBracketPeriodOffsetBeforePeriodTotalSeconds;
         queryParams[r'data.notIn[0].zone.rules.transitions[0].overlap'] = dataPeriodNotInLeftSquareBracket0RightSquareBracketPeriodZonePeriodRulesPeriodTransitionsLeftSquareBracket0RightSquareBracketPeriodOverlap;
         queryParams[r'data.specified'] = dataPeriodSpecified;
-        queryParams[r'gestoreId.equals'] = gestoreIdPeriodEquals;
-        queryParams[r'gestoreId.greaterThan'] = gestoreIdPeriodGreaterThan;
-        queryParams[r'gestoreId.greaterThanOrEqual'] = gestoreIdPeriodGreaterThanOrEqual;
-        queryParams[r'gestoreId.in'] = gestoreIdPeriodIn;
-        queryParams[r'gestoreId.lessThan'] = gestoreIdPeriodLessThan;
-        queryParams[r'gestoreId.lessThanOrEqual'] = gestoreIdPeriodLessThanOrEqual;
-        queryParams[r'gestoreId.notEquals'] = gestoreIdPeriodNotEquals;
-        queryParams[r'gestoreId.notIn'] = gestoreIdPeriodNotIn;
-        queryParams[r'gestoreId.specified'] = gestoreIdPeriodSpecified;
         queryParams[r'id.equals'] = idPeriodEquals;
         queryParams[r'id.greaterThan'] = idPeriodGreaterThan;
         queryParams[r'id.greaterThanOrEqual'] = idPeriodGreaterThanOrEqual;
@@ -390,47 +338,13 @@ class RifornimentoResourceApi {
         queryParams[r'id.notEquals'] = idPeriodNotEquals;
         queryParams[r'id.notIn'] = idPeriodNotIn;
         queryParams[r'id.specified'] = idPeriodSpecified;
-        queryParams[r'litriErogati.equals'] = litriErogatiPeriodEquals;
-        queryParams[r'litriErogati.greaterThan'] = litriErogatiPeriodGreaterThan;
-        queryParams[r'litriErogati.greaterThanOrEqual'] = litriErogatiPeriodGreaterThanOrEqual;
-        queryParams[r'litriErogati.in'] = litriErogatiPeriodIn;
-        queryParams[r'litriErogati.lessThan'] = litriErogatiPeriodLessThan;
-        queryParams[r'litriErogati.lessThanOrEqual'] = litriErogatiPeriodLessThanOrEqual;
-        queryParams[r'litriErogati.notEquals'] = litriErogatiPeriodNotEquals;
-        queryParams[r'litriErogati.notIn'] = litriErogatiPeriodNotIn;
-        queryParams[r'litriErogati.specified'] = litriErogatiPeriodSpecified;
-        queryParams[r'prezzoAlLitro.equals'] = prezzoAlLitroPeriodEquals;
-        queryParams[r'prezzoAlLitro.greaterThan'] = prezzoAlLitroPeriodGreaterThan;
-        queryParams[r'prezzoAlLitro.greaterThanOrEqual'] = prezzoAlLitroPeriodGreaterThanOrEqual;
-        queryParams[r'prezzoAlLitro.in'] = prezzoAlLitroPeriodIn;
-        queryParams[r'prezzoAlLitro.lessThan'] = prezzoAlLitroPeriodLessThan;
-        queryParams[r'prezzoAlLitro.lessThanOrEqual'] = prezzoAlLitroPeriodLessThanOrEqual;
-        queryParams[r'prezzoAlLitro.notEquals'] = prezzoAlLitroPeriodNotEquals;
-        queryParams[r'prezzoAlLitro.notIn'] = prezzoAlLitroPeriodNotIn;
-        queryParams[r'prezzoAlLitro.specified'] = prezzoAlLitroPeriodSpecified;
-        queryParams[r'sconto.equals'] = scontoPeriodEquals;
-        queryParams[r'sconto.greaterThan'] = scontoPeriodGreaterThan;
-        queryParams[r'sconto.greaterThanOrEqual'] = scontoPeriodGreaterThanOrEqual;
-        queryParams[r'sconto.in'] = scontoPeriodIn;
-        queryParams[r'sconto.lessThan'] = scontoPeriodLessThan;
-        queryParams[r'sconto.lessThanOrEqual'] = scontoPeriodLessThanOrEqual;
-        queryParams[r'sconto.notEquals'] = scontoPeriodNotEquals;
-        queryParams[r'sconto.notIn'] = scontoPeriodNotIn;
-        queryParams[r'sconto.specified'] = scontoPeriodSpecified;
-        queryParams[r'tesseraId.equals'] = tesseraIdPeriodEquals;
-        queryParams[r'tesseraId.greaterThan'] = tesseraIdPeriodGreaterThan;
-        queryParams[r'tesseraId.greaterThanOrEqual'] = tesseraIdPeriodGreaterThanOrEqual;
-        queryParams[r'tesseraId.in'] = tesseraIdPeriodIn;
-        queryParams[r'tesseraId.lessThan'] = tesseraIdPeriodLessThan;
-        queryParams[r'tesseraId.lessThanOrEqual'] = tesseraIdPeriodLessThanOrEqual;
-        queryParams[r'tesseraId.notEquals'] = tesseraIdPeriodNotEquals;
-        queryParams[r'tesseraId.notIn'] = tesseraIdPeriodNotIn;
-        queryParams[r'tesseraId.specified'] = tesseraIdPeriodSpecified;
-        queryParams[r'tipoCarburante.equals'] = tipoCarburantePeriodEquals;
-        queryParams[r'tipoCarburante.in'] = tipoCarburantePeriodIn;
-        queryParams[r'tipoCarburante.notEquals'] = tipoCarburantePeriodNotEquals;
-        queryParams[r'tipoCarburante.notIn'] = tipoCarburantePeriodNotIn;
-        queryParams[r'tipoCarburante.specified'] = tipoCarburantePeriodSpecified;
+        queryParams[r'targa.contains'] = targaPeriodContains;
+        queryParams[r'targa.doesNotContain'] = targaPeriodDoesNotContain;
+        queryParams[r'targa.equals'] = targaPeriodEquals;
+        queryParams[r'targa.in'] = targaPeriodIn;
+        queryParams[r'targa.notEquals'] = targaPeriodNotEquals;
+        queryParams[r'targa.notIn'] = targaPeriodNotIn;
+        queryParams[r'targa.specified'] = targaPeriodSpecified;
         queryParams.removeWhere((key, value) => value == null);
         headerParams.removeWhere((key, value) => value == null);
 
@@ -473,11 +387,11 @@ class RifornimentoResourceApi {
         });
     }
 
-    /// createRifornimento
+    /// createNotifica
     ///
     /// 
-    Future<Response<Rifornimento>> createRifornimentoUsingPOST({ 
-        Rifornimento? rifornimento,
+    Future<Response<NotificaDTO>> createNotificaUsingPOST({ 
+        NotificaDTO? notificaDTO,
         CancelToken? cancelToken,
         Map<String, dynamic>? headers,
         Map<String, dynamic>? extra,
@@ -485,7 +399,7 @@ class RifornimentoResourceApi {
         ProgressCallback? onSendProgress,
         ProgressCallback? onReceiveProgress,
     }) async {
-        const String _path = '/api/rifornimentos';
+        const String _path = '/api/notificas';
 
         final Map<String, dynamic> queryParams = {};
         final Map<String, dynamic> headerParams = {
@@ -500,9 +414,9 @@ class RifornimentoResourceApi {
             'application/json',
         ];
 
-        final serializedBody = _serializers.serialize(rifornimento);
-        final jsonrifornimento = json.encode(serializedBody);
-        bodyData = jsonrifornimento;
+        final serializedBody = _serializers.serialize(notificaDTO);
+        final jsonnotificaDTO = json.encode(serializedBody);
+        bodyData = jsonnotificaDTO;
 
         return _dio.request(
             _path,
@@ -527,10 +441,10 @@ class RifornimentoResourceApi {
             onSendProgress: onSendProgress,
             onReceiveProgress: onReceiveProgress,
         ).then((response) {
-            final serializer = _serializers.serializerForType(Rifornimento) as Serializer<Rifornimento>;
-            final data = _serializers.deserializeWith<Rifornimento>(serializer, response.data is String ? jsonDecode(response.data) : response.data);
+            final serializer = _serializers.serializerForType(NotificaDTO) as Serializer<NotificaDTO>;
+            final data = _serializers.deserializeWith<NotificaDTO>(serializer, response.data is String ? jsonDecode(response.data) : response.data);
 
-            return Response<Rifornimento>(
+            return Response<NotificaDTO>(
                 data: data,
                 headers: response.headers,
                 requestOptions: response.requestOptions,
@@ -542,10 +456,10 @@ class RifornimentoResourceApi {
         });
     }
 
-    /// deleteRifornimento
+    /// deleteNotifica
     ///
     /// 
-    Future<Response<void>> deleteRifornimentoUsingDELETE(
+    Future<Response<void>> deleteNotificaUsingDELETE(
         int id, { 
         CancelToken? cancelToken,
         Map<String, dynamic>? headers,
@@ -554,7 +468,7 @@ class RifornimentoResourceApi {
         ProgressCallback? onSendProgress,
         ProgressCallback? onReceiveProgress,
     }) async {
-        final String _path = '/api/rifornimentos/{id}'.replaceAll('{' r'id' '}', id.toString());
+        final String _path = '/api/notificas/{id}'.replaceAll('{' r'id' '}', id.toString());
 
         final Map<String, dynamic> queryParams = {};
         final Map<String, dynamic> headerParams = {
@@ -592,10 +506,10 @@ class RifornimentoResourceApi {
         );
     }
 
-    /// getAllRifornimentos
+    /// getAllNotificas
     ///
     /// 
-    Future<Response<BuiltList<Rifornimento>>> getAllRifornimentosUsingGET({ 
+    Future<Response<BuiltList<NotificaDTO>>> getAllNotificasUsingGET({ 
         DateTime? dataPeriodEquals,
         DateTime? dataPeriodGreaterThan,
         DateTime? dataPeriodGreaterThanOrEqual,
@@ -737,15 +651,6 @@ class RifornimentoResourceApi {
         int? dataPeriodNotInLeftSquareBracket0RightSquareBracketPeriodZonePeriodRulesPeriodTransitionsLeftSquareBracket0RightSquareBracketPeriodOffsetBeforePeriodTotalSeconds,
         bool? dataPeriodNotInLeftSquareBracket0RightSquareBracketPeriodZonePeriodRulesPeriodTransitionsLeftSquareBracket0RightSquareBracketPeriodOverlap,
         bool? dataPeriodSpecified,
-        int? gestoreIdPeriodEquals,
-        int? gestoreIdPeriodGreaterThan,
-        int? gestoreIdPeriodGreaterThanOrEqual,
-        BuiltList<int>? gestoreIdPeriodIn,
-        int? gestoreIdPeriodLessThan,
-        int? gestoreIdPeriodLessThanOrEqual,
-        int? gestoreIdPeriodNotEquals,
-        BuiltList<int>? gestoreIdPeriodNotIn,
-        bool? gestoreIdPeriodSpecified,
         int? idPeriodEquals,
         int? idPeriodGreaterThan,
         int? idPeriodGreaterThanOrEqual,
@@ -755,50 +660,16 @@ class RifornimentoResourceApi {
         int? idPeriodNotEquals,
         BuiltList<int>? idPeriodNotIn,
         bool? idPeriodSpecified,
-        double? litriErogatiPeriodEquals,
-        double? litriErogatiPeriodGreaterThan,
-        double? litriErogatiPeriodGreaterThanOrEqual,
-        BuiltList<num>? litriErogatiPeriodIn,
-        double? litriErogatiPeriodLessThan,
-        double? litriErogatiPeriodLessThanOrEqual,
-        double? litriErogatiPeriodNotEquals,
-        BuiltList<num>? litriErogatiPeriodNotIn,
-        bool? litriErogatiPeriodSpecified,
         int? page,
-        double? prezzoAlLitroPeriodEquals,
-        double? prezzoAlLitroPeriodGreaterThan,
-        double? prezzoAlLitroPeriodGreaterThanOrEqual,
-        BuiltList<num>? prezzoAlLitroPeriodIn,
-        double? prezzoAlLitroPeriodLessThan,
-        double? prezzoAlLitroPeriodLessThanOrEqual,
-        double? prezzoAlLitroPeriodNotEquals,
-        BuiltList<num>? prezzoAlLitroPeriodNotIn,
-        bool? prezzoAlLitroPeriodSpecified,
-        double? scontoPeriodEquals,
-        double? scontoPeriodGreaterThan,
-        double? scontoPeriodGreaterThanOrEqual,
-        BuiltList<num>? scontoPeriodIn,
-        double? scontoPeriodLessThan,
-        double? scontoPeriodLessThanOrEqual,
-        double? scontoPeriodNotEquals,
-        BuiltList<num>? scontoPeriodNotIn,
-        bool? scontoPeriodSpecified,
         int? size,
         BuiltList<String>? sort,
-        int? tesseraIdPeriodEquals,
-        int? tesseraIdPeriodGreaterThan,
-        int? tesseraIdPeriodGreaterThanOrEqual,
-        BuiltList<int>? tesseraIdPeriodIn,
-        int? tesseraIdPeriodLessThan,
-        int? tesseraIdPeriodLessThanOrEqual,
-        int? tesseraIdPeriodNotEquals,
-        BuiltList<int>? tesseraIdPeriodNotIn,
-        bool? tesseraIdPeriodSpecified,
-        String? tipoCarburantePeriodEquals,
-        BuiltList<String>? tipoCarburantePeriodIn,
-        String? tipoCarburantePeriodNotEquals,
-        BuiltList<String>? tipoCarburantePeriodNotIn,
-        bool? tipoCarburantePeriodSpecified,
+        String? targaPeriodContains,
+        String? targaPeriodDoesNotContain,
+        String? targaPeriodEquals,
+        BuiltList<String>? targaPeriodIn,
+        String? targaPeriodNotEquals,
+        BuiltList<String>? targaPeriodNotIn,
+        bool? targaPeriodSpecified,
         CancelToken? cancelToken,
         Map<String, dynamic>? headers,
         Map<String, dynamic>? extra,
@@ -806,7 +677,7 @@ class RifornimentoResourceApi {
         ProgressCallback? onSendProgress,
         ProgressCallback? onReceiveProgress,
     }) async {
-        const String _path = '/api/rifornimentos';
+        const String _path = '/api/notificas';
 
         final Map<String, dynamic> queryParams = {};
         final Map<String, dynamic> headerParams = {
@@ -955,15 +826,6 @@ class RifornimentoResourceApi {
         queryParams[r'data.notIn[0].zone.rules.transitions[0].offsetBefore.totalSeconds'] = dataPeriodNotInLeftSquareBracket0RightSquareBracketPeriodZonePeriodRulesPeriodTransitionsLeftSquareBracket0RightSquareBracketPeriodOffsetBeforePeriodTotalSeconds;
         queryParams[r'data.notIn[0].zone.rules.transitions[0].overlap'] = dataPeriodNotInLeftSquareBracket0RightSquareBracketPeriodZonePeriodRulesPeriodTransitionsLeftSquareBracket0RightSquareBracketPeriodOverlap;
         queryParams[r'data.specified'] = dataPeriodSpecified;
-        queryParams[r'gestoreId.equals'] = gestoreIdPeriodEquals;
-        queryParams[r'gestoreId.greaterThan'] = gestoreIdPeriodGreaterThan;
-        queryParams[r'gestoreId.greaterThanOrEqual'] = gestoreIdPeriodGreaterThanOrEqual;
-        queryParams[r'gestoreId.in'] = gestoreIdPeriodIn;
-        queryParams[r'gestoreId.lessThan'] = gestoreIdPeriodLessThan;
-        queryParams[r'gestoreId.lessThanOrEqual'] = gestoreIdPeriodLessThanOrEqual;
-        queryParams[r'gestoreId.notEquals'] = gestoreIdPeriodNotEquals;
-        queryParams[r'gestoreId.notIn'] = gestoreIdPeriodNotIn;
-        queryParams[r'gestoreId.specified'] = gestoreIdPeriodSpecified;
         queryParams[r'id.equals'] = idPeriodEquals;
         queryParams[r'id.greaterThan'] = idPeriodGreaterThan;
         queryParams[r'id.greaterThanOrEqual'] = idPeriodGreaterThanOrEqual;
@@ -973,50 +835,16 @@ class RifornimentoResourceApi {
         queryParams[r'id.notEquals'] = idPeriodNotEquals;
         queryParams[r'id.notIn'] = idPeriodNotIn;
         queryParams[r'id.specified'] = idPeriodSpecified;
-        queryParams[r'litriErogati.equals'] = litriErogatiPeriodEquals;
-        queryParams[r'litriErogati.greaterThan'] = litriErogatiPeriodGreaterThan;
-        queryParams[r'litriErogati.greaterThanOrEqual'] = litriErogatiPeriodGreaterThanOrEqual;
-        queryParams[r'litriErogati.in'] = litriErogatiPeriodIn;
-        queryParams[r'litriErogati.lessThan'] = litriErogatiPeriodLessThan;
-        queryParams[r'litriErogati.lessThanOrEqual'] = litriErogatiPeriodLessThanOrEqual;
-        queryParams[r'litriErogati.notEquals'] = litriErogatiPeriodNotEquals;
-        queryParams[r'litriErogati.notIn'] = litriErogatiPeriodNotIn;
-        queryParams[r'litriErogati.specified'] = litriErogatiPeriodSpecified;
         queryParams[r'page'] = page;
-        queryParams[r'prezzoAlLitro.equals'] = prezzoAlLitroPeriodEquals;
-        queryParams[r'prezzoAlLitro.greaterThan'] = prezzoAlLitroPeriodGreaterThan;
-        queryParams[r'prezzoAlLitro.greaterThanOrEqual'] = prezzoAlLitroPeriodGreaterThanOrEqual;
-        queryParams[r'prezzoAlLitro.in'] = prezzoAlLitroPeriodIn;
-        queryParams[r'prezzoAlLitro.lessThan'] = prezzoAlLitroPeriodLessThan;
-        queryParams[r'prezzoAlLitro.lessThanOrEqual'] = prezzoAlLitroPeriodLessThanOrEqual;
-        queryParams[r'prezzoAlLitro.notEquals'] = prezzoAlLitroPeriodNotEquals;
-        queryParams[r'prezzoAlLitro.notIn'] = prezzoAlLitroPeriodNotIn;
-        queryParams[r'prezzoAlLitro.specified'] = prezzoAlLitroPeriodSpecified;
-        queryParams[r'sconto.equals'] = scontoPeriodEquals;
-        queryParams[r'sconto.greaterThan'] = scontoPeriodGreaterThan;
-        queryParams[r'sconto.greaterThanOrEqual'] = scontoPeriodGreaterThanOrEqual;
-        queryParams[r'sconto.in'] = scontoPeriodIn;
-        queryParams[r'sconto.lessThan'] = scontoPeriodLessThan;
-        queryParams[r'sconto.lessThanOrEqual'] = scontoPeriodLessThanOrEqual;
-        queryParams[r'sconto.notEquals'] = scontoPeriodNotEquals;
-        queryParams[r'sconto.notIn'] = scontoPeriodNotIn;
-        queryParams[r'sconto.specified'] = scontoPeriodSpecified;
         queryParams[r'size'] = size;
         queryParams[r'sort'] = sort;
-        queryParams[r'tesseraId.equals'] = tesseraIdPeriodEquals;
-        queryParams[r'tesseraId.greaterThan'] = tesseraIdPeriodGreaterThan;
-        queryParams[r'tesseraId.greaterThanOrEqual'] = tesseraIdPeriodGreaterThanOrEqual;
-        queryParams[r'tesseraId.in'] = tesseraIdPeriodIn;
-        queryParams[r'tesseraId.lessThan'] = tesseraIdPeriodLessThan;
-        queryParams[r'tesseraId.lessThanOrEqual'] = tesseraIdPeriodLessThanOrEqual;
-        queryParams[r'tesseraId.notEquals'] = tesseraIdPeriodNotEquals;
-        queryParams[r'tesseraId.notIn'] = tesseraIdPeriodNotIn;
-        queryParams[r'tesseraId.specified'] = tesseraIdPeriodSpecified;
-        queryParams[r'tipoCarburante.equals'] = tipoCarburantePeriodEquals;
-        queryParams[r'tipoCarburante.in'] = tipoCarburantePeriodIn;
-        queryParams[r'tipoCarburante.notEquals'] = tipoCarburantePeriodNotEquals;
-        queryParams[r'tipoCarburante.notIn'] = tipoCarburantePeriodNotIn;
-        queryParams[r'tipoCarburante.specified'] = tipoCarburantePeriodSpecified;
+        queryParams[r'targa.contains'] = targaPeriodContains;
+        queryParams[r'targa.doesNotContain'] = targaPeriodDoesNotContain;
+        queryParams[r'targa.equals'] = targaPeriodEquals;
+        queryParams[r'targa.in'] = targaPeriodIn;
+        queryParams[r'targa.notEquals'] = targaPeriodNotEquals;
+        queryParams[r'targa.notIn'] = targaPeriodNotIn;
+        queryParams[r'targa.specified'] = targaPeriodSpecified;
         queryParams.removeWhere((key, value) => value == null);
         headerParams.removeWhere((key, value) => value == null);
 
@@ -1046,10 +874,10 @@ class RifornimentoResourceApi {
             onReceiveProgress: onReceiveProgress,
         ).then((response) {
             const collectionType = BuiltList;
-            const type = FullType(collectionType, [FullType(Rifornimento)]);
-            final BuiltList<Rifornimento> data = _serializers.deserialize(response.data is String ? jsonDecode(response.data) : response.data, specifiedType: type) as BuiltList<Rifornimento>;
+            const type = FullType(collectionType, [FullType(NotificaDTO)]);
+            final BuiltList<NotificaDTO> data = _serializers.deserialize(response.data is String ? jsonDecode(response.data) : response.data, specifiedType: type) as BuiltList<NotificaDTO>;
 
-            return Response<BuiltList<Rifornimento>>(
+            return Response<BuiltList<NotificaDTO>>(
                 data: data,
                 headers: response.headers,
                 requestOptions: response.requestOptions,
@@ -1061,10 +889,10 @@ class RifornimentoResourceApi {
         });
     }
 
-    /// getRifornimento
+    /// getNotifica
     ///
     /// 
-    Future<Response<Rifornimento>> getRifornimentoUsingGET(
+    Future<Response<NotificaDTO>> getNotificaUsingGET(
         int id, { 
         CancelToken? cancelToken,
         Map<String, dynamic>? headers,
@@ -1073,7 +901,7 @@ class RifornimentoResourceApi {
         ProgressCallback? onSendProgress,
         ProgressCallback? onReceiveProgress,
     }) async {
-        final String _path = '/api/rifornimentos/{id}'.replaceAll('{' r'id' '}', id.toString());
+        final String _path = '/api/notificas/{id}'.replaceAll('{' r'id' '}', id.toString());
 
         final Map<String, dynamic> queryParams = {};
         final Map<String, dynamic> headerParams = {
@@ -1109,10 +937,10 @@ class RifornimentoResourceApi {
             onSendProgress: onSendProgress,
             onReceiveProgress: onReceiveProgress,
         ).then((response) {
-            final serializer = _serializers.serializerForType(Rifornimento) as Serializer<Rifornimento>;
-            final data = _serializers.deserializeWith<Rifornimento>(serializer, response.data is String ? jsonDecode(response.data) : response.data);
+            final serializer = _serializers.serializerForType(NotificaDTO) as Serializer<NotificaDTO>;
+            final data = _serializers.deserializeWith<NotificaDTO>(serializer, response.data is String ? jsonDecode(response.data) : response.data);
 
-            return Response<Rifornimento>(
+            return Response<NotificaDTO>(
                 data: data,
                 headers: response.headers,
                 requestOptions: response.requestOptions,
@@ -1124,11 +952,12 @@ class RifornimentoResourceApi {
         });
     }
 
-    /// partialUpdateRifornimento
+    /// partialUpdateNotifica
     ///
     /// 
-    Future<Response<Rifornimento>> partialUpdateRifornimentoUsingPATCH({ 
-        Rifornimento? rifornimento,
+    Future<Response<NotificaDTO>> partialUpdateNotificaUsingPATCH(
+        int id, { 
+        NotificaDTO? notificaDTO,
         CancelToken? cancelToken,
         Map<String, dynamic>? headers,
         Map<String, dynamic>? extra,
@@ -1136,7 +965,7 @@ class RifornimentoResourceApi {
         ProgressCallback? onSendProgress,
         ProgressCallback? onReceiveProgress,
     }) async {
-        const String _path = '/api/rifornimentos';
+        final String _path = '/api/notificas/{id}'.replaceAll('{' r'id' '}', id.toString());
 
         final Map<String, dynamic> queryParams = {};
         final Map<String, dynamic> headerParams = {
@@ -1152,9 +981,9 @@ class RifornimentoResourceApi {
             'application/merge-patch+json',
         ];
 
-        final serializedBody = _serializers.serialize(rifornimento);
-        final jsonrifornimento = json.encode(serializedBody);
-        bodyData = jsonrifornimento;
+        final serializedBody = _serializers.serialize(notificaDTO);
+        final jsonnotificaDTO = json.encode(serializedBody);
+        bodyData = jsonnotificaDTO;
 
         return _dio.request(
             _path,
@@ -1179,10 +1008,10 @@ class RifornimentoResourceApi {
             onSendProgress: onSendProgress,
             onReceiveProgress: onReceiveProgress,
         ).then((response) {
-            final serializer = _serializers.serializerForType(Rifornimento) as Serializer<Rifornimento>;
-            final data = _serializers.deserializeWith<Rifornimento>(serializer, response.data is String ? jsonDecode(response.data) : response.data);
+            final serializer = _serializers.serializerForType(NotificaDTO) as Serializer<NotificaDTO>;
+            final data = _serializers.deserializeWith<NotificaDTO>(serializer, response.data is String ? jsonDecode(response.data) : response.data);
 
-            return Response<Rifornimento>(
+            return Response<NotificaDTO>(
                 data: data,
                 headers: response.headers,
                 requestOptions: response.requestOptions,
@@ -1194,11 +1023,12 @@ class RifornimentoResourceApi {
         });
     }
 
-    /// updateRifornimento
+    /// updateNotifica
     ///
     /// 
-    Future<Response<Rifornimento>> updateRifornimentoUsingPUT({ 
-        Rifornimento? rifornimento,
+    Future<Response<NotificaDTO>> updateNotificaUsingPUT(
+        int id, { 
+        NotificaDTO? notificaDTO,
         CancelToken? cancelToken,
         Map<String, dynamic>? headers,
         Map<String, dynamic>? extra,
@@ -1206,7 +1036,7 @@ class RifornimentoResourceApi {
         ProgressCallback? onSendProgress,
         ProgressCallback? onReceiveProgress,
     }) async {
-        const String _path = '/api/rifornimentos';
+        final String _path = '/api/notificas/{id}'.replaceAll('{' r'id' '}', id.toString());
 
         final Map<String, dynamic> queryParams = {};
         final Map<String, dynamic> headerParams = {
@@ -1221,9 +1051,9 @@ class RifornimentoResourceApi {
             'application/json',
         ];
 
-        final serializedBody = _serializers.serialize(rifornimento);
-        final jsonrifornimento = json.encode(serializedBody);
-        bodyData = jsonrifornimento;
+        final serializedBody = _serializers.serialize(notificaDTO);
+        final jsonnotificaDTO = json.encode(serializedBody);
+        bodyData = jsonnotificaDTO;
 
         return _dio.request(
             _path,
@@ -1248,10 +1078,10 @@ class RifornimentoResourceApi {
             onSendProgress: onSendProgress,
             onReceiveProgress: onReceiveProgress,
         ).then((response) {
-            final serializer = _serializers.serializerForType(Rifornimento) as Serializer<Rifornimento>;
-            final data = _serializers.deserializeWith<Rifornimento>(serializer, response.data is String ? jsonDecode(response.data) : response.data);
+            final serializer = _serializers.serializerForType(NotificaDTO) as Serializer<NotificaDTO>;
+            final data = _serializers.deserializeWith<NotificaDTO>(serializer, response.data is String ? jsonDecode(response.data) : response.data);
 
-            return Response<Rifornimento>(
+            return Response<NotificaDTO>(
                 data: data,
                 headers: response.headers,
                 requestOptions: response.requestOptions,

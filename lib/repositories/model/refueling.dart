@@ -1,6 +1,6 @@
-import 'package:benzapp_flutter/network/model/gestore.dart';
-import 'package:benzapp_flutter/network/model/rifornimento.dart';
-import 'package:benzapp_flutter/network/model/tessera.dart';
+import 'package:benzapp_flutter/repositories/network/model/gestore.dart';
+import 'package:benzapp_flutter/repositories/network/model/rifornimento.dart';
+import 'package:benzapp_flutter/repositories/network/model/tessera.dart';
 import 'package:floor/floor.dart';
 
 import 'base_entity.dart';

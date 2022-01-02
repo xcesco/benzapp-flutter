@@ -1,4 +1,5 @@
 import 'package:benzapp_flutter/repositories/model/vehicle.dart';
+import 'package:benzapp_flutter/repositories/model/vehicle_summary.dart';
 import 'package:floor/floor.dart';
 
 @dao
@@ -14,6 +15,10 @@ abstract class VehicleDao {
 
   @Query("SELECT * FROM vehicles WHERE targa = :targa ORDER BY targa")
   Future<Vehicle?> findOneByTarga(String targa);
+
+  @Query(
+      "SELECT targa, spesa, litriErogati, risparmio FROM vehicle_summaries WHERE targa=:targa")
+  Future<VehicleSummary?> sumLitriErogatiByTarga(String targa);
 
   @Insert()
   Future<void> insert(Vehicle value);

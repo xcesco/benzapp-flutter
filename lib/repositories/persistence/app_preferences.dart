@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:benzapp_flutter/network/model/admin_user_dto.dart';
+import 'package:benzapp_flutter/repositories/network/model/admin_user_dto.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../serializers.dart';
@@ -46,5 +46,9 @@ class AppPreferences {
 
   Future<void> setPrimoAccesso(bool value) async {
     (await SharedPreferences.getInstance()).setBool("PrimoAccesso", value);
+  }
+
+  Future<void> removeAccount() async {
+    (await SharedPreferences.getInstance()).remove("AdminUserDTO");
   }
 }

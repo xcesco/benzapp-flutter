@@ -33,5 +33,18 @@
   "vehicleDelega":"delega",
   "vehicleDelegaOperationNotAllowed":"Sulle deleghe non è possibile effettuare tale operazione",
 
+  "detail" : "Dettaglio",
+  "codice" : "Codice",
+  "owner": "Proprietario",
+  "issueDate": "Data emissione",
+  "pagato": "Pagato",
+  "contributoRegionale": "Contributo regionale",
+  "litriErogati": "Litri erogati",
+
+  "date":"Data",
+  "station":"Distributore",
+
+  "refuelings":"rifornimenti",
+
   "qrCodeTitle":"QRCode"
 }

@@ -4,11 +4,12 @@ import 'package:benzapp_flutter/repositories/model/refueling.dart';
 import 'package:benzapp_flutter/repositories/model/vehicle.dart';
 import 'package:benzapp_flutter/ui/home/home_view_model.dart';
 import 'package:benzapp_flutter/ui/qrcode/qrcode_screen.dart';
+import 'package:benzapp_flutter/ui/refuelings/refueling_detail_screen.dart';
 import 'package:benzapp_flutter/ui/refuelings/refueling_item_widget.dart';
-import 'package:benzapp_flutter/ui/refuelings/refueling_screen.dart';
+import 'package:benzapp_flutter/ui/refuelings/refueling_list_screen.dart';
+import 'package:benzapp_flutter/ui/vehicles/vehicle_detail_screen.dart';
 import 'package:benzapp_flutter/ui/vehicles/vehicle_item_widget.dart';
-import 'package:benzapp_flutter/ui/vehicles/vehicles_screen.dart';
-import 'package:benzapp_flutter/ui/widgets/dialog_utils.dart';
+import 'package:benzapp_flutter/ui/vehicles/vehicle_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -23,7 +24,7 @@ class HomeFragment extends StatefulWidget {
   }
 }
 
-class _HomeFragmentState extends State<HomeFragment> with DialogSupport {
+class _HomeFragmentState extends State<HomeFragment> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -65,11 +66,19 @@ class _HomeFragmentState extends State<HomeFragment> with DialogSupport {
                             position == 0
                                 ? _buildVehicleTitle(snapshot.data!.length)
                                 : VehicleItem(snapshot.data![position - 1],
-                                    (Vehicle item) {}, (Vehicle item) {
+                                    (Vehicle item) {
+                                    Navigator.pushNamed(
+                                      context,
+                                      VehicleDetailScreen.routeName,
+                                      arguments: ScreenArguments(
+                                          id: item.id, title: item.targa),
+                                    );
+                                  }, (Vehicle item) {
                                     Navigator.pushNamed(
                                       context,
                                       QRCodeScreen.routeName,
-                                      arguments: ScreenArguments(id: item.id, title: item.targa),
+                                      arguments: ScreenArguments(
+                                          id: item.id, title: item.targa),
                                     );
                                   }),
                         itemCount: min(3, snapshot.data!.length + 1),
@@ -97,7 +106,13 @@ class _HomeFragmentState extends State<HomeFragment> with DialogSupport {
                         itemBuilder: (BuildContext context, int position) =>
                             position == 0
                                 ? _buildRefuelingTitle(snapshot.data!.length)
-                                : RefuelingItem(snapshot.data![position - 1]),
+                                : RefuelingItem(snapshot.data![position - 1],
+                                    (Refueling item) {
+                                    Navigator.pushNamed(context,
+                                        RefuelingDetailScreen.routeName,
+                                        arguments: ScreenArguments(
+                                            id: item.id, title: item.targa));
+                                  }),
                         itemCount: min(3, snapshot.data!.length + 1),
                       ),
                     ))));
@@ -117,7 +132,10 @@ class _HomeFragmentState extends State<HomeFragment> with DialogSupport {
         trailing: OutlinedButton(
           onPressed: () {
             debugPrint('Received click');
-            Navigator.of(context).pushNamed(RefuelingScreen.routeName);
+            Navigator.of(context).pushNamed(
+              RefuelingListScreen.routeName,
+              arguments: ScreenArguments(),
+            );
           },
           child: Text(
             'VEDI TUTTI (${size})',
@@ -139,7 +157,7 @@ class _HomeFragmentState extends State<HomeFragment> with DialogSupport {
         trailing: OutlinedButton(
           onPressed: () {
             debugPrint('Received click');
-            Navigator.of(context).pushNamed(VehicleScreen.routeName);
+            Navigator.of(context).pushNamed(VehicleListScreen.routeName);
           },
           child: Text(
             'VEDI TUTTE (${size})',

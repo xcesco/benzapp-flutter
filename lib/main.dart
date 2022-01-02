@@ -1,17 +1,18 @@
 import 'dart:convert';
 
 import 'package:benzapp_flutter/app_debug.dart';
-import 'package:benzapp_flutter/network/model/admin_user_dto.dart';
+import 'package:benzapp_flutter/repositories/impl/account_repository_impl.dart';
+import 'package:benzapp_flutter/repositories/impl/application_info_repository_impl.dart';
+import 'package:benzapp_flutter/repositories/impl/notification_repository_impl.dart';
+import 'package:benzapp_flutter/repositories/impl/refueling_repository_impl.dart';
+import 'package:benzapp_flutter/repositories/impl/stations_repository_impl.dart';
+import 'package:benzapp_flutter/repositories/impl/vehicle_repository_impl.dart';
 import 'package:benzapp_flutter/repositories/model/station.dart';
+import 'package:benzapp_flutter/repositories/network/api_client.dart';
+import 'package:benzapp_flutter/repositories/network/model/admin_user_dto.dart';
 import 'package:benzapp_flutter/repositories/notification_repository.dart';
-import 'package:benzapp_flutter/repositories/persistence/account_repository_impl.dart';
 import 'package:benzapp_flutter/repositories/persistence/app_database.dart';
-import 'package:benzapp_flutter/repositories/persistence/application_info_repository_impl.dart';
-import 'package:benzapp_flutter/repositories/persistence/notification_repository_impl.dart';
-import 'package:benzapp_flutter/repositories/persistence/refueling_repository_impl.dart';
 import 'package:benzapp_flutter/repositories/persistence/secure_repository.dart';
-import 'package:benzapp_flutter/repositories/persistence/stations_repository_impl.dart';
-import 'package:benzapp_flutter/repositories/persistence/vehicle_repository_impl.dart';
 import 'package:benzapp_flutter/repositories/refueling_repository.dart';
 import 'package:benzapp_flutter/repositories/stations_repository.dart';
 import 'package:benzapp_flutter/ui/home/home_view_model.dart';
@@ -21,11 +22,13 @@ import 'package:benzapp_flutter/ui/login/login_screen.dart';
 import 'package:benzapp_flutter/ui/login/login_view_model.dart';
 import 'package:benzapp_flutter/ui/main/main_screen.dart';
 import 'package:benzapp_flutter/ui/qrcode/qrcode_screen.dart';
-import 'package:benzapp_flutter/ui/refuelings/refueling_screen.dart';
+import 'package:benzapp_flutter/ui/refuelings/refueling_detail_screen.dart';
+import 'package:benzapp_flutter/ui/refuelings/refueling_list_screen.dart';
 import 'package:benzapp_flutter/ui/refuelings/refueling_view_model.dart';
 import 'package:benzapp_flutter/ui/stations/station_view_model.dart';
+import 'package:benzapp_flutter/ui/vehicles/vehicle_detail_screen.dart';
+import 'package:benzapp_flutter/ui/vehicles/vehicle_list_screen.dart';
 import 'package:benzapp_flutter/ui/vehicles/vehicle_view_model.dart';
-import 'package:benzapp_flutter/ui/vehicles/vehicles_screen.dart';
 import 'package:benzapp_flutter/ui/widgets/please_wait_widget.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -36,7 +39,6 @@ import 'package:provider/provider.dart';
 import 'package:sqflite/sqflite.dart' as sqflite;
 
 import 'firebase_options.dart';
-import 'network/api_client.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -115,8 +117,8 @@ class MyAppState extends State<MyApp> {
       _lockViewModel = LockViewModel(
           applicationInfoRepository, secureRepository, restClient);
       _stationsViewModel = StationsViewModel(stationsRepository);
-      _homeViewModel = HomeViewModel(
-          vehicleRepository, refuelingRepository, notificationRepository);
+      _homeViewModel = HomeViewModel(vehicleRepository, refuelingRepository,
+          notificationRepository, accountRepository);
 
       final AdminUserDTO? account = await accountRepository.getAccount();
       final String? jwtToken = await accountRepository.getJWTToken();
@@ -189,9 +191,14 @@ class MyAppState extends State<MyApp> {
           MainScreen.routeName: (BuildContext ctx) => const MainScreen(),
           LockScreen.routeName: (BuildContext ctx) => const LockScreen(),
           LoginScreen.routeName: (BuildContext ctx) => const LoginScreen(),
-          RefuelingScreen.routeName: (BuildContext ctx) =>
-              const RefuelingScreen(),
-          VehicleScreen.routeName: (BuildContext ctx) => const VehicleScreen(),
+          RefuelingDetailScreen.routeName: (BuildContext ctx) =>
+              const RefuelingDetailScreen(),
+          RefuelingListScreen.routeName: (BuildContext ctx) =>
+              const RefuelingListScreen(),
+          VehicleListScreen.routeName: (BuildContext ctx) =>
+              const VehicleListScreen(),
+          VehicleDetailScreen.routeName: (BuildContext ctx) =>
+              const VehicleDetailScreen(),
           QRCodeScreen.routeName: (BuildContext ctx) => const QRCodeScreen(),
         },
       ),

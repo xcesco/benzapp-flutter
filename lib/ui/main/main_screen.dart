@@ -1,9 +1,11 @@
 import 'package:benzapp_flutter/app_debug.dart';
+import 'package:benzapp_flutter/ui/home/home_view_model.dart';
 import 'package:benzapp_flutter/ui/login/login_screen.dart';
 import 'package:benzapp_flutter/ui/stations/stations_map_fragment.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 import '../home/home_fragment.dart';
 import '../stations/stations_list_fragment.dart';
@@ -26,6 +28,8 @@ class _MainScreenState extends State<MainScreen> {
 
   DefaultTabController _buildDefaultTabController(
       BuildContext context, AppLocalizations localization) {
+    HomeViewModel viewModel =
+        Provider.of<HomeViewModel>(context, listen: false);
     return DefaultTabController(
         length: 3,
         child: Scaffold(
@@ -38,8 +42,11 @@ class _MainScreenState extends State<MainScreen> {
                 onSelected: (String selectedValue) {
                   switch (selectedValue) {
                     case "logout":
-                      Navigator.pushReplacementNamed(
-                          context, LoginScreen.routeName);
+                      viewModel.logout().then((_) {
+                        Navigator.pushReplacementNamed(
+                            context, LoginScreen.routeName);
+                      });
+
                       break;
                   }
                   setState(() {

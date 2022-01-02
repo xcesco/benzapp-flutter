@@ -1,6 +1,6 @@
-import 'package:benzapp_flutter/network/model/cittadino.dart';
-import 'package:benzapp_flutter/network/model/delega.dart';
-import 'package:benzapp_flutter/network/model/tessera.dart';
+import 'package:benzapp_flutter/repositories/network/model/cittadino.dart';
+import 'package:benzapp_flutter/repositories/network/model/delega.dart';
+import 'package:benzapp_flutter/repositories/network/model/tessera.dart';
 import 'package:benzapp_flutter/repositories/model/base_entity.dart';
 import 'package:floor/floor.dart';
 
@@ -50,7 +50,7 @@ class Vehicle extends BaseEntity {
         delega.tessera?.carburante ?? TesseraCarburanteEnum.BENZINA,
         delega.cittadino!,
         delega.tessera?.codice ?? '',
-        DateTime.now(),
+        delega.tessera?.dataEmissione ?? DateTime.now(),
         // delega.tessera?.delegas?.toList() ?? [],
         delega.tessera?.immagine ?? '',
         delega.tessera?.immagineContentType ?? '',
@@ -65,7 +65,7 @@ class Vehicle extends BaseEntity {
         tessera.carburante ?? TesseraCarburanteEnum.BENZINA,
         tessera.cittadino!,
         tessera.codice ?? '',
-        DateTime.now(),
+        tessera.dataEmissione ?? DateTime.now(),
         // tessera.delegas?.toList() ?? [],
         tessera.immagine ?? '',
         tessera.immagineContentType ?? '',

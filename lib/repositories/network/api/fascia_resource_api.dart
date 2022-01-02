@@ -1,22 +1,22 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:benzapp_flutter/network/model/marchio.dart';
+import 'package:benzapp_flutter/repositories/network/model/fascia.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
-class MarchioResourceApi {
+class FasciaResourceApi {
     final Dio _dio;
     Serializers _serializers;
 
-    MarchioResourceApi(this._dio, this._serializers);
+    FasciaResourceApi(this._dio, this._serializers);
 
-    /// createMarchio
+    /// createFascia
     ///
     /// 
-    Future<Response<Marchio>> createMarchioUsingPOST({ 
-        Marchio? marchio,
+    Future<Response<Fascia>> createFasciaUsingPOST({ 
+        Fascia? fascia,
         CancelToken? cancelToken,
         Map<String, dynamic>? headers,
         Map<String, dynamic>? extra,
@@ -24,7 +24,7 @@ class MarchioResourceApi {
         ProgressCallback? onSendProgress,
         ProgressCallback? onReceiveProgress,
     }) async {
-        const String _path = '/api/marchios';
+        const String _path = '/api/fascias';
 
         final Map<String, dynamic> queryParams = {};
         final Map<String, dynamic> headerParams = {
@@ -39,9 +39,9 @@ class MarchioResourceApi {
             'application/json',
         ];
 
-        final serializedBody = _serializers.serialize(marchio);
-        final jsonmarchio = json.encode(serializedBody);
-        bodyData = jsonmarchio;
+        final serializedBody = _serializers.serialize(fascia);
+        final jsonfascia = json.encode(serializedBody);
+        bodyData = jsonfascia;
 
         return _dio.request(
             _path,
@@ -66,10 +66,10 @@ class MarchioResourceApi {
             onSendProgress: onSendProgress,
             onReceiveProgress: onReceiveProgress,
         ).then((response) {
-            final serializer = _serializers.serializerForType(Marchio) as Serializer<Marchio>;
-            final data = _serializers.deserializeWith<Marchio>(serializer, response.data is String ? jsonDecode(response.data) : response.data);
+            final serializer = _serializers.serializerForType(Fascia) as Serializer<Fascia>;
+            final data = _serializers.deserializeWith<Fascia>(serializer, response.data is String ? jsonDecode(response.data) : response.data);
 
-            return Response<Marchio>(
+            return Response<Fascia>(
                 data: data,
                 headers: response.headers,
                 requestOptions: response.requestOptions,
@@ -81,10 +81,10 @@ class MarchioResourceApi {
         });
     }
 
-    /// deleteMarchio
+    /// deleteFascia
     ///
     /// 
-    Future<Response<void>> deleteMarchioUsingDELETE(
+    Future<Response<void>> deleteFasciaUsingDELETE(
         int id, { 
         CancelToken? cancelToken,
         Map<String, dynamic>? headers,
@@ -93,7 +93,7 @@ class MarchioResourceApi {
         ProgressCallback? onSendProgress,
         ProgressCallback? onReceiveProgress,
     }) async {
-        final String _path = '/api/marchios/{id}'.replaceAll('{' r'id' '}', id.toString());
+        final String _path = '/api/fascias/{id}'.replaceAll('{' r'id' '}', id.toString());
 
         final Map<String, dynamic> queryParams = {};
         final Map<String, dynamic> headerParams = {
@@ -131,13 +131,10 @@ class MarchioResourceApi {
         );
     }
 
-    /// getAllMarchios
+    /// getAllFascias
     ///
     /// 
-    Future<Response<BuiltList<Marchio>>> getAllMarchiosUsingGET({ 
-        int? page,
-        int? size,
-        BuiltList<String>? sort,
+    Future<Response<BuiltList<Fascia>>> getAllFasciasUsingGET({ 
         CancelToken? cancelToken,
         Map<String, dynamic>? headers,
         Map<String, dynamic>? extra,
@@ -145,7 +142,7 @@ class MarchioResourceApi {
         ProgressCallback? onSendProgress,
         ProgressCallback? onReceiveProgress,
     }) async {
-        const String _path = '/api/marchios';
+        const String _path = '/api/fascias';
 
         final Map<String, dynamic> queryParams = {};
         final Map<String, dynamic> headerParams = {
@@ -153,9 +150,6 @@ class MarchioResourceApi {
         };
         dynamic bodyData;
 
-        queryParams[r'page'] = page;
-        queryParams[r'size'] = size;
-        queryParams[r'sort'] = sort;
         queryParams.removeWhere((key, value) => value == null);
         headerParams.removeWhere((key, value) => value == null);
 
@@ -185,10 +179,10 @@ class MarchioResourceApi {
             onReceiveProgress: onReceiveProgress,
         ).then((response) {
             const collectionType = BuiltList;
-            const type = FullType(collectionType, [FullType(Marchio)]);
-            final BuiltList<Marchio> data = _serializers.deserialize(response.data is String ? jsonDecode(response.data) : response.data, specifiedType: type) as BuiltList<Marchio>;
+            const type = FullType(collectionType, [FullType(Fascia)]);
+            final BuiltList<Fascia> data = _serializers.deserialize(response.data is String ? jsonDecode(response.data) : response.data, specifiedType: type) as BuiltList<Fascia>;
 
-            return Response<BuiltList<Marchio>>(
+            return Response<BuiltList<Fascia>>(
                 data: data,
                 headers: response.headers,
                 requestOptions: response.requestOptions,
@@ -200,10 +194,10 @@ class MarchioResourceApi {
         });
     }
 
-    /// getMarchio
+    /// getFascia
     ///
     /// 
-    Future<Response<Marchio>> getMarchioUsingGET(
+    Future<Response<Fascia>> getFasciaUsingGET(
         int id, { 
         CancelToken? cancelToken,
         Map<String, dynamic>? headers,
@@ -212,7 +206,7 @@ class MarchioResourceApi {
         ProgressCallback? onSendProgress,
         ProgressCallback? onReceiveProgress,
     }) async {
-        final String _path = '/api/marchios/{id}'.replaceAll('{' r'id' '}', id.toString());
+        final String _path = '/api/fascias/{id}'.replaceAll('{' r'id' '}', id.toString());
 
         final Map<String, dynamic> queryParams = {};
         final Map<String, dynamic> headerParams = {
@@ -248,10 +242,10 @@ class MarchioResourceApi {
             onSendProgress: onSendProgress,
             onReceiveProgress: onReceiveProgress,
         ).then((response) {
-            final serializer = _serializers.serializerForType(Marchio) as Serializer<Marchio>;
-            final data = _serializers.deserializeWith<Marchio>(serializer, response.data is String ? jsonDecode(response.data) : response.data);
+            final serializer = _serializers.serializerForType(Fascia) as Serializer<Fascia>;
+            final data = _serializers.deserializeWith<Fascia>(serializer, response.data is String ? jsonDecode(response.data) : response.data);
 
-            return Response<Marchio>(
+            return Response<Fascia>(
                 data: data,
                 headers: response.headers,
                 requestOptions: response.requestOptions,
@@ -263,11 +257,11 @@ class MarchioResourceApi {
         });
     }
 
-    /// partialUpdateMarchio
+    /// partialUpdateFascia
     ///
     /// 
-    Future<Response<Marchio>> partialUpdateMarchioUsingPATCH({ 
-        Marchio? marchio,
+    Future<Response<Fascia>> partialUpdateFasciaUsingPATCH({ 
+        Fascia? fascia,
         CancelToken? cancelToken,
         Map<String, dynamic>? headers,
         Map<String, dynamic>? extra,
@@ -275,7 +269,7 @@ class MarchioResourceApi {
         ProgressCallback? onSendProgress,
         ProgressCallback? onReceiveProgress,
     }) async {
-        const String _path = '/api/marchios';
+        const String _path = '/api/fascias';
 
         final Map<String, dynamic> queryParams = {};
         final Map<String, dynamic> headerParams = {
@@ -291,9 +285,9 @@ class MarchioResourceApi {
             'application/merge-patch+json',
         ];
 
-        final serializedBody = _serializers.serialize(marchio);
-        final jsonmarchio = json.encode(serializedBody);
-        bodyData = jsonmarchio;
+        final serializedBody = _serializers.serialize(fascia);
+        final jsonfascia = json.encode(serializedBody);
+        bodyData = jsonfascia;
 
         return _dio.request(
             _path,
@@ -318,10 +312,10 @@ class MarchioResourceApi {
             onSendProgress: onSendProgress,
             onReceiveProgress: onReceiveProgress,
         ).then((response) {
-            final serializer = _serializers.serializerForType(Marchio) as Serializer<Marchio>;
-            final data = _serializers.deserializeWith<Marchio>(serializer, response.data is String ? jsonDecode(response.data) : response.data);
+            final serializer = _serializers.serializerForType(Fascia) as Serializer<Fascia>;
+            final data = _serializers.deserializeWith<Fascia>(serializer, response.data is String ? jsonDecode(response.data) : response.data);
 
-            return Response<Marchio>(
+            return Response<Fascia>(
                 data: data,
                 headers: response.headers,
                 requestOptions: response.requestOptions,
@@ -333,11 +327,11 @@ class MarchioResourceApi {
         });
     }
 
-    /// updateMarchio
+    /// updateFascia
     ///
     /// 
-    Future<Response<Marchio>> updateMarchioUsingPUT({ 
-        Marchio? marchio,
+    Future<Response<Fascia>> updateFasciaUsingPUT({ 
+        Fascia? fascia,
         CancelToken? cancelToken,
         Map<String, dynamic>? headers,
         Map<String, dynamic>? extra,
@@ -345,7 +339,7 @@ class MarchioResourceApi {
         ProgressCallback? onSendProgress,
         ProgressCallback? onReceiveProgress,
     }) async {
-        const String _path = '/api/marchios';
+        const String _path = '/api/fascias';
 
         final Map<String, dynamic> queryParams = {};
         final Map<String, dynamic> headerParams = {
@@ -360,9 +354,9 @@ class MarchioResourceApi {
             'application/json',
         ];
 
-        final serializedBody = _serializers.serialize(marchio);
-        final jsonmarchio = json.encode(serializedBody);
-        bodyData = jsonmarchio;
+        final serializedBody = _serializers.serialize(fascia);
+        final jsonfascia = json.encode(serializedBody);
+        bodyData = jsonfascia;
 
         return _dio.request(
             _path,
@@ -387,10 +381,10 @@ class MarchioResourceApi {
             onSendProgress: onSendProgress,
             onReceiveProgress: onReceiveProgress,
         ).then((response) {
-            final serializer = _serializers.serializerForType(Marchio) as Serializer<Marchio>;
-            final data = _serializers.deserializeWith<Marchio>(serializer, response.data is String ? jsonDecode(response.data) : response.data);
+            final serializer = _serializers.serializerForType(Fascia) as Serializer<Fascia>;
+            final data = _serializers.deserializeWith<Fascia>(serializer, response.data is String ? jsonDecode(response.data) : response.data);
 
-            return Response<Marchio>(
+            return Response<Fascia>(
                 data: data,
                 headers: response.headers,
                 requestOptions: response.requestOptions,

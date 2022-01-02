@@ -1,12 +1,11 @@
-import 'package:benzapp_flutter/network/api/rifornimento_resource_api.dart';
-import 'package:benzapp_flutter/network/api_client.dart';
-import 'package:benzapp_flutter/network/model/rifornimento.dart';
+import 'package:benzapp_flutter/repositories/network/api/rifornimento_resource_api.dart';
+import 'package:benzapp_flutter/repositories/network/api_client.dart';
+import 'package:benzapp_flutter/repositories/network/model/rifornimento.dart';
 import 'package:benzapp_flutter/repositories/model/refueling.dart';
+import 'package:benzapp_flutter/repositories/persistence/app_database.dart';
 import 'package:benzapp_flutter/repositories/persistence/dao/refueling_dao.dart';
 import 'package:benzapp_flutter/repositories/refueling_repository.dart';
 import 'package:floor/floor.dart';
-
-import 'app_database.dart';
 
 class RefuelingRepositoryImpl extends RefuelingRepository {
   final ApiClient _apiClient;
@@ -18,10 +17,14 @@ class RefuelingRepositoryImpl extends RefuelingRepository {
   @override
   Future<void> update() async {
     final RefuelingDao daoRifornimenti = _database.refuelingDao;
-    final RifornimentoResourceApi rifornimenotResourceApi = _apiClient.getRifornimentoResourceApi();
+    final RifornimentoResourceApi rifornimenotResourceApi =
+        _apiClient.getRifornimentoResourceApi();
 
     await daoRifornimenti.deleteAll();
-    final List<Rifornimento>? list = (await rifornimenotResourceApi.getAllRifornimentosUsingGET()).data?.toList();
+    final List<Rifornimento>? list =
+        (await rifornimenotResourceApi.getAllRifornimentosUsingGET(size: 1000))
+            .data
+            ?.toList();
 
     if (list != null) {
       for (final Rifornimento item in list) {
@@ -31,11 +34,13 @@ class RefuelingRepositoryImpl extends RefuelingRepository {
   }
 
   @override
-  Future<Refueling?> getDataById(int id) async => _database.refuelingDao.findAllByIdLive(id);
+  Future<Refueling?> getDataById(int id) async =>
+      _database.refuelingDao.findAllByIdLive(id);
 
   @override
   Future<List<Refueling>> getData() async => _database.refuelingDao.findAll();
 
   @override
-  Future<List<Refueling>> getDataByTarga(String targa) => _database.refuelingDao.findAllLiveByTarga(targa);
+  Future<List<Refueling>> getDataByTarga(String targa) =>
+      _database.refuelingDao.findAllLiveByTarga(targa);
 }

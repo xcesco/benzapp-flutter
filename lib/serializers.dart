@@ -1,27 +1,26 @@
 library serializers;
 
+import 'package:benzapp_flutter/repositories/network/model/admin_user_dto.dart';
+import 'package:benzapp_flutter/repositories/network/model/cittadino.dart';
+import 'package:benzapp_flutter/repositories/network/model/delega.dart';
+import 'package:benzapp_flutter/repositories/network/model/device.dart';
+import 'package:benzapp_flutter/repositories/network/model/fascia.dart';
+import 'package:benzapp_flutter/repositories/network/model/gestore.dart';
+import 'package:benzapp_flutter/repositories/network/model/jwt_token.dart';
+import 'package:benzapp_flutter/repositories/network/model/key_and_password_vm.dart';
+import 'package:benzapp_flutter/repositories/network/model/login_vm.dart';
+import 'package:benzapp_flutter/repositories/network/model/managed_user_vm.dart';
+import 'package:benzapp_flutter/repositories/network/model/marchio.dart';
+import 'package:benzapp_flutter/repositories/network/model/notifica_dto.dart';
+import 'package:benzapp_flutter/repositories/network/model/password_change_dto.dart';
+import 'package:benzapp_flutter/repositories/network/model/rifornimento.dart';
+import 'package:benzapp_flutter/repositories/network/model/tessera.dart';
+import 'package:benzapp_flutter/repositories/network/model/user.dart';
+import 'package:benzapp_flutter/repositories/network/model/user_dto.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/iso_8601_date_time_serializer.dart';
 import 'package:built_value/serializer.dart';
 import 'package:built_value/standard_json_plugin.dart';
-
-import 'network/model/admin_user_dto.dart';
-import 'network/model/cittadino.dart';
-import 'network/model/delega.dart';
-import 'network/model/device.dart';
-import 'network/model/fascia.dart';
-import 'network/model/gestore.dart';
-import 'network/model/jwt_token.dart';
-import 'network/model/key_and_password_vm.dart';
-import 'network/model/login_vm.dart';
-import 'network/model/managed_user_vm.dart';
-import 'network/model/marchio.dart';
-import 'network/model/notifica_dto.dart';
-import 'network/model/password_change_dto.dart';
-import 'network/model/rifornimento.dart';
-import 'network/model/tessera.dart';
-import 'network/model/user.dart';
-import 'network/model/user_dto.dart';
 
 part 'serializers.g.dart';
 

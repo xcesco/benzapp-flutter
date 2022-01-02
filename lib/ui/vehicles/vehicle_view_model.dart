@@ -4,6 +4,8 @@ import 'dart:typed_data';
 import 'dart:ui';
 
 import 'package:benzapp_flutter/repositories/model/vehicle.dart';
+import 'package:benzapp_flutter/repositories/model/vehicle_status.dart';
+import 'package:benzapp_flutter/repositories/model/vehicle_summary.dart';
 import 'package:benzapp_flutter/repositories/vehicle_repository.dart';
 import 'package:benzapp_flutter/ui/qrcode/qrcode_data.dart';
 import 'package:path_provider/path_provider.dart';
@@ -19,8 +21,17 @@ class VehicleViewModel extends BaseViewModel {
 
   Future<List<Vehicle>> loadData() async => await _vehicleRepository.getData();
 
-  Future<Vehicle?> loadDataByTarga(String targa) async =>
-      await _vehicleRepository.findByTarga(targa);
+  Future<Vehicle?> loadDataByTarga(String targa) async {
+    return await _vehicleRepository.findByTarga(targa);
+  }
+
+  Future<VehicleStatus?> loadStatusByTarga(String targa) async {
+    final Vehicle? vehicle = await _vehicleRepository.findByTarga(targa);
+    final VehicleSummary? summary =
+        await _vehicleRepository.findSummaryByTarga(targa);
+
+    return VehicleStatus(vehicle!, summary!);
+  }
 
   Future<QRCodeData?> loadQRCode(String targa) async {
     final Vehicle? vehicle = await loadDataByTarga(targa);

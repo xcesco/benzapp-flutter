@@ -1,4 +1,4 @@
-import 'package:benzapp_flutter/network/model/cittadino.dart';
+import 'package:benzapp_flutter/repositories/network/model/cittadino.dart';
 import 'package:floor/floor.dart';
 
 import '../../../serializers.dart';
