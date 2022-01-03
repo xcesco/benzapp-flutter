@@ -1,9 +1,12 @@
+import 'dart:async';
+
 import 'package:benzapp_flutter/app_debug.dart';
+import 'package:benzapp_flutter/repositories/model/notification.dart'
+    as AppNotification;
 import 'package:benzapp_flutter/ui/home/home_view_model.dart';
 import 'package:benzapp_flutter/ui/login/login_screen.dart';
 import 'package:benzapp_flutter/ui/stations/stations_map_fragment.dart';
 import 'package:benzapp_flutter/ui/widgets/app_commons.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
@@ -12,7 +15,7 @@ import '../home/home_fragment.dart';
 import '../stations/stations_list_fragment.dart';
 
 class MainScreen extends StatefulWidget {
-  static String routeName = '/';
+  static String routeName = '/main';
 
   const MainScreen({Key? key}) : super(key: key);
 
@@ -25,24 +28,35 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
   late AnimationController _animationController;
 
-  HomeViewModel? _viewModel;
-
   @override
   void initState() {
-    // FirebaseMessaging.onBackgroundMessage((RemoteMessage message) {
-    //   AppDebug.log('Message clicked!');
-    // });
-
+    AppDebug.log("Cccccc---------------");
     _animationController =
         AnimationController(vsync: this, duration: const Duration(seconds: 2));
 
-    FirebaseMessaging.onMessage.listen((RemoteMessage event) {
-      AppDebug.log('Nuovo rifornimento effettuato');
-      _viewModel?.updateData();
+    final HomeViewModel viewModel =
+        Provider.of<HomeViewModel>(context, listen: false);
+
+    _subscription = viewModel
+        .getNotifiche()
+        .listen((List<AppNotification.Notification> event) {
+      if (event.isEmpty) {
+        AppDebug.log('Main screen riceve #${event.length} messaggi');
+      } else {
+        final int messageId = event.last.id!;
+
+        AppDebug.log(
+            'Main screen riceve #${event.length} (id: $messageId) NON DUPLICATI $messageId msg: ${event.last.messaggio} ');
+
+        showInSnackBar(context, event[event.length - 1].messaggio);
+        viewModel.updateData(show: true);
+      }
     });
 
     super.initState();
   }
+
+  StreamSubscription<List<AppNotification.Notification>>? _subscription;
 
   @override
   Widget build(BuildContext context) => Consumer<HomeViewModel>(
@@ -52,10 +66,8 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
 
   DefaultTabController _buildDefaultTabController(BuildContext context,
       HomeViewModel viewModel, AppLocalizations localization) {
-    _viewModel = viewModel;
     if (viewModel.isLoading) {
       _animationController.repeat();
-      //showInSnackBar(context, 'Aggiornamento in corso');
     } else {
       _animationController.reset();
     }
@@ -75,7 +87,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                     tooltip: localization.refresh,
                     onPressed: () {
                       showInSnackBar(context, 'Aggiornamento in corso');
-                      viewModel.updateData();
+                      viewModel.updateData(show: true);
                     }),
                 builder: (BuildContext context, Widget? _widget) {
                   return Transform.rotate(
@@ -122,6 +134,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
 
   @override
   void dispose() {
+    _subscription?.cancel();
     _animationController.dispose();
     super.dispose();
   }

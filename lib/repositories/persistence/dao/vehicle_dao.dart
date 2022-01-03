@@ -23,6 +23,15 @@ abstract class VehicleDao {
   @Insert()
   Future<void> insert(Vehicle value);
 
+  @Insert()
+  Future<void> insertList(List<Vehicle> values);
+
   @Query("DELETE FROM vehicles")
   Future<void> deleteAll();
+
+  @transaction
+  Future<void> insertInTransaction(List<Vehicle> values) async {
+    await deleteAll();
+    await insertList(values);
+  }
 }

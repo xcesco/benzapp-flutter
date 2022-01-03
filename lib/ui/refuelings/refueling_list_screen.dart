@@ -1,6 +1,4 @@
 import 'package:benzapp_flutter/repositories/model/refueling.dart';
-import 'package:benzapp_flutter/ui/home/home_view_model.dart';
-import 'package:benzapp_flutter/ui/refuelings/refueling_detail_screen.dart';
 import 'package:benzapp_flutter/ui/refuelings/refueling_item_widget.dart';
 import 'package:benzapp_flutter/ui/refuelings/refueling_view_model.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +35,9 @@ class RefuelingListScreenState extends State<RefuelingListScreen> {
                 builder: (BuildContext context, RefuelingViewModel viewModel,
                         Widget? child) =>
                     FutureBuilder<List<Refueling>>(
-                      future: (args.title!=null) ? viewModel.loadDataByTarga(args.title!) : viewModel.loadData(),
+                      future: (args.title != null)
+                          ? viewModel.loadDataByTarga(args.title!)
+                          : viewModel.loadData(),
                       initialData: const <Refueling>[],
                       builder: (BuildContext buildContext,
                               AsyncSnapshot<List<Refueling>> snapshot) =>
@@ -47,12 +47,7 @@ class RefuelingListScreenState extends State<RefuelingListScreen> {
                           color: Colors.grey,
                         ),
                         itemBuilder: (BuildContext context, int position) =>
-                            RefuelingItem(snapshot.data![position],(Refueling item) {
-                              Navigator.pushNamed(
-                                  context, RefuelingDetailScreen.routeName,
-                                  arguments: ScreenArguments(
-                                      id: item.id, title: item.targa));
-                            }),
+                            RefuelingItem(snapshot.data![position]),
                         itemCount: snapshot.data!.length,
                       ),
                     ))));

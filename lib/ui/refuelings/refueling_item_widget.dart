@@ -1,23 +1,23 @@
-import 'dart:convert';
-
 import 'package:benzapp_flutter/app_debug.dart';
 import 'package:benzapp_flutter/repositories/model/refueling.dart';
+import 'package:benzapp_flutter/ui/refuelings/refueling_detail_screen.dart';
 import 'package:benzapp_flutter/ui/widgets/app_commons.dart';
 import 'package:flutter/material.dart';
 import 'package:instant/instant.dart';
 import 'package:intl/intl.dart';
 
+import '../../main.dart';
+
 class RefuelingItem extends StatelessWidget {
   final Refueling _item;
-  final void Function(Refueling) _onItemSelected;
 
-  const RefuelingItem(this._item, this._onItemSelected);
+  const RefuelingItem(this._item, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       onTap: () {
-        _onItemSelected(_item);
+        _onSelect(context);
       },
       contentPadding:
           const EdgeInsets.only(left: 8, right: 8, top: 4, bottom: 4),
@@ -73,10 +73,15 @@ class RefuelingItem extends StatelessWidget {
           color: Colors.indigo,
         ),
         onTap: () {
-          _onItemSelected(_item);
+          _onSelect(context);
           AppDebug.log('DETAIL');
         },
       ),
     );
+  }
+
+  void _onSelect(BuildContext context) {
+    Navigator.pushNamed(context, RefuelingDetailScreen.routeName,
+        arguments: ScreenArguments(id: _item.id, title: _item.targa));
   }
 }

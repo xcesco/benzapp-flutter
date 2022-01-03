@@ -95,6 +95,7 @@ A Flutter plugin to share images between Flutter and Android.
 - https://docs.flutter.dev/cookbook/persistence/sqlite
 - https://levelup.gitconnected.com/room-database-equivalent-for-flutter-807c9729b58d
 - https://pub.dev/packages/floor#data-changes
+- https://levelup.gitconnected.com/top-5-local-database-solutions-for-flutter-development-6351cd494070
 
 ## Providers
 
@@ -164,15 +165,18 @@ A Flutter plugin to share images between Flutter and Android.
 
 ## Firebase
 
-Richiede installazione Firebase CLI
-https://firebase.google.com/docs/cli#install-cli-windows
-https://firebase.flutter.dev/docs/overview/#initializing-flutterfire
-https://www.woolha.com/tutorials/flutter-using-firebase-remote-config
+Richiede installazione Firebase CLI.
+
+- https://firebase.google.com/docs/cli#install-cli-windows
+- https://firebase.flutter.dev/docs/overview/#initializing-flutterfire
+- https://www.woolha.com/tutorials/flutter-using-firebase-remote-config
+- https://stackoverflow.com/questions/66830661/firebase-messaging-onbackgroundmessage-local-notifications
 
 ## FCM
 
 - https://pub.dev/packages/firebase_messaging/install
 - https://firebase.flutter.dev/docs/messaging/usage
+- https://pub.dev/packages/flutter_local_notifications/install
 
 ### SharePreference
 

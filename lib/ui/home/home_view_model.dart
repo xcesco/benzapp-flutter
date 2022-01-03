@@ -1,6 +1,7 @@
 import 'package:benzapp_flutter/app_debug.dart';
 import 'package:benzapp_flutter/repositories/account_repository.dart';
 import 'package:benzapp_flutter/repositories/impl/vehicle_repository_impl.dart';
+import 'package:benzapp_flutter/repositories/model/notification.dart';
 import 'package:benzapp_flutter/repositories/model/refueling.dart';
 import 'package:benzapp_flutter/repositories/model/vehicle.dart';
 import 'package:benzapp_flutter/repositories/network/api_client.dart';
@@ -24,6 +25,10 @@ class HomeViewModel extends BaseViewModel {
       this._notificationRepository, this._accountRepository);
 
   Future<bool> isPrimoAccesso() => AppPreferences.instance.isPrimoAccesso();
+
+  Stream<List<Notification>> getNotifiche() {
+    return _notificationRepository.getDataStream();
+  }
 
   Future<List<Vehicle>> getTessere() {
     return _vehicleRepository.getData();
@@ -77,17 +82,21 @@ class HomeViewModel extends BaseViewModel {
     return _loginStatus;
   }
 
-  @transaction
-  Future<void> updateData() async {
-    _isLoading = true;
-    AppDebug.log(">>>>>>>>>>>>> BEGIN");
-    notifyListeners();
+  Future<void> updateData({bool show = false}) async {
+    if (show) {
+      _isLoading = true;
+      notifyListeners();
+    }
 
+    AppDebug.log(">>>>>>>>>>>>> BEGIN");
     await _vehicleRepository.update();
     await _refuelingRepository.update();
-
-    _isLoading = false;
-    notifyListeners();
+    await _notificationRepository.deleteAll();
     AppDebug.log(">>>>>>>>>>>>> END");
+
+    if (show) {
+      _isLoading = false;
+      notifyListeners();
+    }
   }
 }

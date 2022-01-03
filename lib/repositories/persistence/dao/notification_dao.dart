@@ -14,6 +14,9 @@ abstract class NotificationDao {
   @Query("DELETE FROM notifications")
   Future<void> deleteAll();
 
-  @Insert()
-  Future<void> insert(Notification value);
+  @Insert(onConflict: OnConflictStrategy.fail)
+  Future<int> insert(Notification value);
+
+  @Query('SELECT count(*) FROM notifications')
+  Future<int?> findCount();
 }

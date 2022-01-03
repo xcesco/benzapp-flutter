@@ -18,6 +18,15 @@ abstract class RefuelingDao {
   @Insert()
   Future<void> insert(Refueling value);
 
+  @Insert()
+  Future<void> insertList(List<Refueling> values);
+
+  @transaction
+  Future<void> insertInTransaction(List<Refueling> values) async {
+    await deleteAll();
+    await insertList(values);
+  }
+
   @Query("DELETE FROM refuelings")
   Future<void> deleteAll();
 

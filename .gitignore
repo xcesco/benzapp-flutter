@@ -59,3 +59,4 @@ app.*.map.json
 /ios/Podfile.lock
 /android/app/src/main/res/values/secrets.xml
 /ios/Runner/Secrets.swift
+/android/keystore.properties

@@ -4,9 +4,9 @@ import 'base_entity.dart';
 
 @Entity(tableName: 'notifications')
 class Notification extends BaseEntity {
-  Notification(int id, this.messaggio, this.targa) : super(id);
+  Notification(this.messaggio, {this.targa, int? id}) : super(id = id);
 
   final String messaggio;
 
-  final String targa;
+  final String? targa;
 }

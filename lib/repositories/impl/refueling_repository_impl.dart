@@ -1,11 +1,10 @@
+import 'package:benzapp_flutter/repositories/model/refueling.dart';
 import 'package:benzapp_flutter/repositories/network/api/rifornimento_resource_api.dart';
 import 'package:benzapp_flutter/repositories/network/api_client.dart';
 import 'package:benzapp_flutter/repositories/network/model/rifornimento.dart';
-import 'package:benzapp_flutter/repositories/model/refueling.dart';
 import 'package:benzapp_flutter/repositories/persistence/app_database.dart';
 import 'package:benzapp_flutter/repositories/persistence/dao/refueling_dao.dart';
 import 'package:benzapp_flutter/repositories/refueling_repository.dart';
-import 'package:floor/floor.dart';
 
 class RefuelingRepositoryImpl extends RefuelingRepository {
   final ApiClient _apiClient;
@@ -13,23 +12,20 @@ class RefuelingRepositoryImpl extends RefuelingRepository {
 
   RefuelingRepositoryImpl(this._database, this._apiClient);
 
-  @transaction
   @override
   Future<void> update() async {
     final RefuelingDao daoRifornimenti = _database.refuelingDao;
     final RifornimentoResourceApi rifornimenotResourceApi =
-        _apiClient.getRifornimentoResourceApi();
+    _apiClient.getRifornimentoResourceApi();
 
-    await daoRifornimenti.deleteAll();
     final List<Rifornimento>? list =
-        (await rifornimenotResourceApi.getAllRifornimentosUsingGET(size: 1000))
-            .data
-            ?.toList();
+    (await rifornimenotResourceApi.getAllRifornimentosUsingGET(size: 1000))
+        .data
+        ?.toList();
 
     if (list != null) {
-      for (final Rifornimento item in list) {
-        daoRifornimenti.insert(Refueling.of(item));
-      }
+      daoRifornimenti
+          .insertInTransaction(list.map((e) => Refueling.of(e)).toList());
     }
   }
 
