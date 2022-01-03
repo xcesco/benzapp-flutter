@@ -28,6 +28,7 @@ import 'package:benzapp_flutter/ui/stations/station_view_model.dart';
 import 'package:benzapp_flutter/ui/vehicles/vehicle_detail_screen.dart';
 import 'package:benzapp_flutter/ui/vehicles/vehicle_list_screen.dart';
 import 'package:benzapp_flutter/ui/vehicles/vehicle_view_model.dart';
+import 'package:benzapp_flutter/ui/widgets/app_commons.dart';
 import 'package:benzapp_flutter/ui/widgets/please_wait_widget.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -134,6 +135,7 @@ class MyAppState extends State<MyApp> {
         provisional: false,
         sound: true,
       );
+
       AppDebug.log('User granted permission: ${settings.authorizationStatus}');
     } catch (error) {
       AppDebug.log(error.toString());

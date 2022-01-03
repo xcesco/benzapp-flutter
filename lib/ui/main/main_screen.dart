@@ -25,6 +25,8 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
   late AnimationController _animationController;
 
+  HomeViewModel? _viewModel;
+
   @override
   void initState() {
     // FirebaseMessaging.onBackgroundMessage((RemoteMessage message) {
@@ -33,6 +35,11 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
 
     _animationController =
         AnimationController(vsync: this, duration: const Duration(seconds: 2));
+
+    FirebaseMessaging.onMessage.listen((RemoteMessage event) {
+      AppDebug.log('Nuovo rifornimento effettuato');
+      _viewModel?.updateData();
+    });
 
     super.initState();
   }
@@ -45,13 +52,10 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
 
   DefaultTabController _buildDefaultTabController(BuildContext context,
       HomeViewModel viewModel, AppLocalizations localization) {
-    FirebaseMessaging.onMessage.listen((RemoteMessage event) {
-      showInSnackBar(context, 'Nuovo rifornimento effettuato');
-      viewModel.updateData();
-    });
-
+    _viewModel = viewModel;
     if (viewModel.isLoading) {
       _animationController.repeat();
+      //showInSnackBar(context, 'Aggiornamento in corso');
     } else {
       _animationController.reset();
     }
