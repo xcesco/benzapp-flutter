@@ -25,6 +25,10 @@ apply plugin: 'com.android.application'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 //apply from: "com.google.android.libraries.mapsplatform.secrets-gradle-plugin"
 
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
 android {
     compileSdkVersion 32
 
@@ -42,11 +46,19 @@ android {
         versionName flutterVersionName
     }
 
+    signingConfigs {
+        releaseConfig {
+            storeFile file(keystoreProperties['GRADLE_KEYSTORE_FILE'])
+            storePassword keystoreProperties['GRADLE_KEYSTORE_PASSWORD']
+            keyAlias keystoreProperties['GRADLE_KEYSTORE_ALIAS']
+            keyPassword keystoreProperties['GRADLE_KEYSTORE_ALIAS_PASSWORD']
+        }
+    }
+
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.releaseConfig
         }
     }
 }

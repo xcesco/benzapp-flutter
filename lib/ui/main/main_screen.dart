@@ -1,8 +1,12 @@
+import 'dart:async';
+
 import 'package:benzapp_flutter/app_debug.dart';
+import 'package:benzapp_flutter/repositories/model/notification.dart'
+    as AppNotification;
 import 'package:benzapp_flutter/ui/home/home_view_model.dart';
 import 'package:benzapp_flutter/ui/login/login_screen.dart';
 import 'package:benzapp_flutter/ui/stations/stations_map_fragment.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:benzapp_flutter/ui/widgets/app_commons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
@@ -11,7 +15,7 @@ import '../home/home_fragment.dart';
 import '../stations/stations_list_fragment.dart';
 
 class MainScreen extends StatefulWidget {
-  static String routeName = '/';
+  static String routeName = '/main';
 
   const MainScreen({Key? key}) : super(key: key);
 
@@ -21,15 +25,53 @@ class MainScreen extends StatefulWidget {
   }
 }
 
-class _MainScreenState extends State<MainScreen> {
-  @override
-  Widget build(BuildContext context) =>
-      _buildDefaultTabController(context, AppLocalizations.of(context)!);
+class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
+  late AnimationController _animationController;
 
-  DefaultTabController _buildDefaultTabController(
-      BuildContext context, AppLocalizations localization) {
-    HomeViewModel viewModel =
+  @override
+  void initState() {
+    AppDebug.log("Cccccc---------------");
+    _animationController =
+        AnimationController(vsync: this, duration: const Duration(seconds: 2));
+
+    final HomeViewModel viewModel =
         Provider.of<HomeViewModel>(context, listen: false);
+
+    _subscription = viewModel
+        .getNotifiche()
+        .listen((List<AppNotification.Notification> event) {
+      if (event.isEmpty) {
+        AppDebug.log('Main screen riceve #${event.length} messaggi');
+      } else {
+        final int messageId = event.last.id!;
+
+        AppDebug.log(
+            'Main screen riceve #${event.length} (id: $messageId) NON DUPLICATI $messageId msg: ${event.last.messaggio} ');
+
+        showInSnackBar(context, event[event.length - 1].messaggio);
+        viewModel.updateData(show: true);
+      }
+    });
+
+    super.initState();
+  }
+
+  StreamSubscription<List<AppNotification.Notification>>? _subscription;
+
+  @override
+  Widget build(BuildContext context) => Consumer<HomeViewModel>(
+      builder: (BuildContext context, HomeViewModel viewModel, Widget? child) =>
+          _buildDefaultTabController(
+              context, viewModel, AppLocalizations.of(context)!));
+
+  DefaultTabController _buildDefaultTabController(BuildContext context,
+      HomeViewModel viewModel, AppLocalizations localization) {
+    if (viewModel.isLoading) {
+      _animationController.repeat();
+    } else {
+      _animationController.reset();
+    }
+
     return DefaultTabController(
         length: 3,
         child: Scaffold(
@@ -38,6 +80,22 @@ class _MainScreenState extends State<MainScreen> {
             elevation: 0,
             title: Text(localization.title),
             actions: <Widget>[
+              AnimatedBuilder(
+                animation: _animationController,
+                child: IconButton(
+                    icon: const Icon(Icons.refresh),
+                    tooltip: localization.refresh,
+                    onPressed: () {
+                      showInSnackBar(context, 'Aggiornamento in corso');
+                      viewModel.updateData(show: true);
+                    }),
+                builder: (BuildContext context, Widget? _widget) {
+                  return Transform.rotate(
+                    angle: _animationController.value * 20,
+                    child: _widget,
+                  );
+                },
+              ),
               PopupMenuButton(
                 onSelected: (String selectedValue) {
                   switch (selectedValue) {
@@ -75,31 +133,11 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   @override
-  void initState() {
-    FirebaseMessaging.onMessage.listen((RemoteMessage event) {
-      print("message received");
-      print(event.notification!.body);
-      showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: Text("Notification"),
-              content: Text(event.notification!.body!),
-              actions: [
-                TextButton(
-                  child: Text("Ok"),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                )
-              ],
-            );
-          });
-    });
-    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-      AppDebug.log('Message clicked!');
-    });
-  } //https://stackoverflow.com/questions/53299232/elevation-not-working-on-flutter-material
+  void dispose() {
+    _subscription?.cancel();
+    _animationController.dispose();
+    super.dispose();
+  }
 
   Widget _buildBody(BuildContext context) {
     return const Material(

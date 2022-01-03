@@ -21,6 +21,7 @@ import 'converters/tessera_converter.dart';
 import 'converters/tessera_veicolo_enum_converter.dart';
 import 'dao/refueling_dao.dart';
 import 'dao/station_dao.dart';
+import 'dao/transational_dao.dart';
 
 part 'app_database.g.dart'; // the generated code will be there
 
@@ -47,4 +48,6 @@ abstract class AppDatabase extends FloorDatabase {
   StationDao get stationDao;
 
   RefuelingDao get refuelingDao;
+
+  TransactionalDao get transactionalDao;
 }

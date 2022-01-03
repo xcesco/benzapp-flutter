@@ -1,10 +1,15 @@
 import 'dart:convert';
 
-import 'package:benzapp_flutter/repositories/network/model/rifornimento.dart';
-import 'package:benzapp_flutter/repositories/model/refueling.dart';
+
 import 'package:benzapp_flutter/repositories/model/vehicle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+void showInSnackBar(BuildContext context, String value) {
+  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    content: Text(value),
+  ));
+}
 
 Future<void> showInformationDialog(BuildContext context, String message) async {
   final AppLocalizations localization = AppLocalizations.of(context)!;
@@ -57,7 +62,8 @@ Widget createRefuelingAvatar(BuildContext context, String tipoCarburante,
         tipoCarburante,
         style: Theme.of(context)
             .textTheme
-            .headline6?.apply(fontSizeFactor: 0.6, color: Colors.white),
+            .headline6
+            ?.apply(fontSizeFactor: 0.6, color: Colors.white),
       ),
       radius: size - 1,
       backgroundColor:

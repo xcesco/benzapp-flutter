@@ -7,6 +7,8 @@ import 'package:benzapp_flutter/repositories/impl/notification_repository_impl.d
 import 'package:benzapp_flutter/repositories/impl/refueling_repository_impl.dart';
 import 'package:benzapp_flutter/repositories/impl/stations_repository_impl.dart';
 import 'package:benzapp_flutter/repositories/impl/vehicle_repository_impl.dart';
+import 'package:benzapp_flutter/repositories/model/notification.dart'
+    as AppNotification;
 import 'package:benzapp_flutter/repositories/model/station.dart';
 import 'package:benzapp_flutter/repositories/network/api_client.dart';
 import 'package:benzapp_flutter/repositories/network/model/admin_user_dto.dart';
@@ -19,7 +21,6 @@ import 'package:benzapp_flutter/ui/home/home_view_model.dart';
 import 'package:benzapp_flutter/ui/lock/lock_screen.dart';
 import 'package:benzapp_flutter/ui/lock/lock_view_model.dart';
 import 'package:benzapp_flutter/ui/login/login_screen.dart';
-import 'package:benzapp_flutter/ui/login/login_view_model.dart';
 import 'package:benzapp_flutter/ui/main/main_screen.dart';
 import 'package:benzapp_flutter/ui/qrcode/qrcode_screen.dart';
 import 'package:benzapp_flutter/ui/refuelings/refueling_detail_screen.dart';
@@ -38,6 +39,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:sqflite/sqflite.dart' as sqflite;
 
+import 'fcm_handler.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -65,13 +67,15 @@ class MyAppState extends State<MyApp> {
 
   late RefuelingViewModel _refuelingViewModel;
 
-  late LoginViewModel _loginViewModel;
-
   late LockViewModel _lockViewModel;
 
   late HomeViewModel _homeViewModel;
 
   late String _initialRouteName;
+
+  late String _lastMessage = '';
+
+  int notificationSemaphore = 0;
 
   Future<bool> _applicationInit() async {
     try {
@@ -112,8 +116,6 @@ class MyAppState extends State<MyApp> {
 
       _vehicleViewModel = VehicleViewModel(vehicleRepository);
       _refuelingViewModel = RefuelingViewModel(refuelingRepository);
-      _loginViewModel = LoginViewModel(
-          accountRepository, vehicleRepository, refuelingRepository);
       _lockViewModel = LockViewModel(
           applicationInfoRepository, secureRepository, restClient);
       _stationsViewModel = StationsViewModel(stationsRepository);
@@ -139,8 +141,32 @@ class MyAppState extends State<MyApp> {
         provisional: false,
         sound: true,
       );
+
       AppDebug.log('User granted permission: ${settings.authorizationStatus}');
+
+      FirebaseMessaging.onMessage.listen((RemoteMessage event) {
+        final String currentMessage = event.notification?.body ?? 'unknown';
+
+        if (notificationSemaphore != 0) {
+          return;
+        }
+        notificationSemaphore = 1;
+        Future<void>.delayed(const Duration(seconds: 1))
+            .then((_) => notificationSemaphore = 0);
+
+        AppDebug.log('Notifiche rifornimenti add: $currentMessage');
+        database.notificationDao
+            .insert(AppNotification.Notification(currentMessage))
+            .then((int id) {
+          AppDebug.log('Notifiche rifornimenti registrato con id ${id}');
+        });
+      });
+
+      FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
+
+      AppDebug.log('Setup completato con successo');
     } catch (error) {
+      AppDebug.log('Setup completato con errori');
       AppDebug.log(error.toString());
     }
 
@@ -149,10 +175,11 @@ class MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
+    return FutureBuilder<bool>(
         future: _applicationInit(),
+        initialData: false,
         builder: (BuildContext context, AsyncSnapshot<Object?> snapshot) {
-          if (snapshot.hasData) {
+          if (snapshot.hasData && snapshot.data == true) {
             return _buildApp();
           } else {
             return _buildSplashScreen();
@@ -163,9 +190,6 @@ class MyAppState extends State<MyApp> {
   Widget _buildApp() {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<LoginViewModel>(
-          create: (BuildContext context) => _loginViewModel,
-        ),
         ChangeNotifierProvider<LockViewModel>(
           create: (BuildContext context) => _lockViewModel,
         ),

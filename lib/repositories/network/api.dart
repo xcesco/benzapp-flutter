@@ -48,6 +48,9 @@ class Openapi {
       Serializers? serializers,
       String? basePathOverride,
       List<Interceptor>? interceptors}) {
+    if (basePathOverride != null) {
+      basePath = basePathOverride;
+    }
     if (dio == null) {
       BaseOptions options = BaseOptions(
         baseUrl: basePathOverride ?? basePath,
@@ -69,8 +72,9 @@ class Openapi {
   }
 
   void setJWTToken(String name, String token) {
-    (dio.interceptors.firstWhereOrNull((element) => element is HttpAuthInterceptor)
-    as HttpAuthInterceptor)
+    (dio.interceptors
+                .firstWhereOrNull((element) => element is HttpAuthInterceptor)
+            as HttpAuthInterceptor)
         .tokens[name] = token;
   }
 

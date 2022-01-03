@@ -55,6 +55,7 @@ dependencies:
   share_plus: ^3.0.4
   path_provider: ^2.0.8
   instant: ^0.4.1
+  flutter_local_notifications: ^9.2.0
 
 dev_dependencies:
   flutter_test:

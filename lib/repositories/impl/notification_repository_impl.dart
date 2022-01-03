@@ -17,4 +17,11 @@ class NotificationRepositoryImpl extends NotificationRepository {
   Future<List<Notification>> getData() {
     throw UnimplementedError();
   }
+
+  @override
+  Stream<List<Notification>> getDataStream() =>
+      _database.notificationDao.findAllLive();
+
+  @override
+  Future<void> deleteAll() => _database.notificationDao.deleteAll();
 }

@@ -4,7 +4,6 @@ import 'package:benzapp_flutter/repositories/model/refueling.dart';
 import 'package:benzapp_flutter/repositories/model/vehicle.dart';
 import 'package:benzapp_flutter/ui/home/home_view_model.dart';
 import 'package:benzapp_flutter/ui/qrcode/qrcode_screen.dart';
-import 'package:benzapp_flutter/ui/refuelings/refueling_detail_screen.dart';
 import 'package:benzapp_flutter/ui/refuelings/refueling_item_widget.dart';
 import 'package:benzapp_flutter/ui/refuelings/refueling_list_screen.dart';
 import 'package:benzapp_flutter/ui/vehicles/vehicle_detail_screen.dart';
@@ -106,13 +105,7 @@ class _HomeFragmentState extends State<HomeFragment> {
                         itemBuilder: (BuildContext context, int position) =>
                             position == 0
                                 ? _buildRefuelingTitle(snapshot.data!.length)
-                                : RefuelingItem(snapshot.data![position - 1],
-                                    (Refueling item) {
-                                    Navigator.pushNamed(context,
-                                        RefuelingDetailScreen.routeName,
-                                        arguments: ScreenArguments(
-                                            id: item.id, title: item.targa));
-                                  }),
+                                : RefuelingItem(snapshot.data![position - 1]),
                         itemCount: min(3, snapshot.data!.length + 1),
                       ),
                     ))));

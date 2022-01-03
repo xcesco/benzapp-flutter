@@ -43,6 +43,7 @@
 
   "date":"Data",
   "station":"Distributore",
+  "refresh": "Aggiorna dati",
 
   "refuelings":"rifornimenti",
 

@@ -3,7 +3,6 @@ import 'package:benzapp_flutter/ui/lock/lock_view_model.dart';
 import 'package:benzapp_flutter/ui/lock/passcode_widget.dart';
 import 'package:benzapp_flutter/ui/main/main_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 class LockScreen extends StatefulWidget {
@@ -31,9 +30,13 @@ class LockScreenState extends State<LockScreen> {
         PasscodeWidget(
           lockViewModel.isPrimoAccesso(),
           lockViewModel.getCurrentPIN(),
-          (String value) {
+          (String value) async {
             AppDebug.log('PIN UNLOCK $value');
-            lockViewModel.unlock(value).then((_) => Navigator.of(context).pushReplacementNamed(MainScreen.routeName));
+            lockViewModel.unlock(value).then((_) {
+              AppDebug.log('SUCAZ $value');
+              Navigator.of(context)
+                  .pushNamedAndRemoveUntil(MainScreen.routeName, (_) => false);
+            });
           },
           (String value) {
             AppDebug.log('PIN GENERATED $value');
