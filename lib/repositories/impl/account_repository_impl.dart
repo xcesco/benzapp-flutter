@@ -14,8 +14,8 @@ import '../account_repository.dart';
 import '../persistence/app_database.dart';
 
 class AccountRepositoryImpl extends AccountRepository {
-  static const _backendBaseUrlParameter = 'backend_base_url';
-  static const _maintenanceModeParameter = 'maintenance_mode';
+  static const String _backendBaseUrlParameter = 'backend_base_url';
+  static const String _maintenanceModeParameter = 'maintenance_mode';
   static const String defaultBackendBaseUrl = 'https://benz-app.herokuapp.com/';
   String _backendBaseUrl = defaultBackendBaseUrl;
   final ApiClient _apiClient;
@@ -63,6 +63,10 @@ class AccountRepositoryImpl extends AccountRepository {
 
     try {
       await remoteConfig.fetch();
+    } catch (e) {
+      AppDebug.log('Error: ${e.toString()}');
+    }
+    try {
       await remoteConfig.activate();
 
       AppDebug.log(
@@ -70,10 +74,10 @@ class AccountRepositoryImpl extends AccountRepository {
       AppDebug.log('Last fetch time: ' + remoteConfig.lastFetchTime.toString());
 
       _backendBaseUrl =
-          remoteConfig.getString(_backendBaseUrlParameter).toString();
+          remoteConfig.getString(_backendBaseUrlParameter).toString().trim();
       updateBaseUrl(_backendBaseUrl);
 
-      AppDebug.log('backendBaseUrl: $backendBaseUrl');
+      AppDebug.log('>>>>>   backendBaseUrl: $_backendBaseUrl');
       return _backendBaseUrl;
     } catch (e) {
       AppDebug.log('Error: ${e.toString()}');

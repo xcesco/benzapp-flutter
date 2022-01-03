@@ -1,13 +1,13 @@
 import 'dart:math';
 
+import 'package:benzapp_flutter/ui/widgets/app_commons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../app_debug.dart';
 import 'key_pad.dart';
 
 class PasscodeWidget extends StatefulWidget {
-  late TextEditingController _pinController;
+  final TextEditingController _pinController = TextEditingController();
   final Function(String) _onUnlock;
   final Function(String) _onPinIsGenerated;
   final Function() _onWrongPin;
@@ -20,9 +20,7 @@ class PasscodeWidget extends StatefulWidget {
   PasscodeWidget(this._primoAccesso, this._pin, this._onUnlock,
       this._onPinIsGenerated, this._onWrongPin,
       {Key? key, this.headerTextLeft, this.pinIsDefined})
-      : super(key: key) {
-    _pinController = TextEditingController();
-  }
+      : super(key: key) {}
 
   @override
   State<StatefulWidget> createState() {
@@ -65,12 +63,6 @@ class _PasscodeState extends State<PasscodeWidget> {
             })
           });
     });
-  }
-
-  void showInSnackBar(String value) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text(value),
-    ));
   }
 
   Expanded _buildDisplayPin(BuildContext context) {
@@ -200,36 +192,31 @@ class _PasscodeState extends State<PasscodeWidget> {
   _onSubmitPIN(String pin) {
     if (pin.length != 6) {
       (pin.isEmpty)
-          ? showInSnackBar('Please Enter Pin')
-          : showInSnackBar('Wrong Pin');
+          ? showInSnackBar(context, 'Please Enter Pin')
+          : showInSnackBar(context, 'Wrong Pin');
       return;
     } else {
       _pinController.text = pin.substring(0, min(pin.length, 6));
 
       if (_typePasscodeStatus == TypePasscodeStatus.typeCheckPassword) {
         if (_pinController.text == _currentPin) {
-          showInSnackBar('Pin Match');
-
           widget._onUnlock(_currentPin!);
         } else {
-          showInSnackBar('Wrong pin');
+          showInSnackBar(context, 'Wrong pin');
 
           widget._onWrongPin();
         }
       } else if (_typePasscodeStatus == TypePasscodeStatus.typeSetPasscode) {
-        showInSnackBar('Pin first definition');
         _currentPin = _pinController.text;
         _pinController.text = '';
         _typePasscodeStatus = TypePasscodeStatus.typeSetSecondPasscode;
       } else if (_typePasscodeStatus ==
           TypePasscodeStatus.typeSetSecondPasscode) {
         if (_pinController.text == _currentPin) {
-          showInSnackBar('Pin generated');
-
           widget._onPinIsGenerated(_currentPin!);
           widget._onUnlock(_currentPin!);
         } else {
-          showInSnackBar('Wrong pin');
+          showInSnackBar(context, 'Wrong pin');
 
           widget._onWrongPin();
           _typePasscodeStatus = TypePasscodeStatus.typeSetPasscode;
@@ -239,16 +226,13 @@ class _PasscodeState extends State<PasscodeWidget> {
         _pinController.text = '';
       }
 
-      AppDebug.log('Pin is ${_pinController.text}');
-
       setState(() {
         // displayCode = getNextCode();
       });
     }
   }
 
-  _onChangePIN(String pin) {
-    AppDebug.log(_pinController.text);
+  void _onChangePIN(String pin) {
     setState(() {
       _pinController.text = pin;
     });

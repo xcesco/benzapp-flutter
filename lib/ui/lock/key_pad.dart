@@ -5,7 +5,7 @@ class KeyPad extends StatelessWidget {
   final double buttonSize;
   final TextEditingController pinController;
   final Function onChange;
-  final Function onSubmit;
+  final Function(String) onSubmit;
   final bool isPinLogin;
 
   const KeyPad(

@@ -33,7 +33,8 @@ class LockScreenState extends State<LockScreen> {
           lockViewModel.getCurrentPIN(),
           (String value) {
             AppDebug.log('PIN UNLOCK $value');
-            lockViewModel.unlock(value).then((_) => Navigator.of(context).pushReplacementNamed(MainScreen.routeName));
+            lockViewModel.unlock(value).then((_) => Navigator.of(context)
+                .pushReplacementNamed(MainScreen.routeName));
           },
           (String value) {
             AppDebug.log('PIN GENERATED $value');

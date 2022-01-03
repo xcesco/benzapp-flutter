@@ -32,6 +32,7 @@ class VehicleRepositoryImpl extends VehicleRepository {
     await _loadDeleghe(delegheResourceApi, vehicleDao);
   }
 
+  @transaction
   Future<void> _loadTessere(
       TesseraResourceApi tesseraResourceApi, VehicleDao vehicleDao) async {
     final List<Tessera>? list =
@@ -41,6 +42,7 @@ class VehicleRepositoryImpl extends VehicleRepository {
     }
   }
 
+  @transaction
   Future<void> _loadDeleghe(
       DelegaResourceApi tesseraResourceApi, VehicleDao vehicleDao) async {
     final List<Delega>? list =

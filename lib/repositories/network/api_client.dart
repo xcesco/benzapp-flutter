@@ -12,6 +12,8 @@ class ApiClient {
 
   ApiClient();
 
+  String get backendBaseUrl => _openapi.basePath;
+
   void updateBaseUrl(String backendBaseUrl) {
     _openapi = Openapi(basePathOverride: backendBaseUrl);
   }

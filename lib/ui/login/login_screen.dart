@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:benzapp_flutter/repositories/network/api_client.dart';
+import 'package:benzapp_flutter/ui/home/home_view_model.dart';
 import 'package:benzapp_flutter/ui/widgets/app_progress_indicator.dart';
 import 'package:drawable/drawable.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 import '../lock/lock_screen.dart';
-import 'login_view_model.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String routeName = '/login';
@@ -28,8 +28,7 @@ class _LoginScreenState extends State<LoginScreen>
   @override
   Widget build(BuildContext context) {
     final AppLocalizations localization = AppLocalizations.of(context)!;
-    final LoginViewModel accountViewModel =
-        Provider.of<LoginViewModel>(context);
+    final HomeViewModel accountViewModel = Provider.of<HomeViewModel>(context);
 
     return Scaffold(
         body: Container(
@@ -149,10 +148,9 @@ class _LoginScreenState extends State<LoginScreen>
             overflow: TextOverflow.ellipsis));
   }
 
-  Future<void> _login(
-      BuildContext context, LoginViewModel accountViewModel) async {
+  Future<void> _login(BuildContext context, HomeViewModel viewModel) async {
     FocusScope.of(context).unfocus();
-    final LoginStatus loginStatus = await accountViewModel.login(
+    final LoginStatus loginStatus = await viewModel.login(
         _userController.value.text, _passwordController.value.text);
 
     if (loginStatus == LoginStatus.success) {
