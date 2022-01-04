@@ -49,16 +49,6 @@ class VehicleItem extends StatelessWidget {
     );
   }
 
-  void _onSelected(BuildContext context, AppLocalizations localization) {
-    if (_item.delega) {
-      showInformationDialog(
-          context, localization.vehicleDelegaOperationNotAllowed);
-    } else {
-      _onItemSelected(_item);
-    }
-    AppDebug.log('DETAIL');
-  }
-
   List<Widget> _buildDelega(BuildContext context, Vehicle item) {
     if (_item.delega) {
       final AppLocalizations localization = AppLocalizations.of(context)!;
@@ -78,5 +68,15 @@ class VehicleItem extends StatelessWidget {
     } else {
       return [];
     }
+  }
+
+  void _onSelected(BuildContext context, AppLocalizations localization) {
+    if (_item.delega) {
+      showInformationDialog(
+          context, localization.vehicleDelegaOperationNotAllowed);
+    } else {
+      _onItemSelected(_item);
+    }
+    AppDebug.log('DETAIL');
   }
 }

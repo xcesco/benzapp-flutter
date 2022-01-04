@@ -1,6 +1,25 @@
-<svg height="100dp" viewportHeight="700" viewportWidth="700"
-    width="100dp">
-    <path fillColor="@color/primary_color"
-        pathData="M0,0L700,0L700,400Q350,550,0,400" strokeColor="@color/primary_color"
-        strokeWidth="1" />
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" height="297mm" id="svg8" version="1.1"
+    viewBox="0 0 210 297" width="210mm" xmlns="http://www.w3.org/2000/svg">
+  <defs id="defs2" />
+  <metadata id="metadata5">
+    <rdf:RDF>
+      <cc:Work rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g id="layer3">
+    <rect style="opacity:0.99;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.264583"
+        height="213.02736" id="rect1116" width="242.66071" x="-14.363094" y="91.621445" />
+  </g>
+  <g id="layer1">
+    <rect style="opacity:0.99;fill:#1976d2;fill-opacity:1;stroke:none;stroke-width:0.267905"
+        height="92.226204" id="rect933" ry="0" width="243.41669" x="-14.363095" y="-0.6047619" />
+    <ellipse style="opacity:0.99;fill:#1976d2;fill-opacity:1;stroke:none;stroke-width:0.379467"
+        cx="107.34523" cy="87.312508" id="path937" rx="121.65089" ry="64.576492" />
+  </g>
 </svg>

@@ -8,18 +8,19 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:benzapp_flutter/app_debug.dart';
 import 'package:benzapp_flutter/repositories/model/station.dart';
 import 'package:benzapp_flutter/ui/qrcode/qrcode_data.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   test('Load a file', () async {
-    Set<Station> current = <Station>{};
+    final Set<Station> current = <Station>{};
     final File file = File('test_resources/stations.json');
-    final json = await file.readAsString();
-    for (dynamic item in jsonDecode(json) as List<dynamic>) {
+    final String json = await file.readAsString();
+    for (final dynamic item in jsonDecode(json) as List<dynamic>) {
       current.add(Station.fromJson(item));
-      print(current);
+      AppDebug.log(current);
     }
     // final seth = contacts.first;
     // expect(seth['id'], 1);
@@ -36,6 +37,6 @@ void main() {
 
     QRCodeData qrCode = QRCodeData.fromJson(jsonDecode(json));
 
-    print(jsonEncode(qrCode.toJson()));
+    AppDebug.log(jsonEncode(qrCode.toJson()));
   });
 }

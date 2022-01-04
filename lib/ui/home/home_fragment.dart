@@ -27,20 +27,15 @@ class _HomeFragmentState extends State<HomeFragment> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Expanded(
-            child: Container(
-          padding: const EdgeInsets.fromLTRB(8, 8, 8, 24),
-          child: _buildVehiclesCard(),
-        )),
-        Expanded(
-            child: Padding(
-          padding: const EdgeInsets.fromLTRB(8, 8, 8, 24),
-          child: Container(
-            child: _buildRefuelingsCard(),
-          ),
-        )),
+        Padding(
+            padding: const EdgeInsets.only(top: 24, left: 8, right: 8),
+            child: _buildVehiclesCard()),
+        Divider(),
+        Padding(
+            padding: const EdgeInsets.only(top: 36, left: 8, right: 8),
+            child: _buildRefuelingsCard()),
       ],
     );
   }
@@ -57,6 +52,7 @@ class _HomeFragmentState extends State<HomeFragment> {
                     Card(
                       elevation: 8,
                       child: ListView.separated(
+                        shrinkWrap: true,
                         separatorBuilder: (BuildContext context, int index) =>
                             const Divider(
                           color: Colors.grey,
@@ -68,18 +64,18 @@ class _HomeFragmentState extends State<HomeFragment> {
                                     (Vehicle item) {
                                     Navigator.pushNamed(
                                       context,
-                                      VehicleDetailScreen.routeName,
-                                      arguments: ScreenArguments(
-                                          id: item.id, title: item.targa),
-                                    );
-                                  }, (Vehicle item) {
-                                    Navigator.pushNamed(
-                                      context,
-                                      QRCodeScreen.routeName,
-                                      arguments: ScreenArguments(
-                                          id: item.id, title: item.targa),
-                                    );
-                                  }),
+                                VehicleDetailScreen.routeName,
+                                arguments: ScreenArguments(
+                                    id: item.id, title: item.targa),
+                              );
+                            }, (Vehicle item) {
+                              Navigator.pushNamed(
+                                context,
+                                QRCodeScreen.routeName,
+                                arguments: ScreenArguments(
+                                    id: item.id, title: item.targa),
+                              );
+                            }),
                         itemCount: min(3, snapshot.data!.length + 1),
                       ),
                     )));
@@ -94,10 +90,10 @@ class _HomeFragmentState extends State<HomeFragment> {
                 initialData: const <Refueling>[],
                 builder: (BuildContext buildContext,
                         AsyncSnapshot<List<Refueling>> snapshot) =>
-                    Center(
-                        child: Card(
+                    Card(
                       elevation: 8,
                       child: ListView.separated(
+                        shrinkWrap: true,
                         separatorBuilder: (BuildContext context, int index) =>
                             const Divider(
                           color: Colors.grey,
@@ -108,7 +104,7 @@ class _HomeFragmentState extends State<HomeFragment> {
                                 : RefuelingItem(snapshot.data![position - 1]),
                         itemCount: min(3, snapshot.data!.length + 1),
                       ),
-                    ))));
+                    )));
   }
 
   Widget _buildRefuelingTitle(int size) {

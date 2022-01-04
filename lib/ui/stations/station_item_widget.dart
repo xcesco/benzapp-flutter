@@ -1,6 +1,7 @@
 import 'package:benzapp_flutter/repositories/model/marchio.dart';
 import 'package:benzapp_flutter/repositories/model/station.dart';
 import 'package:flutter/material.dart';
+import 'package:maps_launcher/maps_launcher.dart';
 
 class StationItem extends StatelessWidget {
   final Station _station;
@@ -11,7 +12,8 @@ class StationItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(_station.indirizzo),
-      subtitle: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+      subtitle:
+          Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
         Text(
           _station.comune,
           textAlign: TextAlign.start,
@@ -34,7 +36,12 @@ class StationItem extends StatelessWidget {
               Icons.directions,
               color: Colors.blue,
             ),
-            onTap: () {},
+            onTap: () {
+              MapsLauncher.launchCoordinates(
+                  _station.latitudine,
+                  _station.longitudine,
+                  '${_station.indirizzo}, ${_station.comune}');
+            },
           ),
         ],
       ),
@@ -42,5 +49,6 @@ class StationItem extends StatelessWidget {
   }
 
   Container _showInfo(String label, String price) => Container(
-      padding: const EdgeInsetsDirectional.all(8), child: Column(children: [Text(label), Text('$price €/L')]));
+      padding: const EdgeInsetsDirectional.all(8),
+      child: Column(children: [Text(label), Text('$price €/L')]));
 }

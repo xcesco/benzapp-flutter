@@ -1,4 +1,3 @@
-import 'package:benzapp_flutter/repositories/model/refueling.dart';
 import 'package:benzapp_flutter/repositories/model/vehicle.dart';
 import 'package:benzapp_flutter/ui/home/home_view_model.dart';
 import 'package:benzapp_flutter/ui/qrcode/qrcode_screen.dart';

@@ -88,10 +88,14 @@ class HomeViewModel extends BaseViewModel {
       notifyListeners();
     }
 
+    await Future<void>.delayed(const Duration(seconds: 1));
+
     AppDebug.log(">>>>>>>>>>>>> BEGIN");
+
     await _vehicleRepository.update();
     await _refuelingRepository.update();
     await _notificationRepository.deleteAll();
+
     AppDebug.log(">>>>>>>>>>>>> END");
 
     if (show) {

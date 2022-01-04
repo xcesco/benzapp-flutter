@@ -37,6 +37,15 @@ struct Secrets {
 }
 ```
 
+## Release build per Play store
+
+Per ottenere il file bundle per la pubblicazione dell'applicativo sullo store di Google è
+sufficiente eseguire il
+
+```shell
+flutter build appbundle
+```
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
@@ -123,6 +132,8 @@ A Flutter plugin to share images between Flutter and Android.
 - https://pub.dev/packages/google_maps_flutter/install
 - https://pub.dev/packages/google_maps_cluster_manager
 - https://github.com/bpillon/google_maps_cluster_manager
+
+- https://pub.dev/packages/maps_launcher/install
 
 ## Gestione dei secret secret-gradle-plugin
 

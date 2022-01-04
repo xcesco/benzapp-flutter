@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:benzapp_flutter/repositories/network/api_client.dart';
 import 'package:benzapp_flutter/ui/home/home_view_model.dart';
 import 'package:benzapp_flutter/ui/widgets/app_progress_indicator.dart';
-import 'package:drawable/drawable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_svg_provider/flutter_svg_provider.dart' as svg_provider;
 import 'package:provider/provider.dart';
 
 import '../lock/lock_screen.dart';
@@ -103,17 +103,11 @@ class _LoginScreenState extends State<LoginScreen>
   }
 
   BoxDecoration _buildBoxDecoration() {
-    if (Platform.isAndroid) {
-      return const BoxDecoration(
-          image: DecorationImage(
-        image: DrawableImage("ic_home_background"),
-        fit: BoxFit.cover,
-      ));
-    } else {
-      return const BoxDecoration(
-        color: Colors.lightBlue,
-      );
-    }
+    return const BoxDecoration(
+        image: DecorationImage(
+      image: svg_provider.Svg('assets/svg/home_background.svg'),
+      fit: BoxFit.fitHeight,
+    ));
   }
 
   Padding _buildInputText(

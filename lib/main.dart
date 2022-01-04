@@ -8,7 +8,7 @@ import 'package:benzapp_flutter/repositories/impl/refueling_repository_impl.dart
 import 'package:benzapp_flutter/repositories/impl/stations_repository_impl.dart';
 import 'package:benzapp_flutter/repositories/impl/vehicle_repository_impl.dart';
 import 'package:benzapp_flutter/repositories/model/notification.dart'
-    as AppNotification;
+    as app_notification;
 import 'package:benzapp_flutter/repositories/model/station.dart';
 import 'package:benzapp_flutter/repositories/network/api_client.dart';
 import 'package:benzapp_flutter/repositories/network/model/admin_user_dto.dart';
@@ -72,8 +72,6 @@ class MyAppState extends State<MyApp> {
   late HomeViewModel _homeViewModel;
 
   late String _initialRouteName;
-
-  late String _lastMessage = '';
 
   int notificationSemaphore = 0;
 
@@ -156,7 +154,7 @@ class MyAppState extends State<MyApp> {
 
         AppDebug.log('Notifiche rifornimenti add: $currentMessage');
         database.notificationDao
-            .insert(AppNotification.Notification(currentMessage))
+            .insert(app_notification.Notification(currentMessage))
             .then((int id) {
           AppDebug.log('Notifiche rifornimenti registrato con id ${id}');
         });
