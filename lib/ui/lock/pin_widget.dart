@@ -6,7 +6,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'key_pad.dart';
 
-class PasscodeWidget extends StatefulWidget {
+class PinWidget extends StatefulWidget {
   final TextEditingController _pinController = TextEditingController();
   final Function(String) _onUnlock;
   final Function(String) _onPinIsGenerated;
@@ -17,7 +17,7 @@ class PasscodeWidget extends StatefulWidget {
   final Future<String?> _pin;
   final Future<bool?> _primoAccesso;
 
-  PasscodeWidget(this._primoAccesso, this._pin, this._onUnlock,
+  PinWidget(this._primoAccesso, this._pin, this._onUnlock,
       this._onPinIsGenerated, this._onWrongPin,
       {Key? key, this.headerTextLeft, this.pinIsDefined})
       : super(key: key) {}
@@ -28,7 +28,7 @@ class PasscodeWidget extends StatefulWidget {
   }
 }
 
-class _PasscodeState extends State<PasscodeWidget> {
+class _PasscodeState extends State<PinWidget> {
   late TextEditingController _pinController;
   late AppLocalizations _localization;
   late String? _currentPin;

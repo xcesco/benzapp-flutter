@@ -30,7 +30,6 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    AppDebug.log("Cccccc---------------");
     _animationController =
         AnimationController(vsync: this, duration: const Duration(seconds: 2));
 
@@ -49,7 +48,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
             'Main screen riceve #${event.length} (id: $messageId) NON DUPLICATI $messageId msg: ${event.last.messaggio} ');
 
         showInSnackBar(context, event[event.length - 1].messaggio);
-        viewModel.updateData(show: true);
+        viewModel.updateData(updateUI: true);
       }
     });
 
@@ -87,7 +86,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                     tooltip: localization.refresh,
                     onPressed: () {
                       showInSnackBar(context, 'Aggiornamento in corso');
-                      viewModel.updateData(show: true);
+                      viewModel.updateData(updateUI: true);
                     }),
                 builder: (BuildContext context, Widget? _widget) {
                   return Transform.rotate(

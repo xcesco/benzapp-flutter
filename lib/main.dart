@@ -120,14 +120,7 @@ class MyAppState extends State<MyApp> {
       _homeViewModel = HomeViewModel(vehicleRepository, refuelingRepository,
           notificationRepository, accountRepository);
 
-      final AdminUserDTO? account = await accountRepository.getAccount();
-      final String? jwtToken = await accountRepository.getJWTToken();
-      if (account != null && jwtToken != null) {
-        restClient.setJWTToken(jwtToken);
-        _initialRouteName = LockScreen.routeName;
-      } else {
-        _initialRouteName = LoginScreen.routeName;
-      }
+      await checkAccountAndSetNavigation(accountRepository, restClient);
 
       final FirebaseMessaging messaging = FirebaseMessaging.instance;
       final NotificationSettings settings = await messaging.requestPermission(
@@ -169,6 +162,18 @@ class MyAppState extends State<MyApp> {
     }
 
     return true;
+  }
+
+  Future<void> checkAccountAndSetNavigation(
+      AccountRepositoryImpl accountRepository, ApiClient restClient) async {
+    final AdminUserDTO? account = await accountRepository.getAccount();
+    final String? jwtToken = await accountRepository.getJWTToken();
+    if (account != null && jwtToken != null) {
+      restClient.setJWTToken(jwtToken);
+      _initialRouteName = LockScreen.routeName;
+    } else {
+      _initialRouteName = LoginScreen.routeName;
+    }
   }
 
   @override

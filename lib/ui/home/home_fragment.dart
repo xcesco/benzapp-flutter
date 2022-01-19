@@ -135,7 +135,8 @@ class _HomeFragmentState extends State<HomeFragment> {
 
   Widget _buildVehicleTitle(int size) {
     return ListTile(
-        leading: Icon(Icons.directions_car, color: Colors.indigo, size: 48),
+        leading:
+            const Icon(Icons.directions_car, color: Colors.indigo, size: 48),
         title: Text(
           'Tessere',
           style: Theme.of(context)
@@ -150,7 +151,7 @@ class _HomeFragmentState extends State<HomeFragment> {
           },
           child: Text(
             'VEDI TUTTE (${size})',
-            style: TextStyle(fontWeight: FontWeight.w400),
+            style: const TextStyle(fontWeight: FontWeight.w400),
           ),
         ));
   }

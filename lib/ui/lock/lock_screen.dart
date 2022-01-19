@@ -1,6 +1,6 @@
 import 'package:benzapp_flutter/app_debug.dart';
 import 'package:benzapp_flutter/ui/lock/lock_view_model.dart';
-import 'package:benzapp_flutter/ui/lock/passcode_widget.dart';
+import 'package:benzapp_flutter/ui/lock/pin_widget.dart';
 import 'package:benzapp_flutter/ui/main/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -27,20 +27,19 @@ class LockScreenState extends State<LockScreen> {
 
     return Scaffold(
       body: Row(children: [
-        PasscodeWidget(
+        PinWidget(
           lockViewModel.isPrimoAccesso(),
           lockViewModel.getCurrentPIN(),
           (String value) async {
             AppDebug.log('PIN UNLOCK $value');
-            lockViewModel.unlock(value).then((_) {
-              AppDebug.log('SUCAZ $value');
+            lockViewModel.unlock().then((_) {
               Navigator.of(context)
                   .pushNamedAndRemoveUntil(MainScreen.routeName, (_) => false);
             });
           },
           (String value) {
             AppDebug.log('PIN GENERATED $value');
-            lockViewModel.savePIN(value);
+            lockViewModel.savePin(value);
           },
           () {
             AppDebug.log('PIN WRONG');

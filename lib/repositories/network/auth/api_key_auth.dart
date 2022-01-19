@@ -11,7 +11,7 @@ class ApiKeyAuthInterceptor extends AuthInterceptor {
     RequestInterceptorHandler handler,
   ) {
     final authInfo = getAuthInfo(options, "apiKey");
-    for (var info in authInfo) {
+    for (final info in authInfo) {
       final authName = info["name"];
       final authKeyName = info["keyName"];
       final authWhere = info["where"];

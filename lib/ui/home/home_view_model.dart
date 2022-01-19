@@ -1,4 +1,3 @@
-import 'package:benzapp_flutter/app_debug.dart';
 import 'package:benzapp_flutter/repositories/account_repository.dart';
 import 'package:benzapp_flutter/repositories/impl/vehicle_repository_impl.dart';
 import 'package:benzapp_flutter/repositories/model/notification.dart';
@@ -82,23 +81,20 @@ class HomeViewModel extends BaseViewModel {
     return _loginStatus;
   }
 
-  Future<void> updateData({bool show = false}) async {
-    if (show) {
+  Future<void> updateData({bool updateUI = false}) async {
+    if (updateUI) {
       _isLoading = true;
       notifyListeners();
     }
 
+    // per dare un minimo di attesa
     await Future<void>.delayed(const Duration(seconds: 1));
-
-    AppDebug.log(">>>>>>>>>>>>> BEGIN");
 
     await _vehicleRepository.update();
     await _refuelingRepository.update();
     await _notificationRepository.deleteAll();
 
-    AppDebug.log(">>>>>>>>>>>>> END");
-
-    if (show) {
+    if (updateUI) {
       _isLoading = false;
       notifyListeners();
     }

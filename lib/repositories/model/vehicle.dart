@@ -1,7 +1,7 @@
+import 'package:benzapp_flutter/repositories/model/base_entity.dart';
 import 'package:benzapp_flutter/repositories/network/model/cittadino.dart';
 import 'package:benzapp_flutter/repositories/network/model/delega.dart';
 import 'package:benzapp_flutter/repositories/network/model/tessera.dart';
-import 'package:benzapp_flutter/repositories/model/base_entity.dart';
 import 'package:floor/floor.dart';
 
 @Entity(tableName: 'vehicles')
@@ -14,15 +14,9 @@ class Vehicle extends BaseEntity {
 
   final DateTime dataEmissione;
 
-  // @TypeConverters([DelegaListConverter])
-  // final List<Delega> delegas;
-
   final String immagine;
 
   final String immagineContentType;
-
-  // @TypeConverters([RifornimentoSetConverter])
-  // final Set<Rifornimento> rifornimentos;
 
   final String targa;
 
@@ -30,15 +24,12 @@ class Vehicle extends BaseEntity {
 
   final bool delega;
 
-  Vehicle(
-      this.carburante,
+  Vehicle(this.carburante,
       this.cittadino,
       this.codice,
       this.dataEmissione,
-      // this.delegas,
       this.immagine,
       this.immagineContentType,
-      // this.rifornimentos,
       this.targa,
       this.veicolo,
       this.delega,

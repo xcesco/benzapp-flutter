@@ -32,7 +32,7 @@ class LockViewModel extends BaseViewModel {
     return _secureRepository.readPin();
   }
 
-  Future<void> unlock(String pin) async {
+  Future<void> unlock() async {
     final DeviceResourceApi deviceResourceApi =
         _apiClient.getDeviceResourceApi();
 
@@ -47,7 +47,7 @@ class LockViewModel extends BaseViewModel {
     deviceResourceApi.createDeviceUsingPOST(device: deviceBuilder.build());
   }
 
-  Future<void> savePIN(String value) {
+  Future<void> savePin(String value) {
     AppPreferences.instance.setPrimoAccesso(false);
     return _secureRepository.writePin(value);
   }

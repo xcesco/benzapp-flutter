@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:benzapp_flutter/repositories/network/api_client.dart';
 import 'package:benzapp_flutter/ui/home/home_view_model.dart';
 import 'package:benzapp_flutter/ui/widgets/app_progress_indicator.dart';
@@ -28,7 +26,7 @@ class _LoginScreenState extends State<LoginScreen>
   @override
   Widget build(BuildContext context) {
     final AppLocalizations localization = AppLocalizations.of(context)!;
-    final HomeViewModel accountViewModel = Provider.of<HomeViewModel>(context);
+    final HomeViewModel homeViewModel = Provider.of<HomeViewModel>(context);
 
     return Scaffold(
         body: Container(
@@ -52,12 +50,12 @@ class _LoginScreenState extends State<LoginScreen>
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            _buildText(accountViewModel.backendBaseUrl),
+                            _buildText(homeViewModel.backendBaseUrl),
                             Padding(
                                 padding: const EdgeInsets.only(left: 8),
                                 child: OutlinedButton.icon(
                                     onPressed: () {
-                                      accountViewModel.refreshRemoteConfig(
+                                      homeViewModel.refreshRemoteConfig(
                                           updateUI: true);
                                     },
                                     icon: const Icon(Icons.sync,
@@ -83,14 +81,14 @@ class _LoginScreenState extends State<LoginScreen>
                           child: Padding(
                               padding: const EdgeInsets.all(24.0),
                               child: Stack(children: [
-                                (!accountViewModel.isLoading)
+                                (!homeViewModel.isLoading)
                                     ? Center(
                                         child: SizedBox(
                                             width: double.infinity,
                                             child: ElevatedButton(
                                                 onPressed: () => {
                                                       _login(context,
-                                                          accountViewModel)
+                                                          homeViewModel)
                                                     },
                                                 child:
                                                     Text(localization.accedi))))

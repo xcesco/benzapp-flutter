@@ -99,7 +99,6 @@ class AccountRepositoryImpl extends AccountRepository {
 
       final String token = updateClientJWTToken(response.data!);
 
-      _apiClient.getUserJwtControllerApi();
       final AccountResourceApi accountResourceApi =
           _apiClient.getAccountResourceApi();
       final AdminUserDTO? account =

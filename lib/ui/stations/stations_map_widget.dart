@@ -3,8 +3,8 @@ import 'dart:typed_data';
 import 'dart:ui';
 
 import 'package:benzapp_flutter/app_debug.dart';
-import 'package:benzapp_flutter/ui/stations/place.dart';
 import 'package:benzapp_flutter/repositories/model/station.dart';
+import 'package:benzapp_flutter/ui/stations/place.dart';
 import 'package:flutter/material.dart' hide Image;
 import 'package:google_maps_cluster_manager/google_maps_cluster_manager.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';

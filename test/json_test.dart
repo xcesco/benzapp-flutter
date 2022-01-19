@@ -20,7 +20,7 @@ void main() {
     final String json = await file.readAsString();
     for (final dynamic item in jsonDecode(json) as List<dynamic>) {
       current.add(Station.fromJson(item));
-      AppDebug.log(current);
+     // AppDebug.log(current);
     }
     // final seth = contacts.first;
     // expect(seth['id'], 1);
