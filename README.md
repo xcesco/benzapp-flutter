@@ -250,3 +250,6 @@ KeyStore was introduced in Android 4.3 (API level 18). The plugin wouldn't work 
 ## Animation
 
 - https://vignesh-prakash.medium.com/flutter-image-rotate-animation-6b6eaed7fb33
+
+### Build per ios
+https://fluttercorner.com/warning-the-ios-deployment-target-iphoneos_deployment_target-is-set-to-8-0/
