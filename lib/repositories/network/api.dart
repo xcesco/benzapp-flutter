@@ -1,18 +1,11 @@
 library openapi.api;
 
 import 'package:benzapp_flutter/repositories/network/api/account_resource_api.dart';
-import 'package:benzapp_flutter/repositories/network/api/cittadino_resource_api.dart';
 import 'package:benzapp_flutter/repositories/network/api/delega_resource_api.dart';
 import 'package:benzapp_flutter/repositories/network/api/device_resource_api.dart';
-import 'package:benzapp_flutter/repositories/network/api/fascia_resource_api.dart';
-import 'package:benzapp_flutter/repositories/network/api/gestore_resource_api.dart';
-import 'package:benzapp_flutter/repositories/network/api/marchio_resource_api.dart';
-import 'package:benzapp_flutter/repositories/network/api/notifica_resource_api.dart';
-import 'package:benzapp_flutter/repositories/network/api/public_user_resource_api.dart';
 import 'package:benzapp_flutter/repositories/network/api/rifornimento_resource_api.dart';
 import 'package:benzapp_flutter/repositories/network/api/tessera_resource_api.dart';
 import 'package:benzapp_flutter/repositories/network/api/user_jwt_controller_api.dart';
-import 'package:benzapp_flutter/repositories/network/api/user_resource_api.dart';
 import 'package:benzapp_flutter/repositories/network/auth/api_key_auth.dart';
 import 'package:benzapp_flutter/repositories/network/auth/basic_auth.dart';
 import 'package:benzapp_flutter/repositories/network/auth/oauth.dart';
@@ -105,12 +98,6 @@ class Openapi {
     return AccountResourceApi(dio, serializers);
   }
 
-  /// Get CittadinoResourceApi instance, base route and serializer can be overridden by a given but be careful,
-  /// by doing that all interceptors will not be executed
-  CittadinoResourceApi getCittadinoResourceApi() {
-    return CittadinoResourceApi(dio, serializers);
-  }
-
   /// Get DelegaResourceApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   DelegaResourceApi getDelegaResourceApi() {
@@ -121,36 +108,6 @@ class Openapi {
   /// by doing that all interceptors will not be executed
   DeviceResourceApi getDeviceResourceApi() {
     return DeviceResourceApi(dio, serializers);
-  }
-
-  /// Get FasciaResourceApi instance, base route and serializer can be overridden by a given but be careful,
-  /// by doing that all interceptors will not be executed
-  FasciaResourceApi getFasciaResourceApi() {
-    return FasciaResourceApi(dio, serializers);
-  }
-
-  /// Get GestoreResourceApi instance, base route and serializer can be overridden by a given but be careful,
-  /// by doing that all interceptors will not be executed
-  GestoreResourceApi getGestoreResourceApi() {
-    return GestoreResourceApi(dio, serializers);
-  }
-
-  /// Get MarchioResourceApi instance, base route and serializer can be overridden by a given but be careful,
-  /// by doing that all interceptors will not be executed
-  MarchioResourceApi getMarchioResourceApi() {
-    return MarchioResourceApi(dio, serializers);
-  }
-
-  /// Get NotificaResourceApi instance, base route and serializer can be overridden by a given but be careful,
-  /// by doing that all interceptors will not be executed
-  NotificaResourceApi getNotificaResourceApi() {
-    return NotificaResourceApi(dio, serializers);
-  }
-
-  /// Get PublicUserResourceApi instance, base route and serializer can be overridden by a given but be careful,
-  /// by doing that all interceptors will not be executed
-  PublicUserResourceApi getPublicUserResourceApi() {
-    return PublicUserResourceApi(dio, serializers);
   }
 
   /// Get RifornimentoResourceApi instance, base route and serializer can be overridden by a given but be careful,
@@ -171,9 +128,4 @@ class Openapi {
     return UserJwtControllerApi(dio, serializers);
   }
 
-  /// Get UserResourceApi instance, base route and serializer can be overridden by a given but be careful,
-  /// by doing that all interceptors will not be executed
-  UserResourceApi getUserResourceApi() {
-    return UserResourceApi(dio, serializers);
-  }
 }
